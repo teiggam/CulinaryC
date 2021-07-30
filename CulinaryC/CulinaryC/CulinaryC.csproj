@@ -32,6 +32,18 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ClientApp\src\Ingredient.ts" />
+    <None Remove="ClientApp\src\SpoonacularAPIService.ts" />
+    <None Remove="ClientApp\src\WholeFood.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\Ingredient.ts" />
+    <TypeScriptCompile Include="ClientApp\src\SpoonacularAPIService.ts" />
+    <TypeScriptCompile Include="ClientApp\src\WholeFood.ts" />
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
