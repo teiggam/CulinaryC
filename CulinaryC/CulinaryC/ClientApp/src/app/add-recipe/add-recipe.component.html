@@ -1,3 +1,5 @@
 <div style="border: 1px solid red">AddRecipe Component</div>
-<button (click)="SearchIngredient('apple')"> THIS ONE</button>
-<button (click)=" GetIngredient()">THIS ONE SECOND</button>
+<button (click)="SearchIngredient('lasagna noodles')"> THIS ONE</button>
+
+<div *ngIf ="ing !== null">{{ing.name}}</div>
+
