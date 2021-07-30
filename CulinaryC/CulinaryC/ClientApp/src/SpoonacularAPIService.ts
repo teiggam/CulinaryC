@@ -9,7 +9,7 @@ import { WholeFood } from './WholeFood';
 })
 
 export class SpoonacularAPI {
-  base: "https://api.spoonacular.com/";
+  base: string = "https://api.spoonacular.com/";
   key: string = "&apiKey=" + "b3d07c0989f54f82b519701af746acc7";
   key2: string = "&apiKey" + "4203a2e4b82642a4a6f9a675162cfddf";
 

@@ -16,12 +16,14 @@ export class AddRecipeComponent {
   ing: Ingredient;
   constructor(private SpoonApi: SpoonacularAPI) { }
 
-  SearchIngredient(name: string)
-  {
-    this.SpoonApi.SearchForWholeFoods(name).subscribe((WholeFood) =>
-    { this.wf = WholeFood; console.log(this.wf) });
+  SearchIngredient(name: string) {
+    this.SpoonApi.SearchForWholeFoods(name).subscribe((WholeFood) => { this.wf = WholeFood; console.log(this.wf) });
+    let foodID: number = this.wf.results[0].id;
+    this.GetIngredientData(foodID);
+  }
 
-    this.SpoonApi.GetFoodFromId(this.wf.result[0].id).subscribe((Ingredient) => {
+  GetIngredientData(foodID: number) {
+  this.SpoonApi.GetFoodFromId(foodID).subscribe((Ingredient) => {
       this.ing = Ingredient; console.log(this.ing)
     });
   }
