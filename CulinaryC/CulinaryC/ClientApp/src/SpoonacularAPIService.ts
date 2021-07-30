@@ -19,7 +19,7 @@ export class SpoonacularAPI {
   {
     let url: string = this.base + "/food/ingredients/search?query=" + food +"&number=1&sortDirection=desc"+ this.key;
     //making sure that the url looks correct
-    console.log(url)
+    console.log(url);
 
     //calling the api and returning a list of foods
     return this.http.get<WholeFood>(url);
@@ -30,7 +30,7 @@ export class SpoonacularAPI {
   //We are going to take the name and calories and put it in our db
   GetFoodFromId(id: number) {
     let url: string = this.base + "/food/ingredients/" + id + "/information?amount=1&" + this.key;
-
+    console.log(url);
     return this.http.get<Ingredient>(url);
   }
 
