@@ -20,9 +20,15 @@ export class AddRecipeComponent {
   {
     this.SpoonApi.SearchForWholeFoods(name).subscribe((WholeFood) =>
     { this.wf = WholeFood; console.log(this.wf) });
+    console.log(this.wf);
+    return this.wf
+  }
 
-    this.SpoonApi.GetFoodFromId(this.wf.result[0].id).subscribe((Ingredient) => {
-      this.ing = Ingredient; console.log(this.ing)
+  GetIngredient() {
+    this.SpoonApi.GetFoodFromId(this.wf.results[0].id).subscribe((Ingredient) => {
+      this.ing = Ingredient; console.log(this.ing); console.log(this.ing.name);
     });
+   
+    
   }
 }
