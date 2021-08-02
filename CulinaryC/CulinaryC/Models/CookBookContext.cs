@@ -28,6 +28,7 @@ namespace CulinaryC.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<DeviceCodes> DeviceCodes { get; set; }
         public virtual DbSet<Favorite> Favorite { get; set; }
+        public virtual DbSet<Friends> Friends { get; set; }
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Ingredients> Ingredients { get; set; }
         public virtual DbSet<PersistedGrants> PersistedGrants { get; set; }
@@ -174,6 +175,16 @@ namespace CulinaryC.Models
                     .WithMany(p => p.Favorite)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK__Favorite__UserId__1EA48E88");
+            });
+
+            modelBuilder.Entity<Friends>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Friends)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Friends__UserId__245D67DE");
             });
 
             modelBuilder.Entity<Group>(entity =>
