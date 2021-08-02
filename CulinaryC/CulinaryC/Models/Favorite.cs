@@ -13,7 +13,6 @@ namespace CulinaryC.Models
         public int? RecipeId { get; set; }
         public int? UserId { get; set; }
 
-        public virtual Recipes Recipe { get; set; }
         public virtual Users User { get; set; }
     }
 }

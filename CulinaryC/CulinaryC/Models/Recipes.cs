@@ -11,7 +11,6 @@ namespace CulinaryC.Models
     {
         public Recipes()
         {
-            Favorite = new HashSet<Favorite>();
             Ingredients = new HashSet<Ingredients>();
         }
 
@@ -22,7 +21,6 @@ namespace CulinaryC.Models
         public string RecipeName { get; set; }
 
         public virtual Users User { get; set; }
-        public virtual ICollection<Favorite> Favorite { get; set; }
         public virtual ICollection<Ingredients> Ingredients { get; set; }
     }
 }
