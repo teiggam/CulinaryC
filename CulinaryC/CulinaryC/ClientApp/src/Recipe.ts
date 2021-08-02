@@ -1,4 +1,5 @@
 export interface Recipe {
+  
     id:          number;
     userId:      number;
     score:       number;
@@ -7,4 +8,5 @@ export interface Recipe {
     user:        null;
     favorite:    any[];
     ingredients: any[];
+
 }
