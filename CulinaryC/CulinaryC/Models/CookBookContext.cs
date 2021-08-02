@@ -173,12 +173,15 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.Favorite)
                     .HasForeignKey(d => d.RecipeId)
+
                     .HasConstraintName("FK__Favorite__Recipe__10566F31");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Favorite)
                     .HasForeignKey(d => d.UserId)
+
                     .HasConstraintName("FK__Favorite__UserId__114A936A");
+
             });
 
             modelBuilder.Entity<Group>(entity =>
@@ -189,6 +192,7 @@ namespace CulinaryC.Models
                     .WithMany(p => p.Group)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK__Group__UserId__04E4BC85");
+
             });
 
             modelBuilder.Entity<Ingredients>(entity =>
@@ -200,7 +204,9 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.Ingredients)
                     .HasForeignKey(d => d.RecipeId)
+
                     .HasConstraintName("FK__Ingredien__Recip__0D7A0286");
+
             });
 
             modelBuilder.Entity<PersistedGrants>(entity =>
@@ -233,7 +239,9 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Recipes)
                     .HasForeignKey(d => d.UserId)
+
                     .HasConstraintName("FK__Recipes__UserId__0A9D95DB");
+
             });
 
             modelBuilder.Entity<UserGroup>(entity =>
@@ -243,12 +251,16 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Group)
                     .WithMany()
                     .HasForeignKey(d => d.GroupId)
+
                     .HasConstraintName("FK__UserGroup__Group__07C12930");
+
 
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId)
+
                     .HasConstraintName("FK__UserGroup__UserI__06CD04F7");
+
             });
 
             modelBuilder.Entity<Users>(entity =>
