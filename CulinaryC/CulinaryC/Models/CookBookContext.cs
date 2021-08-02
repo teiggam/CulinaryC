@@ -28,6 +28,7 @@ namespace CulinaryC.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<DeviceCodes> DeviceCodes { get; set; }
         public virtual DbSet<Favorite> Favorite { get; set; }
+        public virtual DbSet<Friends> Friends { get; set; }
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Ingredients> Ingredients { get; set; }
         public virtual DbSet<PersistedGrants> PersistedGrants { get; set; }
@@ -170,15 +171,20 @@ namespace CulinaryC.Models
 
             modelBuilder.Entity<Favorite>(entity =>
             {
-                entity.HasOne(d => d.Recipe)
-                    .WithMany(p => p.Favorite)
-                    .HasForeignKey(d => d.RecipeId)
-                    .HasConstraintName("FK__Favorite__Recipe__10566F31");
-
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Favorite)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Favorite__UserId__114A936A");
+                    .HasConstraintName("FK__Favorite__UserId__17036CC0");
+            });
+
+            modelBuilder.Entity<Friends>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Friends)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Friends__UserId__1DB06A4F");
             });
 
             modelBuilder.Entity<Group>(entity =>
@@ -193,6 +199,8 @@ namespace CulinaryC.Models
 
             modelBuilder.Entity<Ingredients>(entity =>
             {
+                entity.Property(e => e.Aisle).HasMaxLength(50);
+
                 entity.Property(e => e.Amount).HasMaxLength(50);
 
                 entity.Property(e => e.Item).HasMaxLength(50);
@@ -200,7 +208,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.Ingredients)
                     .HasForeignKey(d => d.RecipeId)
-                    .HasConstraintName("FK__Ingredien__Recip__14270015");
+                    .HasConstraintName("FK__Ingredien__Recip__19DFD96B");
             });
 
             modelBuilder.Entity<PersistedGrants>(entity =>

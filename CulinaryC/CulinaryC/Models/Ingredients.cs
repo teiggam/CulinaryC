@@ -17,6 +17,7 @@ namespace CulinaryC.Models
         public double? Carbs { get; set; }
         public double? Protein { get; set; }
         public double? Fats { get; set; }
+        public string Aisle { get; set; }
 
         public virtual Recipes Recipe { get; set; }
     }
