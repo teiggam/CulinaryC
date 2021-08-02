@@ -21,7 +21,6 @@ namespace CulinaryC.Models
         public string Name { get; set; }
         public int? Score { get; set; }
 
-        public virtual AspNetUsers Login { get; set; }
         public virtual ICollection<Favorite> Favorite { get; set; }
         public virtual ICollection<Group> Group { get; set; }
         public virtual ICollection<Recipes> Recipes { get; set; }
