@@ -9,7 +9,7 @@
 <div *ngIf="rec !== null">
   <h2>Ingredients:</h2>
   <form id="firstIng" #searchFoodForm="ngForm" (ngSubmit)="SearchIngredient(searchFoodForm.form.value.food)">
-    <input type="search" name="food" placeholder="Input ingredient"  />
+    <input type="search" name="food" placeholder="Input ingredient" ngModel />
     <input type="submit" value="Find Ingredient" />
   </form>
   <div *ngIf="ing !== null">

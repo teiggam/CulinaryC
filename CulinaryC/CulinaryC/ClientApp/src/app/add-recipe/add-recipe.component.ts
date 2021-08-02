@@ -26,6 +26,7 @@ export class AddRecipeComponent {
 
   //Searches API and returns the ID number of ingredient
   SearchIngredient(food: string) {
+    console.log(food);
     this.SpoonApi.SearchForWholeFoods(food).subscribe((WholeFood) => {
       this.wf = WholeFood; console.log(this.wf);
       this.foodId = this.wf.results[0].id;
@@ -59,6 +60,7 @@ GetIngredient(id: number) {
   AddIngredient(amount: number, unit: string, name: string) {
     this.r1 = this.FindRecipeByName(name);
     let ingr: DBIngredient={id: null, recipeId: this.r1.id, amount: null, calories: null, carbs: null, protein: null, fats: null, item: null, recipe: null}
+    this.recServ.addIngredient(ingr);
 
   }
 
