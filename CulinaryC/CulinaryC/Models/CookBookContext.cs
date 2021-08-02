@@ -39,6 +39,7 @@ namespace CulinaryC.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=CookBook;Trusted_Connection=True;");
             }
         }
@@ -172,12 +173,12 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.Favorite)
                     .HasForeignKey(d => d.RecipeId)
-                    .HasConstraintName("FK__Favorite__Recipe__5FB337D6");
+                    .HasConstraintName("FK__Favorite__Recipe__68487DD7");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Favorite)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Favorite__UserId__60A75C0F");
+                    .HasConstraintName("FK__Favorite__UserId__693CA210");
             });
 
             modelBuilder.Entity<Group>(entity =>
@@ -187,7 +188,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Group)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Group__UserId__6E01572D");
+                    .HasConstraintName("FK__Group__UserId__5EBF139D");
             });
 
             modelBuilder.Entity<Ingredients>(entity =>
@@ -199,7 +200,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.Ingredients)
                     .HasForeignKey(d => d.RecipeId)
-                    .HasConstraintName("FK__Ingredien__Recip__66603565");
+                    .HasConstraintName("FK__Ingredien__Recip__6C190EBB");
             });
 
             modelBuilder.Entity<PersistedGrants>(entity =>
@@ -232,7 +233,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Recipes)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Recipes__UserId__5CD6CB2B");
+                    .HasConstraintName("FK__Recipes__UserId__656C112C");
             });
 
             modelBuilder.Entity<UserGroup>(entity =>
@@ -242,12 +243,12 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Group)
                     .WithMany()
                     .HasForeignKey(d => d.GroupId)
-                    .HasConstraintName("FK__UserGroup__Group__59FA5E80");
+                    .HasConstraintName("FK__UserGroup__Group__619B8048");
 
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__UserGroup__UserI__59063A47");
+                    .HasConstraintName("FK__UserGroup__UserI__60A75C0F");
             });
 
             modelBuilder.Entity<Users>(entity =>
@@ -255,11 +256,6 @@ namespace CulinaryC.Models
                 entity.Property(e => e.LoginId).HasMaxLength(450);
 
                 entity.Property(e => e.Name).HasMaxLength(50);
-
-                entity.HasOne(d => d.Login)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.LoginId)
-                    .HasConstraintName("FK__Users__LoginId__5535A963");
             });
 
             OnModelCreatingPartial(modelBuilder);
