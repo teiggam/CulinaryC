@@ -1,11 +1,12 @@
 export interface Recipe {
-  title: string;
-  serving: number;
-  instruction: Instructions[];
   
-}
+    id:          number;
+    userId:      number;
+    score:       number;
+    description: string;
+    recipeName:  string;
+    user:        null;
+    favorite:    any[];
+    ingredients: any[];
 
-export interface Instructions {
-  value: number;
-  unit: string;
 }
