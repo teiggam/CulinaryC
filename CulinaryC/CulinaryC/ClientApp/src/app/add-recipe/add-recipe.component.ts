@@ -18,8 +18,8 @@ export class AddRecipeComponent {
   constructor(private SpoonApi: SpoonacularAPI) { }
 
 
-  SearchIngredient(name: string) {
-    this.SpoonApi.SearchForWholeFoods(name).subscribe((WholeFood) => {
+  SearchIngredient(food: string) {
+    this.SpoonApi.SearchForWholeFoods(food).subscribe((WholeFood) => {
       this.wf = WholeFood; console.log(this.wf);
       this.foodId = this.wf.results[0].id;
       console.log(this.foodId)
