@@ -23,7 +23,6 @@ export class SpoonacularAPI {
 
     //calling the api and returning a list of foods
     return this.http.get<WholeFood>(url);
-
   }
 
 
