@@ -4,6 +4,7 @@ import { WholeFood } from '../../WholeFood';
 import { Ingredient } from '../../Ingredient';
 import { RecipeService } from 'src/RecipeService';
 import { Recipe } from 'src/Recipe';
+import { DBIngredient } from 'src/DBIngredient';
 
 
 @Component({
@@ -15,10 +16,12 @@ import { Recipe } from 'src/Recipe';
 /** AddRecipe component*/
 export class AddRecipeComponent {
 
-  wf: WholeFood = {} as WholeFood;
-  ing: Ingredient = {} as Ingredient;
-  foodId: number = {} as number;
-  r: Recipe = {} as Recipe;
+  wf: WholeFood;
+  ing: Ingredient;
+  foodId: number;
+  rList: Recipe[];
+  r: Recipe;
+  r1: Recipe;
   constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService) { }
 
   //Searches API and returns the ID number of ingredient
@@ -42,10 +45,28 @@ GetIngredient(id: number) {
 
   //Adds new recipe, only entering the title, to later be modified.
   AddRecipe(title: string){
-       this.recServ.addRecipe(title);
+      let rec: Recipe = {id: null, recipeName: title, userId:null, score: null, description: null, user:null, favorite:null, ingredients:null};
+      console.log(rec.recipeName);
+      this.recServ.addRecipe(title);
+      return rec;
+
+  }
+  ConfirmTitle(title: string){
+    document.getElementById("confirm").innerHTML = `<h2>${title}</h2>`;
+
   }
 
-  AddIngredient(amount: number, unit: string, ) {
+  AddIngredient(amount: number, unit: string, name: string) {
+    this.r1 = this.FindRecipeByName(name);
+    let ingr: DBIngredient={id: null, recipeId: this.r1.id, amount: null, calories: null, carbs: null, protein: null, fats: null, item: null, recipe: null}
+
+  }
+
+  FindRecipeByName(name: string): any{
+    this.recServ.getRecipeByName(name).subscribe((Recipe)=> {
+      this.r = Recipe;
+      return this.r;
+    })
 
   }
 }

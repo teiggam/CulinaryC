@@ -39,6 +39,13 @@ namespace CulinaryC.Controllers
             List<Ingredients> ingrList = db.Ingredients.ToList();
             return ingrList;
         }
+        [HttpGet("N={name}")]
+        public Recipes GetRecipeByName(string name)
+        {
+            Recipes rec = new Recipes();
+            rec = db.Recipes.Where(x => x.RecipeName == name).First();
+            return rec;
+        }
 
         [HttpPost("Ingredients/Add")]
         public void AddIngredient(Ingredients ing)

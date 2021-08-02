@@ -33,4 +33,9 @@ export class RecipeService {
     let url: string = this.base + `/Add/T=${title}`
     this.http.post(url, {}).subscribe(result=> {console.log(result)})
   }
+
+  getRecipeByName(name: string){
+    let url: string = this.base + `/N=${name}`
+    return this.http.get<Recipe>(url);
+  }
 }
