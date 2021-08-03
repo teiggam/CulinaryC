@@ -20,13 +20,15 @@
   <div *ngIf="ing !== null">
     <p>{{ing.name}}</p>
     <form #addIngredientForm="ngForm" (ngSubmit)="AddToIngArray(addIngredientForm)">
-      <input type="text" name="food" value="{{ing.name}}" ngModel/>
-      <input type="hidden" name="recipeID" value="{{ing.id}}" ngModel/>
-      <input style="width: 50px" type="number" name="amount"  ngModel />
+
+      <input type="text" name="food" value="{{ing.name}}" ngModel />
+      <input type="hidden" name="recipeID" value="{{ing.id}}" ngModel />
+      <input style="width: 50px" type="number" name="amount" ngModel />
       <select name="unit" ngModel>
-        <option *ngFor="let unit of ing.possibleUnits; index as i" value="{{unit}}" >{{unit}}</option>
+        <option *ngFor="let unit of ing.possibleUnits; index as i" value="{{unit}}">{{unit}}</option>
       </select>
       <input type="submit" value="Add Ingredient" />
+<<<<<<< HEAD
       </form>
     </div>
 
@@ -37,6 +39,42 @@
       <textarea rows="6" cols="50" name="directions" form="dirform" ngModel>Type directions here...</textarea>
       <br>
       <input type="submit" value="Add Recipe" />
+=======
+>>>>>>> ca2b40d1fac3265ded71bcd9111e1ad4c7e8dc81
     </form>
   </div>
-    
+
+
+  <h2>Directions:</h2>
+  <form #directionsForm="ngForm" (ngSubmit)="AddRecipeDescription(directionsForm.form.value.directions)">
+    <input class="submissionfield" type="text" name="directions" placeholder="Please input directions" ngModel /><br />
+    <label for="myimage">Select an Image:</label><br>
+    <input type="file" id="myimage" name="myimage" /><br />
+    <input type="submit" value="Add Recipe" />
+  </form>
+</div>
+
+<!--<div *ngIf="ing !== null">
+  <h1>{{ing.name}}</h1>
+  <h2>{{ing.possibleUnits}}</h2>
+  <div *ngFor="let nutrient of ing.nutrition.nutrients; index as i">
+    <h3 *ngIf="ing.nutrition.nutrients[i].title === 'Calories'">{{ing.nutrition.nutrients[i].title}}: {{ing.nutrition.nutrients[i].amount}} {{ing.nutrition.nutrients[i].unit}}</h3>
+    <h3 *ngIf="ing.nutrition.nutrients[i].title === 'Carbohydrates'">{{ing.nutrition.nutrients[i].title}}: {{ing.nutrition.nutrients[i].amount}} {{ing.nutrition.nutrients[i].unit}}</h3>
+    <h3 *ngIf="ing.nutrition.nutrients[i].title === 'Fat'">{{ing.nutrition.nutrients[i].title}}: {{ing.nutrition.nutrients[i].amount}} {{ing.nutrition.nutrients[i].unit}}</h3>
+    <h3 *ngIf="ing.nutrition.nutrients[i].title === 'Protein'">{{ing.nutrition.nutrients[i].title}}: {{ing.nutrition.nutrients[i].amount}} {{ing.nutrition.nutrients[i].unit}}</h3>
+  </div>
+</div>-->
+<!--<div *ngFor="let unit of ing.possibleUnits; index as i">
+
+  <select id="unit">
+    <option value="{{i}}">{{unit[i]}}</option>
+  </select>
+
+</div>
+
+<p *ngFor="let nut of ing.nutrition.nutrients">
+  Carbs: {{nut[13]}}<br />
+  Fat: {{nut[24]}}<br />
+  Protein: {{nut[23]}}
+</p>-->
+

@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { SpoonacularAPI } from '../../SpoonacularAPIService';
 import { WholeFood } from '../../WholeFood';
@@ -6,7 +7,10 @@ import { RecipeService } from 'src/RecipeService';
 import { Recipe } from 'src/Recipe';
 import { DBIngredient } from 'src/DBIngredient';
 import { NgForm } from '@angular/forms';
+<<<<<<< HEAD
 
+=======
+>>>>>>> ca2b40d1fac3265ded71bcd9111e1ad4c7e8dc81
 
 
 @Component({
@@ -48,6 +52,7 @@ export class AddRecipeComponent {
 
   }
 
+
 //Pulls ingredient from list using ID from above, to access all details
 GetIngredient(id: number): any {
   this.SpoonApi.GetFoodFromId(id).subscribe((Ingredient) => {
@@ -63,11 +68,12 @@ GetIngredient(id: number): any {
       return this.rec;
 
   }
-  ConfirmTitle(title: string){
+  ConfirmTitle(title: string) {
     document.getElementById("confirm").innerHTML = `<h2>${title}</h2>`;
     this.recName = title;
 
   }
+
   AddToIngArray(form: NgForm){
     this.dbIng = {id: null, recipeId: null, item: null, amount: null, calories: null, carbs: null, protein: null, fats: null, aisle: null}
     this.recServ.getRecipeByName(this.recName).subscribe((Recipe2)=> {
@@ -77,6 +83,7 @@ GetIngredient(id: number): any {
 
     let amount: string = form.form.value.amount + " " + form.form.value.unit;
     console.log(amount);
+
     for (var k = 0; k < this.ing.nutrition.nutrients.length; k++)
     {
       if(this.ing.nutrition.nutrients[k].title === 'Calories'){
@@ -92,7 +99,12 @@ GetIngredient(id: number): any {
         this.dbIng.fats = this.ing.nutrition.nutrients[k].amount;
       }
       if(this.ing.nutrition.nutrients[k].title === 'Protein'){
+<<<<<<< HEAD
        
+=======
+
+        console.log(this.ing.nutrition.nutrients[k].title);
+>>>>>>> ca2b40d1fac3265ded71bcd9111e1ad4c7e8dc81
         this.dbIng.protein = this.ing.nutrition.nutrients[k].amount
       }
     }

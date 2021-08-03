@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CulinaryC.Migrations.CookBook
 {
     [DbContext(typeof(CookBookContext))]
-    [Migration("20210802134756_gettables")]
-    partial class gettables
+    [Migration("20210802140311_InitalCreate")]
+    partial class InitalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

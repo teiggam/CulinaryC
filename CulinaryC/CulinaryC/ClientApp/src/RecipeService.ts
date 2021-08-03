@@ -39,9 +39,22 @@ export class RecipeService {
     return this.http.get<Recipe>(url);
   }
 
+<<<<<<< HEAD
   updateDescription(name: string, description: string) {
     console.log(description);
     let url: string = this.base + `/Update/N=${name}/D=${description}`;
     return this.http.put<Recipe>(url,{});
+=======
+  //used in detail com
+  getRecipeById(id: number) {
+    let url: string = this.base + `/FindRecipe/Id=${id}`
+    return this.http.get<Recipe>(url);
+  }
+
+  //Haven't tested
+  getIngredientById(id: number) {
+    let url: string = this.base + `/Ingredients/Id=${id}`
+    return this.http.get<DBIngredient>(url);
+>>>>>>> ca2b40d1fac3265ded71bcd9111e1ad4c7e8dc81
   }
 }

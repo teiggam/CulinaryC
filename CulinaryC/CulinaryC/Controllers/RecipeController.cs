@@ -43,7 +43,9 @@ namespace CulinaryC.Controllers
         public Recipes GetRecipeByName(string name)
         {
             Recipes rec = new Recipes();
-            rec = db.Recipes.Where(x => x.RecipeName == name).ToList().Last();
+
+            rec = db.Recipes.Where(x => x.RecipeName.ToLower() == name.ToLower()).ToList().Last();
+
             return rec;
         }
 
@@ -61,6 +63,23 @@ namespace CulinaryC.Controllers
             r.Description = description;
             db.Recipes.Update(r);
             db.SaveChanges();
+        }
+
+        //used currently in details componet
+        [HttpGet("FindRecipe/Id={id}")]
+        public Recipes FindRecipeById(int id)
+        {
+           Recipes r = db.Recipes.Find(id);
+           return r;
+        }
+
+        //need to test
+        [HttpGet("Ingredients/Id={id}")]
+        public Ingredients GetIngredientById(int id)
+        {
+            Ingredients ing = db.Ingredients.Find(id);
+            return ing;
+
         }
     }
 }
