@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DBIngredient } from '../../DBIngredient';
 import { Ingredient } from '../../Ingredient';
 import { Recipe } from '../../Recipe';
 import { RecipeService } from '../../RecipeService';
@@ -20,10 +21,14 @@ export class DetailRecipeComponent {
   foodId: number = {} as number;
   r: Recipe = {} as Recipe;
   u: User[];
+  dbIngList: DBIngredient[];
 
   constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private UserServ: UserService) {
     this.UserServ.getUsers().subscribe((User) => {
       this.u = User; console.log(this.u);
+    })
+    this.recServ.getIngredients().subscribe((DBIngredient) => {
+      this.dbIngList = DBIngredient; console.log(this.dbIngList)
     })
   }
 

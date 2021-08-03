@@ -9,11 +9,13 @@ export class UserService {
     this.base = baseUrl + "Culinary";
   }
 
+  //needs to be tested still
   updateUsers(name: string, id: number) {
     let url: string = this.base + "newname={name}&id={id}";
     this.http.post(url, {}).subscribe(result => { console.log(result) })
   }
 
+  //We use this in the detail-recipe page, it does works
   getUsers() {
     let url: string = this.base + "/Leaderboard";
     return this.http.get<User[]>(url);

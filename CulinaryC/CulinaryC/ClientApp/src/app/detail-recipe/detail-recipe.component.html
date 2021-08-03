@@ -6,20 +6,21 @@
 
 <h2>{{r.recipeName}} </h2>
 
-  <div *ngFor="let user of u">
-    <div *ngIf="user.id === r.userId">
+<div *ngFor="let user of u">
+   <div *ngIf="user.id === r.userId">
       <b>Created By: </b> {{user.name}} <br />
-    </div>
-  </div>
+   </div>
+</div>
+<div *ngFor="let ing of dbIngList">
+  <div *ngIf="r.id === ing.recipeId">
+    {{ing.item}}
+    {{ing.amount}}<br />
+    Calories: 
+    {{ing.calories}} <br />
 
-   <!--this is a container for checking if there is ingredients in the reciepe, and if there is it will loop and print-->
-  <div *ngIf="r.ingredients[0] != null">
-    <b> Ingredients:</b> <br />
-    <div *ngFor="let ing of r.ingredients; let i = length">
-      r.ingredients[i]
-    </div>
   </div>
-  <b>Description: </b> {{r.description}}
+</div>
+ <b>Description: </b> {{r.description}}
 
 
 <!--

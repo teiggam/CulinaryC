@@ -61,5 +61,13 @@ namespace CulinaryC.Controllers
            Recipes r = db.Recipes.Find(id);
            return r;
         }
+
+        //need to test
+        [HttpGet("Ingredients/Id={id}")]
+        public Ingredients GetIngredientById(int id)
+        {
+            Ingredients ing = db.Ingredients.Find(id);
+            return ing;
+        }
     }
 }
