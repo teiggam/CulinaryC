@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\Group.ts" />
     <None Remove="ClientApp\src\Ingredient.ts" />
     <None Remove="ClientApp\src\SpoonacularAPIService.ts" />
     <None Remove="ClientApp\src\User.ts" />
@@ -41,6 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\group.ts" />
     <TypeScriptCompile Include="ClientApp\src\Ingredient.ts" />
     <TypeScriptCompile Include="ClientApp\src\SpoonacularAPIService.ts" />
     <TypeScriptCompile Include="ClientApp\src\User.ts" />
