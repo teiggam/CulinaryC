@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CulinaryC.Migrations
+namespace CulinaryC.Migrations.CookBook
 {
     [DbContext(typeof(CookBookContext))]
-    [Migration("20210802134933_initial")]
-    partial class initial
+    [Migration("20210802134756_gettables")]
+    partial class gettables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

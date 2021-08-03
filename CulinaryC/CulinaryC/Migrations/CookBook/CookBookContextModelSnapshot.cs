@@ -4,16 +4,14 @@ using CulinaryC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CulinaryC.Migrations
+namespace CulinaryC.Migrations.CookBook
 {
     [DbContext(typeof(CookBookContext))]
-    [Migration("20210802140121_gettables")]
-    partial class gettables
+    partial class CookBookContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

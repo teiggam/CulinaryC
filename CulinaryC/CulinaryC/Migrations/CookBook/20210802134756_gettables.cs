@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CulinaryC.Migrations
+namespace CulinaryC.Migrations.CookBook
 {
-    public partial class initial : Migration
+    public partial class gettables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
