@@ -34,9 +34,13 @@ export class RecipeService {
     this.http.post(url, {}).subscribe(result=> {console.log(result)})
   }
 
+  getRecipeByName(name: string){
+    let url: string = this.base + `/N=${name}`
+    return this.http.get<Recipe>(url);
+  }
+
   //Added by Kate, Need to test
   getRecipeById(id: number) {
     let url: string = this.base + `/FindRecipe/Id=${id}`
-    return this.http.get<Recipe>(url);
   }
 }
