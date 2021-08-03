@@ -43,7 +43,7 @@ namespace CulinaryC.Controllers
         public Recipes GetRecipeByName(string name)
         {
             Recipes rec = new Recipes();
-            rec = db.Recipes.Where(x => x.RecipeName == name).First();
+            rec = db.Recipes.Where(x => x.RecipeName == name).ToList().Last();
             return rec;
         }
 
@@ -54,6 +54,13 @@ namespace CulinaryC.Controllers
             db.SaveChanges();
         }
 
-
+        [HttpPut("Update/N={name}/D={description}")]
+        public void UpdateRecipe(string name, string description)
+        {
+            Recipes r = db.Recipes.Where(x => x.RecipeName == name).Last();
+            r.Description = description;
+            db.Recipes.Update(r);
+            db.SaveChanges();
+        }
     }
 }
