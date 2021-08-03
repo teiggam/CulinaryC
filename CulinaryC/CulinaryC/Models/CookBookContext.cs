@@ -180,7 +180,8 @@ namespace CulinaryC.Models
             });
 
 
-
+            modelBuilder.Entity<Friends>(entity =>
+            {
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Friends)
                     .HasForeignKey(d => d.UserId)
@@ -254,7 +255,6 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Recipes)
                     .HasForeignKey(d => d.UserId)
-
                     .HasConstraintName("FK__Recipes__UserId__0D7A0286");
 
             });
