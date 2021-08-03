@@ -1,1 +1,23 @@
-﻿<div style="border: 1px solid red">detail-recipe Component</div>
+
+<!--The id will be passed in, this is just for testing purposes-->
+<h4>Recipe Details:</h4>
+<input type="text" name="id" [(ngModel)]="getRecipe" />
+<input type="submit" (click)="GetRecipeById(getRecipe)" />
+
+<h2>{{r.recipeName}} </h2>
+
+<div *ngFor="let user of u">
+   <div *ngIf="user.id === r.userId">
+      <b>Created By: </b> {{user.name}} <br />
+   </div>
+</div>
+<div *ngFor="let ing of dbIngList">
+  <div *ngIf="r.id === ing.recipeId">
+    {{ing.item}}
+    {{ing.amount}}<br />
+    Calories: 
+    {{ing.calories}} <br />
+
+  </div>
+</div>
+ <b>Description: </b> {{r.description}}

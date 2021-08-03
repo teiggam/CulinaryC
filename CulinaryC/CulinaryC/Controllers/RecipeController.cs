@@ -17,7 +17,7 @@ namespace CulinaryC.Controllers
         [HttpGet("All")]
         public List<Recipes> GetRecipes()
         {
-            List<Recipes> recipeList = db.Recipes.ToList();
+            List<Recipes> recipeList = db.Recipes.ToList().ToList();
             return recipeList;
         }
 
@@ -54,6 +54,20 @@ namespace CulinaryC.Controllers
             db.SaveChanges();
         }
 
+        //used currently in details componet
+        [HttpGet("FindRecipe/Id={id}")]
+        public Recipes FindRecipeById(int id)
+        {
+           Recipes r = db.Recipes.Find(id);
+           return r;
+        }
 
+        //need to test
+        [HttpGet("Ingredients/Id={id}")]
+        public Ingredients GetIngredientById(int id)
+        {
+            Ingredients ing = db.Ingredients.Find(id);
+            return ing;
+        }
     }
 }
