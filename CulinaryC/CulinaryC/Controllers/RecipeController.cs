@@ -47,6 +47,12 @@ namespace CulinaryC.Controllers
             db.SaveChanges();
         }
 
-
+        //Made by Kate, need to test 
+        [HttpGet("FindRecipe/Id={id}")]
+        public Recipes FindRecipeById(int id)
+        {
+           Recipes r = db.Recipes.Find(id);
+           return r;
+        }
     }
 }

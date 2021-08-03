@@ -1,1 +1,9 @@
-﻿<div style="border: 1px solid red">detail-recipe Component</div>
+<!--The id will be passed in, this is just for testing purposes-->
+
+<h1>Recipe Details</h1>
+<form #getRecipe="ngForm" (ngSubmit)="GetRecipeById(getRecipe.form.value.id">
+  <h2>Recipe Id: </h2><input type="number" name="id" placeholder="1" ngModel />
+  <input type="submit" />
+</form>
+
+<p>{{r.recipeName}}</p>

@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace CulinaryC.Models
 {
-    public partial class Favorite
+    public partial class Friends
     {
         public int Id { get; set; }
-        public int? RecipeId { get; set; }
         public int? UserId { get; set; }
+        public int? FriendId { get; set; }
 
         public virtual Users User { get; set; }
     }

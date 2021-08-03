@@ -28,6 +28,7 @@ namespace CulinaryC.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<DeviceCodes> DeviceCodes { get; set; }
         public virtual DbSet<Favorite> Favorite { get; set; }
+        public virtual DbSet<Friends> Friends { get; set; }
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Ingredients> Ingredients { get; set; }
         public virtual DbSet<PersistedGrants> PersistedGrants { get; set; }
@@ -39,7 +40,6 @@ namespace CulinaryC.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=CookBook;Trusted_Connection=True;");
             }
         }
@@ -170,18 +170,20 @@ namespace CulinaryC.Models
 
             modelBuilder.Entity<Favorite>(entity =>
             {
-                entity.HasOne(d => d.Recipe)
-                    .WithMany(p => p.Favorite)
-                    .HasForeignKey(d => d.RecipeId)
-
-                    .HasConstraintName("FK__Favorite__Recipe__10566F31");
-
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Favorite)
                     .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Favorite__UserId__7A672E12");
+            });
 
-                    .HasConstraintName("FK__Favorite__UserId__114A936A");
+            modelBuilder.Entity<Friends>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Friends)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Friends__UserId__00200768");
             });
 
             modelBuilder.Entity<Group>(entity =>
@@ -191,12 +193,13 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Group)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Group__UserId__04E4BC85");
-
+                    .HasConstraintName("FK__Group__UserId__71D1E811");
             });
 
             modelBuilder.Entity<Ingredients>(entity =>
             {
+                entity.Property(e => e.Aisle).HasMaxLength(50);
+
                 entity.Property(e => e.Amount).HasMaxLength(50);
 
                 entity.Property(e => e.Item).HasMaxLength(50);
@@ -204,9 +207,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.Ingredients)
                     .HasForeignKey(d => d.RecipeId)
-
-                    .HasConstraintName("FK__Ingredien__Recip__0D7A0286");
-
+                    .HasConstraintName("FK__Ingredien__Recip__7D439ABD");
             });
 
             modelBuilder.Entity<PersistedGrants>(entity =>
@@ -239,9 +240,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Recipes)
                     .HasForeignKey(d => d.UserId)
-
-                    .HasConstraintName("FK__Recipes__UserId__0A9D95DB");
-
+                    .HasConstraintName("FK__Recipes__UserId__778AC167");
             });
 
             modelBuilder.Entity<UserGroup>(entity =>
@@ -251,16 +250,12 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Group)
                     .WithMany()
                     .HasForeignKey(d => d.GroupId)
-
-                    .HasConstraintName("FK__UserGroup__Group__07C12930");
-
+                    .HasConstraintName("FK__UserGroup__Group__74AE54BC");
 
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId)
-
-                    .HasConstraintName("FK__UserGroup__UserI__06CD04F7");
-
+                    .HasConstraintName("FK__UserGroup__UserI__73BA3083");
             });
 
             modelBuilder.Entity<Users>(entity =>
