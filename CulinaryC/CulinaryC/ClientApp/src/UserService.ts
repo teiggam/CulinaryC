@@ -20,4 +20,10 @@ export class UserService {
     let url: string = this.base + "/Leaderboard";
     return this.http.get<User[]>(url);
   }
+
+  //NeedFindUserByEmail (for friends). Need to test still
+  getUserByEmail() {
+    let url: string = this.base + "/Login=";
+    return this.http.get<User>(url);
+  }
 }

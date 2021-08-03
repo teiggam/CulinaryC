@@ -93,7 +93,14 @@ namespace CulinaryC.Controllers
             return u;
         }
 
-        //viewing users by email (for finding friends)
+        //Need to test
+        [HttpGet("UserEmail={email}")]
+        public Users GetUserByEmail(string email)
+        {
+            Users u = db.Users.Where(x => x.LoginId == email).ToList().First();
+            return u;
+        }
+
         [HttpGet("Login={email}")]
         public Users GetUsersById(string email)
         {
