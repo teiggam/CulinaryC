@@ -59,7 +59,6 @@ GetIngredient(id: number): any {
   //Adds new recipe, only entering the title, to later be modified.
   AddRecipe(title: string){
       this.rec = {id: null, recipeName: title, userId:null, score: null, description: null, user:null, favorite:null, ingredients:null};
-      console.log(this.rec.recipeName);
       this.recServ.addRecipe(title);
       return this.rec;
 
@@ -71,12 +70,8 @@ GetIngredient(id: number): any {
   }
   AddToIngArray(form: NgForm){
     this.dbIng = {id: null, recipeId: null, item: null, amount: null, calories: null, carbs: null, protein: null, fats: null, aisle: null}
-    console.log(this.recName);
     this.recServ.getRecipeByName(this.recName).subscribe((Recipe2)=> {
       let r2: Recipe = Recipe2;
-      console.log(this.r);
-      console.log(r2.recipeName);
-      console.log(r2.id);
       this.dbIng.recipeId = r2.id;
     })
 
@@ -86,19 +81,18 @@ GetIngredient(id: number): any {
     {
       if(this.ing.nutrition.nutrients[k].title === 'Calories'){
 
-        console.log(this.ing.nutrition.nutrients[k].title);
         this.dbIng.calories = this.ing.nutrition.nutrients[k].amount;
       }  
       if(this.ing.nutrition.nutrients[k].title === 'Carbohydrates'){
-        console.log(this.ing.nutrition.nutrients[k].title);
+       
         this.dbIng.carbs = this.ing.nutrition.nutrients[k].amount;
       }
       if(this.ing.nutrition.nutrients[k].title === 'Fat'){
-        console.log(this.ing.nutrition.nutrients[k].title);
+       
         this.dbIng.fats = this.ing.nutrition.nutrients[k].amount;
       }
       if(this.ing.nutrition.nutrients[k].title === 'Protein'){
-        console.log(this.ing.nutrition.nutrients[k].title);
+       
         this.dbIng.protein = this.ing.nutrition.nutrients[k].amount
       }
     }
