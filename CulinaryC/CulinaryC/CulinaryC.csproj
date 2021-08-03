@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -35,18 +35,15 @@
   <ItemGroup>
     <None Remove="ClientApp\src\Ingredient.ts" />
     <None Remove="ClientApp\src\SpoonacularAPIService.ts" />
+    <None Remove="ClientApp\src\UserService.ts" />
     <None Remove="ClientApp\src\WholeFood.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\Ingredient.ts" />
     <TypeScriptCompile Include="ClientApp\src\SpoonacularAPIService.ts" />
+    <TypeScriptCompile Include="ClientApp\src\UserService.ts" />
     <TypeScriptCompile Include="ClientApp\src\WholeFood.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Migrations\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

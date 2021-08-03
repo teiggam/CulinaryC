@@ -40,6 +40,7 @@ namespace CulinaryC.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=CookBook;Trusted_Connection=True;");
             }
         }
@@ -170,24 +171,12 @@ namespace CulinaryC.Models
 
             modelBuilder.Entity<Favorite>(entity =>
             {
-<<<<<<< HEAD
-=======
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Favorite)
-
-                    .HasForeignKey(d => d.RecipeId)
-
-                    .HasConstraintName("FK__Favorite__Recipe__10566F31");
-
-
->>>>>>> cde9770e815f258c7b73b1a7a9d73c479bbcfd9a
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Friends)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK__Favorite__UserId__7A672E12");
             });
 
-<<<<<<< HEAD
             modelBuilder.Entity<Friends>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -196,12 +185,6 @@ namespace CulinaryC.Models
                     .WithMany(p => p.Friends)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK__Friends__UserId__00200768");
-=======
-
-                    .HasConstraintName("FK__Favorite__UserId__114A936A");
-
-
->>>>>>> cde9770e815f258c7b73b1a7a9d73c479bbcfd9a
             });
 
             modelBuilder.Entity<Group>(entity =>
@@ -211,14 +194,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Group)
                     .HasForeignKey(d => d.UserId)
-<<<<<<< HEAD
                     .HasConstraintName("FK__Group__UserId__71D1E811");
-=======
-
-                    .HasConstraintName("FK__Group__UserId__04E4BC85");
-
-
->>>>>>> cde9770e815f258c7b73b1a7a9d73c479bbcfd9a
             });
 
             modelBuilder.Entity<Ingredients>(entity =>
@@ -232,15 +208,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.Ingredients)
                     .HasForeignKey(d => d.RecipeId)
-<<<<<<< HEAD
                     .HasConstraintName("FK__Ingredien__Recip__7D439ABD");
-=======
-
-
-
-                    .HasConstraintName("FK__Ingredien__Recip__0D7A0286");
-
->>>>>>> cde9770e815f258c7b73b1a7a9d73c479bbcfd9a
             });
 
             modelBuilder.Entity<PersistedGrants>(entity =>
@@ -273,14 +241,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Recipes)
                     .HasForeignKey(d => d.UserId)
-<<<<<<< HEAD
                     .HasConstraintName("FK__Recipes__UserId__778AC167");
-=======
-
-                    .HasConstraintName("FK__Recipes__UserId__0A9D95DB");
-
-
->>>>>>> cde9770e815f258c7b73b1a7a9d73c479bbcfd9a
             });
 
             modelBuilder.Entity<UserGroup>(entity =>
@@ -290,28 +251,12 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Group)
                     .WithMany()
                     .HasForeignKey(d => d.GroupId)
-<<<<<<< HEAD
                     .HasConstraintName("FK__UserGroup__Group__74AE54BC");
-=======
-
-
-                    .HasConstraintName("FK__UserGroup__Group__07C12930");
-
->>>>>>> cde9770e815f258c7b73b1a7a9d73c479bbcfd9a
 
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId)
-<<<<<<< HEAD
                     .HasConstraintName("FK__UserGroup__UserI__73BA3083");
-=======
-
-
-
-                    .HasConstraintName("FK__UserGroup__UserI__06CD04F7");
-
-
->>>>>>> cde9770e815f258c7b73b1a7a9d73c479bbcfd9a
             });
 
             modelBuilder.Entity<Users>(entity =>

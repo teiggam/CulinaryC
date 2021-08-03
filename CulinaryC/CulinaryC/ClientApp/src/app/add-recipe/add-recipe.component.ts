@@ -46,7 +46,7 @@ GetIngredient(id: number) {
 
   //Adds new recipe, only entering the title, to later be modified.
   AddRecipe(title: string){
-      let rec: Recipe = {id: null, recipeName: title, userId:null, score: null, description: null, user:null, favorite:null, ingredients:null};
+      let rec: Recipe = {id: null, recipeName: title, userId:null, score: null, description: null};
       console.log(rec.recipeName);
       this.recServ.addRecipe(title);
       return rec;
@@ -57,12 +57,12 @@ GetIngredient(id: number) {
 
   }
 
-  AddIngredient(amount: number, unit: string, name: string) {
-    this.r1 = this.FindRecipeByName(name);
-    let ingr: DBIngredient={id: null, recipeId: this.r1.id, amount: null, calories: null, carbs: null, protein: null, fats: null, item: null, recipe: null}
-    this.recServ.addIngredient(ingr);
+  //AddIngredient(amount: number, unit: string, name: string) {
+  //  this.r1 = this.FindRecipeByName(name);
+  //  let ingr: DBIngredient={id: null, recipeId: this.r1.id, amount: null, calories: null, carbs: null, protein: null, fats: null, item: null, recipe: null}
+  //  this.recServ.addIngredient(ingr);
 
-  }
+  //}
 
   FindRecipeByName(name: string): any{
     this.recServ.getRecipeByName(name).subscribe((Recipe)=> {
@@ -71,4 +71,7 @@ GetIngredient(id: number) {
     })
 
   }
+
+
+
 }

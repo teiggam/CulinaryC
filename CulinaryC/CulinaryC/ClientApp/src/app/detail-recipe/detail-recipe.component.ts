@@ -17,7 +17,7 @@ export class DetailRecipeComponent {
   r: Recipe = {} as Recipe;
   constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService) { }
 
-  //Added by Kate, Needs to be tested
+  //used for detail componet
   GetRecipeById(id: number)
   {
     this.recServ.getRecipeById(id).subscribe((Recipe) => {
@@ -26,5 +26,9 @@ export class DetailRecipeComponent {
     });
   }
 
-  //We will need to do a method to look up each Ing. and convert it over using to Spoonacular API
+//  I need to still:
+//    - Call in the Users tables so I can say who its created by
+//    - Call in the Ingredients table so I can call in the ingredients
+//    - Do Math :(
+  //We will need to do a method to look up each Ing. and convert it over using to Spoonacular API (Coming back to this problem)
 }

@@ -39,7 +39,7 @@ export class RecipeService {
     return this.http.get<Recipe>(url);
   }
 
-  //Added by Kate, Need to test
+  //used in detail com
   getRecipeById(id: number) {
     let url: string = this.base + `/FindRecipe/Id=${id}`
     return this.http.get<Recipe>(url);
