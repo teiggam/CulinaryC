@@ -26,11 +26,11 @@ export class RecipeService {
 
   addIngredient(newIng: DBIngredient) {
     let url: string = this.base + "/Ingredients/Add";
-    this.http.post(url, newIng).subscribe(result => {console.log(result)})
+    return this.http.post(url, newIng);
   }
 
   addRecipe(title: string) {
-    let url: string = this.base + `/Add/T=${title}`;
+    let url: string = this.base + `/Add/T=${title}`
     this.http.post(url, {}).subscribe(result=> {console.log(result)});
   }
 

@@ -6,7 +6,7 @@ import { RecipeService } from 'src/RecipeService';
 import { Recipe } from 'src/Recipe';
 import { DBIngredient } from 'src/DBIngredient';
 import { NgForm } from '@angular/forms';
-import { Console } from 'console';
+
 
 
 @Component({
@@ -111,8 +111,9 @@ GetIngredient(id: number): any {
   }
   AddIngredientsToDB(){
     for(var a=0; a < this.iList.length; a++){
-      this.recServ.addIngredient(this.iList[a]);
-      console.log(this.iList[a]);
+      this.recServ.addIngredient(this.iList[a])
+        .subscribe(result => { console.log(result) });
+      
     }
   }
   RemoveIngredient(index:number){
