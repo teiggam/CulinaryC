@@ -31,6 +31,7 @@ namespace CulinaryC.Models
         public virtual DbSet<Friends> Friends { get; set; }
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Ingredients> Ingredients { get; set; }
+        public virtual DbSet<Invites> Invites { get; set; }
         public virtual DbSet<PersistedGrants> PersistedGrants { get; set; }
         public virtual DbSet<Recipes> Recipes { get; set; }
         public virtual DbSet<UserGroup> UserGroup { get; set; }
@@ -174,10 +175,14 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Favorite)
 
-                    .HasForeignKey(d => d.RecipeId)
 
-                    .HasConstraintName("FK__Favorite__Recipe__10566F31");
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Favorite__UserId__17036CC0");
+            });
 
+
+            modelBuilder.Entity<Friends>(entity =>
+            {
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Friends)
@@ -213,9 +218,15 @@ namespace CulinaryC.Models
                     .WithMany(p => p.Ingredients)
                     .HasForeignKey(d => d.RecipeId)
 
-                    .HasConstraintName("FK__Ingredien__Recip__0D7A0286");
+                    .HasConstraintName("FK__Ingredien__Recip__19DFD96B");
+            });
 
 
+            modelBuilder.Entity<Invites>(entity =>
+            {
+                entity.Property(e => e.InviterEmail).HasMaxLength(50);
+
+                entity.Property(e => e.NameofGroup).HasMaxLength(50);
             });
 
             modelBuilder.Entity<PersistedGrants>(entity =>
@@ -249,8 +260,7 @@ namespace CulinaryC.Models
                     .WithMany(p => p.Recipes)
                     .HasForeignKey(d => d.UserId)
 
-
-                    .HasConstraintName("FK__Recipes__UserId__0A9D95DB");
+                    .HasConstraintName("FK__Recipes__UserId__0D7A0286");
 
 
             });

@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CulinaryC.Migrations.CookBook
+namespace CulinaryC.Migrations
 {
     [DbContext(typeof(CookBookContext))]
-    [Migration("20210802134756_gettables")]
-    partial class gettables
+    [Migration("20210802200914_Kitchen")]
+    partial class Kitchen
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -274,11 +274,30 @@ namespace CulinaryC.Migrations.CookBook
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RecipeId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Favorite");
+                });
+
+            modelBuilder.Entity("CulinaryC.Models.Friends", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("FriendId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Friends");
                 });
 
             modelBuilder.Entity("CulinaryC.Models.Group", b =>
@@ -308,6 +327,10 @@ namespace CulinaryC.Migrations.CookBook
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Aisle")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Amount")
                         .HasColumnType("nvarchar(50)")
@@ -440,8 +463,6 @@ namespace CulinaryC.Migrations.CookBook
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LoginId");
-
                     b.ToTable("Users");
                 });
 
@@ -498,15 +519,18 @@ namespace CulinaryC.Migrations.CookBook
 
             modelBuilder.Entity("CulinaryC.Models.Favorite", b =>
                 {
-                    b.HasOne("CulinaryC.Models.Recipes", "Recipe")
-                        .WithMany("Favorite")
-                        .HasForeignKey("RecipeId")
-                        .HasConstraintName("FK__Favorite__Recipe__5FB337D6");
-
                     b.HasOne("CulinaryC.Models.Users", "User")
                         .WithMany("Favorite")
                         .HasForeignKey("UserId")
-                        .HasConstraintName("FK__Favorite__UserId__60A75C0F");
+                        .HasConstraintName("FK__Favorite__UserId__17036CC0");
+                });
+
+            modelBuilder.Entity("CulinaryC.Models.Friends", b =>
+                {
+                    b.HasOne("CulinaryC.Models.Users", "User")
+                        .WithMany("Friends")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK__Friends__UserId__1DB06A4F");
                 });
 
             modelBuilder.Entity("CulinaryC.Models.Group", b =>
@@ -514,7 +538,7 @@ namespace CulinaryC.Migrations.CookBook
                     b.HasOne("CulinaryC.Models.Users", "User")
                         .WithMany("Group")
                         .HasForeignKey("UserId")
-                        .HasConstraintName("FK__Group__UserId__6E01572D");
+                        .HasConstraintName("FK__Group__UserId__07C12930");
                 });
 
             modelBuilder.Entity("CulinaryC.Models.Ingredients", b =>
@@ -522,7 +546,7 @@ namespace CulinaryC.Migrations.CookBook
                     b.HasOne("CulinaryC.Models.Recipes", "Recipe")
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
-                        .HasConstraintName("FK__Ingredien__Recip__66603565");
+                        .HasConstraintName("FK__Ingredien__Recip__19DFD96B");
                 });
 
             modelBuilder.Entity("CulinaryC.Models.Recipes", b =>
@@ -530,7 +554,7 @@ namespace CulinaryC.Migrations.CookBook
                     b.HasOne("CulinaryC.Models.Users", "User")
                         .WithMany("Recipes")
                         .HasForeignKey("UserId")
-                        .HasConstraintName("FK__Recipes__UserId__5CD6CB2B");
+                        .HasConstraintName("FK__Recipes__UserId__0D7A0286");
                 });
 
             modelBuilder.Entity("CulinaryC.Models.UserGroup", b =>
@@ -538,20 +562,12 @@ namespace CulinaryC.Migrations.CookBook
                     b.HasOne("CulinaryC.Models.Group", "Group")
                         .WithMany()
                         .HasForeignKey("GroupId")
-                        .HasConstraintName("FK__UserGroup__Group__59FA5E80");
+                        .HasConstraintName("FK__UserGroup__Group__0A9D95DB");
 
                     b.HasOne("CulinaryC.Models.Users", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .HasConstraintName("FK__UserGroup__UserI__59063A47");
-                });
-
-            modelBuilder.Entity("CulinaryC.Models.Users", b =>
-                {
-                    b.HasOne("CulinaryC.Models.AspNetUsers", "Login")
-                        .WithMany("Users")
-                        .HasForeignKey("LoginId")
-                        .HasConstraintName("FK__Users__LoginId__5535A963");
+                        .HasConstraintName("FK__UserGroup__UserI__09A971A2");
                 });
 #pragma warning restore 612, 618
         }
