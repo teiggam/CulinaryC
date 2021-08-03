@@ -37,7 +37,7 @@ export class GroupComponent {
   //}
 
   displayGroups(): any {
-    this.groupService.getGroupsByUser(this.userId).subscribe((result) => {
+    this.groupService.getGroupsByUser(1).subscribe((result) => {
       this.groupList = result;
       console.log(this.groupList);
     });

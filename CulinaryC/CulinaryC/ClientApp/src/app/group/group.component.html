@@ -1,1 +1,12 @@
-﻿<div style="border: 1px solid red">group Component</div>
+<div>
+  <h3>List of groups</h3>
+  <div *ngIf="groupList !== null">
+    <!--print out the list of groups-->
+    <div style="border: 1px solid black" *ngFor="let g of groupList">
+      <h5>Group Name: {{g.groupName}}</h5>
+      <!--<div *ngFor="let u of userList">
+        <p>Users: {{u.userName}}</p>-->
+      </div>
+    </div>
+  </div>
+</div>
