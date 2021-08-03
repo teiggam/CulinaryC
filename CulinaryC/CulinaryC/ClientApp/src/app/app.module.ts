@@ -34,7 +34,7 @@ import { DetailRecipeComponent } from './detail-recipe/detail-recipe.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'add-recipe', component: AddRecipeComponent },
-      { path: 'detailrecipe' , component: DetailRecipeComponent },
+      { path: 'detail-recipe' , component: DetailRecipeComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
     ])
   ],

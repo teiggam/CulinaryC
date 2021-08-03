@@ -42,5 +42,6 @@ export class RecipeService {
   //Added by Kate, Need to test
   getRecipeById(id: number) {
     let url: string = this.base + `/FindRecipe/Id=${id}`
+    return this.http.get<Recipe>(url);
   }
 }

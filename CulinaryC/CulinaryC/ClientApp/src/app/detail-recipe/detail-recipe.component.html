@@ -1,9 +1,24 @@
+
 <!--The id will be passed in, this is just for testing purposes-->
+<h4>Recipe Details:</h4>
+<input type="text" name="id" [(ngModel)]="getRecipe" />
+<input type="submit" (click)="GetRecipeById(getRecipe)" />
 
-<h1>Recipe Details</h1>
-<form #getRecipe="ngForm" (ngSubmit)="GetRecipeById(getRecipe.form.value.id">
-  <h2>Recipe Id: </h2><input type="number" name="id" placeholder="1" ngModel />
-  <input type="submit" />
-</form>
+<h2>{{r.recipeName}} </h2>
+<div>
+  <b>Created By: </b> {{r.userId}} <br />
+  <!-- this is a container for checking if there is ingredients in the reciepe, and if there is it will loop and print-->
+  <div *ngIf="r.ingredients[0] != null">
+    <b> Ingredients:</b> <br />
+    <div *ngFor="let ing of r.ingredients; let i = length">
+      r.ingredients[i]
+    </div>
+  </div>
+  <b>Description: </b> {{r.description}}
+</div>
 
-<p>{{r.recipeName}}</p>
+<!--
+I need to still:
+  -Call in the Users tables so I can say who its created by
+  -Call in the Ingredients table so I can call in the ingredients
+-->
