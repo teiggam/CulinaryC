@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { User } from './User';
 
 @Injectable()
 export class UserService {
   base: string;
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    this.base = baseUrl + "User";
+    this.base = baseUrl + "Culinary";
   }
 
   updateUsers(name: string, id: number) {
@@ -15,6 +16,6 @@ export class UserService {
 
   getUsers() {
     let url: string = this.base + "/Leaderboard";
-    this.http.get<User>(url);
+    return this.http.get<User[]>(url);
   }
 }

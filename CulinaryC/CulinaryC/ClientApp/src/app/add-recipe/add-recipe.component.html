@@ -6,33 +6,39 @@
   </form>
 </div>
 <br>
-<div *ngIf="rec !== null">
+<div>
   <h2>Ingredients:</h2>
+  <ul *ngIf="iList !==null">
+    <li *ngFor="let in of iList; index as i">
+      <p>{{in.amount}} of {{in.item}}</p>
+    </li>
+  </ul>
   <form id="firstIng" #searchFoodForm="ngForm" (ngSubmit)="SearchIngredient(searchFoodForm.form.value.food)">
     <input type="search" name="food" placeholder="Input ingredient" ngModel />
     <input type="submit" value="Find Ingredient" />
-  </form>
+  </form><br>
   <div *ngIf="ing !== null">
     <p>{{ing.name}}</p>
-    <!-- <form #addIngredient="ngForm" (ngSubmit)="AddIngredient(addIngredient.form.value.amount, addIngredient.form.value.{{unit}}, rec.recipeName)"> -->
-      <input type="number" name="amount"  />
-      <select name="Units" >
-        <option *ngFor="let unit of ing.possibleUnits; index as i" value="{{unit}}" >{{unit}}</option>
+    <form #addIngredientForm="ngForm" (ngSubmit)="AddToIngArray(addIngredientForm)">
+      <input type="text" name="food" value="{{ing.name}}" ngModel />
+      <input type="hidden" name="recipeID" value="{{ing.id}}" ngModel />
+      <input style="width: 50px" type="number" name="amount" ngModel />
+      <select name="unit" ngModel>
+        <option *ngFor="let unit of ing.possibleUnits; index as i" value="{{unit}}">{{unit}}</option>
       </select>
       <input type="submit" value="Add Ingredient" />
-      <!-- </form> -->
-    </div>
-    
-    
-    <h2>Directions:</h2>
-    <form #directionsForm="ngForm" (ngSubmit)="AddRecipeDescription(directionsForm.form.value.directions)">
-      <input class="submissionfield" type="text" name="directions" placeholder="Please input directions" ngModel /><br />
-      <label for="myimage">Select an Image:</label><br>
-      <input type="file" id="myimage" name="myimage" /><br />
-      <input type="submit" value="Add Recipe" />
     </form>
   </div>
-    
+
+
+  <h2>Directions:</h2>
+  <form #directionsForm="ngForm" (ngSubmit)="AddRecipeDescription(directionsForm.form.value.directions)">
+    <input class="submissionfield" type="text" name="directions" placeholder="Please input directions" ngModel /><br />
+    <label for="myimage">Select an Image:</label><br>
+    <input type="file" id="myimage" name="myimage" /><br />
+    <input type="submit" value="Add Recipe" />
+  </form>
+</div>
 
 <!--<div *ngIf="ing !== null">
   <h1>{{ing.name}}</h1>

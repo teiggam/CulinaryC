@@ -4,5 +4,8 @@ export interface Recipe {
     userId:      number;
     score:       number;
     description: string;
-    recipeName:  string;
+   recipeName: string;
+   user: null;
+   favorite: any[];
+   ingredients: any[];
 }
