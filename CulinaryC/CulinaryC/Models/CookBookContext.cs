@@ -175,6 +175,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Favorite)
 
+
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK__Favorite__UserId__17036CC0");
             });
@@ -182,11 +183,13 @@ namespace CulinaryC.Models
 
             modelBuilder.Entity<Friends>(entity =>
             {
+
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Friends)
                     .HasForeignKey(d => d.UserId)
 
-                    .HasConstraintName("FK__Friends__UserId__1DB06A4F");
+                    .HasConstraintName("FK__Favorite__UserId__114A936A");
+
 
             });
 
@@ -198,7 +201,8 @@ namespace CulinaryC.Models
                     .WithMany(p => p.Group)
                     .HasForeignKey(d => d.UserId)
 
-                    .HasConstraintName("FK__Group__UserId__07C12930");
+                    .HasConstraintName("FK__Group__UserId__04E4BC85");
+
 
             });
 
@@ -255,7 +259,9 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Recipes)
                     .HasForeignKey(d => d.UserId)
+
                     .HasConstraintName("FK__Recipes__UserId__0D7A0286");
+
 
             });
 
@@ -267,14 +273,18 @@ namespace CulinaryC.Models
                     .WithMany()
                     .HasForeignKey(d => d.GroupId)
 
-                    .HasConstraintName("FK__UserGroup__Group__0A9D95DB");
+
+                    .HasConstraintName("FK__UserGroup__Group__07C12930");
+
 
 
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId)
 
-                    .HasConstraintName("FK__UserGroup__UserI__09A971A2");
+
+                    .HasConstraintName("FK__UserGroup__UserI__06CD04F7");
+
 
             });
 

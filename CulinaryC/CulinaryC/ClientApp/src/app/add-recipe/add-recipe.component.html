@@ -6,21 +6,28 @@
   </form>
 </div>
 <br>
-<div *ngIf="rec !== null">
+<div>
   <h2>Ingredients:</h2>
+  <ul *ngIf="iList !==null">
+    <li *ngFor="let in of iList; index as i">
+      <p>{{in.amount}} of {{in.item}}</p>
+    </li>
+  </ul>
   <form id="firstIng" #searchFoodForm="ngForm" (ngSubmit)="SearchIngredient(searchFoodForm.form.value.food)">
     <input type="search" name="food" placeholder="Input ingredient" ngModel />
     <input type="submit" value="Find Ingredient" />
-  </form>
+  </form><br>
   <div *ngIf="ing !== null">
     <p>{{ing.name}}</p>
-    <!-- <form #addIngredient="ngForm" (ngSubmit)="AddIngredient(addIngredient.form.value.amount, addIngredient.form.value.{{unit}}, rec.recipeName)"> -->
-      <input type="number" name="amount"  />
-      <select name="Units" >
+    <form #addIngredientForm="ngForm" (ngSubmit)="AddToIngArray(addIngredientForm)">
+      <input type="text" name="food" value="{{ing.name}}" ngModel/>
+      <input type="hidden" name="recipeID" value="{{ing.id}}" ngModel/>
+      <input style="width: 50px" type="number" name="amount"  ngModel />
+      <select name="unit" ngModel>
         <option *ngFor="let unit of ing.possibleUnits; index as i" value="{{unit}}" >{{unit}}</option>
       </select>
       <input type="submit" value="Add Ingredient" />
-      <!-- </form> -->
+      </form>
     </div>
     
     
@@ -33,27 +40,3 @@
     </form>
   </div>
     
-
-<!--<div *ngIf="ing !== null">
-  <h1>{{ing.name}}</h1>
-  <h2>{{ing.possibleUnits}}</h2>
-  <div *ngFor="let nutrient of ing.nutrition.nutrients; index as i">
-    <h3 *ngIf="ing.nutrition.nutrients[i].title === 'Calories'">{{ing.nutrition.nutrients[i].title}}: {{ing.nutrition.nutrients[i].amount}} {{ing.nutrition.nutrients[i].unit}}</h3>
-    <h3 *ngIf="ing.nutrition.nutrients[i].title === 'Carbohydrates'">{{ing.nutrition.nutrients[i].title}}: {{ing.nutrition.nutrients[i].amount}} {{ing.nutrition.nutrients[i].unit}}</h3>
-    <h3 *ngIf="ing.nutrition.nutrients[i].title === 'Fat'">{{ing.nutrition.nutrients[i].title}}: {{ing.nutrition.nutrients[i].amount}} {{ing.nutrition.nutrients[i].unit}}</h3>
-    <h3 *ngIf="ing.nutrition.nutrients[i].title === 'Protein'">{{ing.nutrition.nutrients[i].title}}: {{ing.nutrition.nutrients[i].amount}} {{ing.nutrition.nutrients[i].unit}}</h3>
-  </div>
-</div>-->
-<!--<div *ngFor="let unit of ing.possibleUnits; index as i">
-
-  <select id="unit">
-    <option value="{{i}}">{{unit[i]}}</option>
-  </select>
-
-</div>
-
-<p *ngFor="let nut of ing.nutrition.nutrients">
-  Carbs: {{nut[13]}}<br />
-  Fat: {{nut[24]}}<br />
-  Protein: {{nut[23]}}
-</p>-->
