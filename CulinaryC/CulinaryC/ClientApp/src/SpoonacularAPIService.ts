@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Convert } from './app/Convert';
 import { Ingredient } from './Ingredient';
 import { WholeFood } from './WholeFood';
 
@@ -37,6 +38,11 @@ export class SpoonacularAPI {
     return this.http.get<Ingredient>(url);
   }
 
-
+  //Need to check if it works, this will be for the non whole foods since their calories are based off of grams.
+  Convert(ingredientName: string, sourceAmount: number, sourceUnit: string, targetUnit: string) {
+    let url: string = this.base + "/recipes/convert?ingredientName=" + ingredientName + "&sourceAmount=" + sourceAmount + "&sourceUnit=" + sourceUnit + "targetUnit=" + targetUnit + "&" + this.key;
+    console.log(url);
+    return this.http.get<Convert>(url)
+  }
 
 }
