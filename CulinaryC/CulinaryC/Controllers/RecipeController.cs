@@ -43,7 +43,7 @@ namespace CulinaryC.Controllers
         public Recipes GetRecipeByName(string name)
         {
             Recipes rec = new Recipes();
-            rec = db.Recipes.Where(x => x.RecipeName == name).First();
+            rec = db.Recipes.Where(x => x.RecipeName.ToLower() == name.ToLower()).Last();
             return rec;
         }
 
