@@ -38,4 +38,16 @@ export class RecipeService {
     let url: string = this.base + `/N=${name}`
     return this.http.get<Recipe>(url);
   }
+
+  //used in detail com
+  getRecipeById(id: number) {
+    let url: string = this.base + `/FindRecipe/Id=${id}`
+    return this.http.get<Recipe>(url);
+  }
+
+  //Haven't tested
+  getIngredientById(id: number) {
+    let url: string = this.base + `/Ingredients/Id=${id}`
+    return this.http.get<DBIngredient>(url);
+  }
 }
