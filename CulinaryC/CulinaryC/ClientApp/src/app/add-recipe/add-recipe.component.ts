@@ -8,6 +8,7 @@ import { Recipe } from 'src/Recipe';
 import { DBIngredient } from 'src/DBIngredient';
 import { NgForm } from '@angular/forms';
 
+
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
@@ -45,20 +46,21 @@ export class AddRecipeComponent {
 
   }
 
-  //Pulls ingredient from list using ID from above, to access all details
-  GetIngredient(id: number): any {
-    this.SpoonApi.GetFoodFromId(id).subscribe((Ingredient) => {
-      this.ing = Ingredient; console.log(this.ing); console.log(this.ing.name);
-      return this.ing;
-    });
+
+//Pulls ingredient from list using ID from above, to access all details
+GetIngredient(id: number): any {
+  this.SpoonApi.GetFoodFromId(id).subscribe((Ingredient) => {
+    this.ing = Ingredient; console.log(this.ing); console.log(this.ing.name);
+    return this.ing;
+  });
   }
 
   //Adds new recipe, only entering the title, to later be modified.
-  AddRecipe(title: string) {
-    this.rec = { id: null, recipeName: title, userId: null, score: null, description: null, user: null, favorite: null, ingredients: null };
-    console.log(this.rec.recipeName);
-    this.recServ.addRecipe(title);
-    return this.rec;
+  AddRecipe(title: string){
+      this.rec = {id: null, recipeName: title, userId:null, score: null, description: null, user:null, favorite:null, ingredients:null};
+      console.log(this.rec.recipeName);
+      this.recServ.addRecipe(title);
+      return this.rec;
 
   }
   ConfirmTitle(title: string) {
@@ -66,10 +68,11 @@ export class AddRecipeComponent {
     this.recName = title;
 
   }
-  AddToIngArray(form: NgForm) {
-    this.dbIng = { id: null, recipeId: null, item: null, amount: null, calories: null, carbs: null, protein: null, fats: null, aisle: null }
+
+  AddToIngArray(form: NgForm){
+    this.dbIng = {id: null, recipeId: null, item: null, amount: null, calories: null, carbs: null, protein: null, fats: null, aisle: null}
     console.log(this.recName);
-    this.recServ.getRecipeByName(this.recName).subscribe((Recipe2) => {
+    this.recServ.getRecipeByName(this.recName).subscribe((Recipe2)=> {
       let r2: Recipe = Recipe2;
       console.log(this.r);
       console.log(r2.recipeName);
@@ -79,21 +82,24 @@ export class AddRecipeComponent {
 
     let amount: string = form.form.value.amount + " " + form.form.value.unit;
     console.log(amount);
-    for (var k = 0; k < this.ing.nutrition.nutrients.length; k++) {
-      if (this.ing.nutrition.nutrients[k].title === 'Calories') {
+
+    for (var k = 0; k < this.ing.nutrition.nutrients.length; k++)
+    {
+      if(this.ing.nutrition.nutrients[k].title === 'Calories'){
 
         console.log(this.ing.nutrition.nutrients[k].title);
         this.dbIng.calories = this.ing.nutrition.nutrients[k].amount;
-      }
-      if (this.ing.nutrition.nutrients[k].title === 'Carbohydrates') {
+      }  
+      if(this.ing.nutrition.nutrients[k].title === 'Carbohydrates'){
         console.log(this.ing.nutrition.nutrients[k].title);
         this.dbIng.carbs = this.ing.nutrition.nutrients[k].amount;
       }
-      if (this.ing.nutrition.nutrients[k].title === 'Fat') {
+      if(this.ing.nutrition.nutrients[k].title === 'Fat'){
         console.log(this.ing.nutrition.nutrients[k].title);
         this.dbIng.fats = this.ing.nutrition.nutrients[k].amount;
       }
-      if (this.ing.nutrition.nutrients[k].title === 'Protein') {
+      if(this.ing.nutrition.nutrients[k].title === 'Protein'){
+
         console.log(this.ing.nutrition.nutrients[k].title);
         this.dbIng.protein = this.ing.nutrition.nutrients[k].amount
       }

@@ -7,10 +7,10 @@ import { SpoonacularAPI } from '../../SpoonacularAPIService';
 import { User } from '../../User';
 import { UserService } from '../../UserService';
 
-
 @Component({
     selector: 'app-detail-recipe',
     templateUrl: './detail-recipe.component.html',
+
   styleUrls: ['./detail-recipe.component.css'],
     providers: [SpoonacularAPI, RecipeService, UserService]
 })
@@ -50,3 +50,4 @@ export class DetailRecipeComponent {
 //    - Do Math :(
 
 }
+

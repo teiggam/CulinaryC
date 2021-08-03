@@ -7,5 +7,6 @@ export interface DBIngredient {
     carbs:    number;
     protein:  number;
     fats:     number;
-    aisle: string;
+    aisle:    string;
+
 }

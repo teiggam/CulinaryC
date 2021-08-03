@@ -20,6 +20,7 @@
   <div *ngIf="ing !== null">
     <p>{{ing.name}}</p>
     <form #addIngredientForm="ngForm" (ngSubmit)="AddToIngArray(addIngredientForm)">
+
       <input type="text" name="food" value="{{ing.name}}" ngModel />
       <input type="hidden" name="recipeID" value="{{ing.id}}" ngModel />
       <input style="width: 50px" type="number" name="amount" ngModel />
@@ -63,3 +64,4 @@
   Fat: {{nut[24]}}<br />
   Protein: {{nut[23]}}
 </p>-->
+
