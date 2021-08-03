@@ -17,7 +17,7 @@ namespace CulinaryC.Controllers
         [HttpGet("All")]
         public List<Recipes> GetRecipes()
         {
-            List<Recipes> recipeList = db.Recipes.ToList();
+            List<Recipes> recipeList = db.Recipes.ToList().ToList();
             return recipeList;
         }
 
