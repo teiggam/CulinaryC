@@ -28,6 +28,7 @@ namespace CulinaryC.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<DeviceCodes> DeviceCodes { get; set; }
         public virtual DbSet<Favorite> Favorite { get; set; }
+        public virtual DbSet<Friends> Friends { get; set; }
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Ingredients> Ingredients { get; set; }
         public virtual DbSet<PersistedGrants> PersistedGrants { get; set; }
@@ -170,17 +171,21 @@ namespace CulinaryC.Models
 
             modelBuilder.Entity<Favorite>(entity =>
             {
-                entity.HasOne(d => d.Recipe)
+                entity.HasOne(d => d.User)
                     .WithMany(p => p.Favorite)
+
                     .HasForeignKey(d => d.RecipeId)
 
                     .HasConstraintName("FK__Favorite__Recipe__10566F31");
 
+
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.Favorite)
+                    .WithMany(p => p.Friends)
                     .HasForeignKey(d => d.UserId)
 
+
                     .HasConstraintName("FK__Favorite__UserId__114A936A");
+
 
             });
 
@@ -191,12 +196,16 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Group)
                     .HasForeignKey(d => d.UserId)
+
                     .HasConstraintName("FK__Group__UserId__04E4BC85");
+
 
             });
 
             modelBuilder.Entity<Ingredients>(entity =>
             {
+                entity.Property(e => e.Aisle).HasMaxLength(50);
+
                 entity.Property(e => e.Amount).HasMaxLength(50);
 
                 entity.Property(e => e.Item).HasMaxLength(50);
@@ -204,6 +213,8 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.Ingredients)
                     .HasForeignKey(d => d.RecipeId)
+
+
 
                     .HasConstraintName("FK__Ingredien__Recip__0D7A0286");
 
@@ -242,6 +253,7 @@ namespace CulinaryC.Models
 
                     .HasConstraintName("FK__Recipes__UserId__0A9D95DB");
 
+
             });
 
             modelBuilder.Entity<UserGroup>(entity =>
@@ -252,6 +264,7 @@ namespace CulinaryC.Models
                     .WithMany()
                     .HasForeignKey(d => d.GroupId)
 
+
                     .HasConstraintName("FK__UserGroup__Group__07C12930");
 
 
@@ -259,7 +272,10 @@ namespace CulinaryC.Models
                     .WithMany()
                     .HasForeignKey(d => d.UserId)
 
+
+
                     .HasConstraintName("FK__UserGroup__UserI__06CD04F7");
+
 
             });
 
