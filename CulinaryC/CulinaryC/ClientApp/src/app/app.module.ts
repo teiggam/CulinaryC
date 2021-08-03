@@ -13,7 +13,9 @@ import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+import { GroupComponent } from './group/group.component';
 import { DetailRecipeComponent } from './detail-recipe/detail-recipe.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import { DetailRecipeComponent } from './detail-recipe/detail-recipe.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    AddRecipeComponent,
+    GroupComponent
     DetailRecipeComponent
   ],
   imports: [
@@ -36,6 +38,7 @@ import { DetailRecipeComponent } from './detail-recipe/detail-recipe.component';
       { path: 'add-recipe', component: AddRecipeComponent },
       { path: 'detail-recipe' , component: DetailRecipeComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
+      { path: 'app-group', component: GroupComponent, canActivate: [AuthorizeGuard] }
     ])
   ],
   providers: [

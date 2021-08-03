@@ -21,18 +21,22 @@
       >
         <app-login-menu></app-login-menu>
         <ul class="navbar-nav flex-grow">
+          
+          <!--Will route to recipe page-->
+          
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link text-dark" [routerLink]="['/add-recipe']">Add Recipe</a>
           </li>
-          <!-- This will come out later, here for testing purpose-->
+
+          <!--Will route to Group page-->
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-dark" [routerLink]="['/detail-recipe']">Detail Recipe</a>
+            <a class="nav-link text-dark" [routerLink]="['/app-group']">View Groups</a>
           </li>
-          <!-- End -->
+
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/counter']">Counter</a>
           </li>
