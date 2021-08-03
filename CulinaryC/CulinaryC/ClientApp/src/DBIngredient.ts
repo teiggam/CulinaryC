@@ -8,4 +8,5 @@ export interface DBIngredient {
     protein:  number;
     fats:     number;
     aisle:    string;
+
 }
