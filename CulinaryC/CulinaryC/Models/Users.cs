@@ -12,6 +12,7 @@ namespace CulinaryC.Models
         public Users()
         {
             Favorite = new HashSet<Favorite>();
+            Friends = new HashSet<Friends>();
             Group = new HashSet<Group>();
             Recipes = new HashSet<Recipes>();
         }
@@ -22,6 +23,7 @@ namespace CulinaryC.Models
         public int? Score { get; set; }
 
         public virtual ICollection<Favorite> Favorite { get; set; }
+        public virtual ICollection<Friends> Friends { get; set; }
         public virtual ICollection<Group> Group { get; set; }
         public virtual ICollection<Recipes> Recipes { get; set; }
     }
