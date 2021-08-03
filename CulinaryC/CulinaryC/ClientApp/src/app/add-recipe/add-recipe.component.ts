@@ -32,7 +32,9 @@ export class AddRecipeComponent {
   dbIng: DBIngredient;
 
 
-  constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService) { }
+  constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService) { 
+    
+  }
 
   //Searches API and returns the ID number of ingredient
   SearchIngredient(food: string) {
@@ -106,5 +108,21 @@ GetIngredient(id: number): any {
     this.iList.push(this.dbIng);
     console.log(this.iList);
 
+  }
+  AddIngredientsToDB(){
+    for(var a=0; a < this.iList.length; a++){
+      this.recServ.addIngredient(this.iList[a]);
+      console.log(this.iList[a]);
+    }
+  }
+  RemoveIngredient(index:number){
+    this.iList.splice(index,1);
+  }
+
+  AddRecipeDescription(form: NgForm){
+    let des: string = form.form.value.directions;
+    console.log(form.form.value.directions);
+    console.log(this.recName);
+    this.recServ.updateDescription(this.recName, des);
   }
 }

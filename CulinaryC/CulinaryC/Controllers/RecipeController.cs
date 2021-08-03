@@ -57,7 +57,7 @@ namespace CulinaryC.Controllers
         [HttpPut("Update/N={name}/D={description}")]
         public void UpdateRecipe(string name, string description)
         {
-            Recipes r = db.Recipes.Where(x => x.RecipeName == name).Last();
+            Recipes r = db.Recipes.Where(x => x.RecipeName == name).ToList().Last();
             r.Description = description;
             db.Recipes.Update(r);
             db.SaveChanges();

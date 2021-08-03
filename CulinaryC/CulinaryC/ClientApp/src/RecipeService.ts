@@ -30,17 +30,18 @@ export class RecipeService {
   }
 
   addRecipe(title: string) {
-    let url: string = this.base + `/Add/T=${title}`
-    this.http.post(url, {}).subscribe(result=> {console.log(result)})
+    let url: string = this.base + `/Add/T=${title}`;
+    this.http.post(url, {}).subscribe(result=> {console.log(result)});
   }
 
   getRecipeByName(name: string){
-    let url: string = this.base + `/N=${name}`
+    let url: string = this.base + `/N=${name}`;
     return this.http.get<Recipe>(url);
   }
-  
+
   updateDescription(name: string, description: string) {
-    let url: string = this.base + `/Update/N=${name}/D=${description}`
+    console.log(description);
+    let url: string = this.base + `/Update/N=${name}/D=${description}`;
     return this.http.put<Recipe>(url,{});
   }
 }

@@ -34,7 +34,7 @@
     <form #directionsForm="ngForm" (ngSubmit)="AddRecipeDescription(directionsForm)" id="dirform">
       <label for="myimage">Select an Image:</label><br>
       <input type="file" id="myimage" name="myimage" /><br />
-      <textarea rows="6" cols="50" name="directions" form="dirform">Type directions here...</textarea>
+      <textarea rows="6" cols="50" name="directions" form="dirform" ngModel>Type directions here...</textarea>
       <br>
       <input type="submit" value="Add Recipe" />
     </form>
