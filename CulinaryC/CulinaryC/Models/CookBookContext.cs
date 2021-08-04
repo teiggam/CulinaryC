@@ -178,7 +178,9 @@ namespace CulinaryC.Models
                     .HasForeignKey(d => d.RecipeId)
 
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Favorite__UserId__2BFE89A6");
+
+                    .HasConstraintName("FK__Favorite__UserId__17036CC0");
+
             });
 
             modelBuilder.Entity<Friends>(entity =>
@@ -188,12 +190,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Friends)
                     .HasForeignKey(d => d.UserId)
-
-
-
-                    .HasConstraintName("FK__Friends__UserId__29221CFB");
-
-
+                    .HasConstraintName("FK__Friends__UserId__1DB06A4F");
             });
 
             modelBuilder.Entity<Group>(entity =>
@@ -203,12 +200,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Group)
                     .HasForeignKey(d => d.UserId)
-
-
-
-                    .HasConstraintName("FK__Group__UserId__04E4BC85");
-
-
+                    .HasConstraintName("FK__Group__UserId__07C12930");
             });
 
             modelBuilder.Entity<Ingredients>(entity =>
@@ -222,10 +214,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.Ingredients)
                     .HasForeignKey(d => d.RecipeId)
-
-
-                    .HasConstraintName("FK__Ingredien__Recip__2EDAF651");
-
+                    .HasConstraintName("FK__Ingredien__Recip__19DFD96B");
             });
 
 
@@ -267,9 +256,7 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Recipes)
                     .HasForeignKey(d => d.UserId)
-
-
-                    .HasConstraintName("FK__Recipes__UserId__0A9D95DB");
+                    .HasConstraintName("FK__Recipes__UserId__0D7A0286");
             });
 
             modelBuilder.Entity<UserGroup>(entity =>
@@ -279,19 +266,14 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.Group)
                     .WithMany()
                     .HasForeignKey(d => d.GroupId)
-
-
+                    .HasConstraintName("FK__UserGroup__Group__0A9D95DB");
 
                     .HasConstraintName("FK__UserGroup__Group__07C12930");
 
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId)
-
-                    .HasConstraintName("FK__UserGroup__UserI__06CD04F7");
-
-
-
+                    .HasConstraintName("FK__UserGroup__UserI__09A971A2");
             });
 
             modelBuilder.Entity<Users>(entity =>
