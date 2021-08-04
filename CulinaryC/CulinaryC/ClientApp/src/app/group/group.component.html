@@ -1,12 +1,22 @@
 <div>
   <h3>List of groups</h3>
+  <button id=button (click)="friendsList(); hide()">Invite Friends To Groups</button>
+  <br />
+  <div *ngIf="message !== null">
+    <p>{{message}}</p>
+  </div>
+  <br />
   <div *ngIf="groupList !== null">
     <!--print out the list of groups-->
     <div style="border: 1px solid black" *ngFor="let g of groupList">
       <h5>Group Name: {{g.groupName}}</h5>
-      <!--<div *ngFor="let u of userList">
-        <p>Users: {{u.userName}}</p>-->
+      <div *ngIf="friendsList !== null">
+        <div *ngFor="let f of fList">
+          <br />
+          <button (click)="inviteFriend(f.id, g.groupName)">Invite {{f.name}}</button>
+          <br />
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <div class="newDiv"> <a routerLink='/app-new-group'>Add New Group</a></div>

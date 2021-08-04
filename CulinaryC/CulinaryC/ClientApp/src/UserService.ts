@@ -25,4 +25,9 @@ export class UserService {
     let url: string = this.base + `/Login=${loginId}`
     return this.http.get<User>(url);
   }
+
+  getUserbyId(userId: number) {
+    let url: string = this.base + `/UserId=${userId}`
+    return this.http.get<User>(url);
+  }
 }

@@ -29,8 +29,8 @@ export class RecipeService {
     this.http.post(url, newIng).subscribe(result => {console.log(result)})
   }
 
-  addRecipe(title: string) {
-    let url: string = this.base + `/Add/T=${title}`
+  addRecipe(title: string, userId: number) {
+    let url: string = this.base + `/Add/T=${title}&U=${userId}`
     this.http.post(url, {}).subscribe(result=> {console.log(result)})
   }
 

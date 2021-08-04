@@ -21,13 +21,14 @@ namespace CulinaryC.Controllers
             return recipeList;
         }
 
-        [HttpPost("Add/T={title}")]
+        [HttpPost("Add/T={title}&U={userId}")]
 
-        public void AddNewRecipe(string title)
+        public void AddNewRecipe(string title, int userId)
         {
             Recipes r = new Recipes
             {
-                RecipeName = title
+                RecipeName = title,
+                UserId = userId
             };
             db.Recipes.Add(r);
             db.SaveChanges();
