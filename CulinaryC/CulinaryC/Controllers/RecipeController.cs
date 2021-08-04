@@ -28,7 +28,7 @@ namespace CulinaryC.Controllers
             Recipes r = new Recipes
             {
                 RecipeName = title,
-                UserId = userId
+                UserId = userId,
                 Score = 0
             };
 
