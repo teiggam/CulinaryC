@@ -10,4 +10,5 @@ export interface DBIngredient {
   fats: number;
   aisle: string;
 
+
 }

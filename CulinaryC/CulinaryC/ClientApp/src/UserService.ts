@@ -28,5 +28,6 @@ export class UserService {
 
   getUserbyId(userId: number) {
     let url: string = this.base + `/UserId=${userId}`
-
+    return this.http.get<User>(url);
+  }
 }

@@ -53,16 +53,16 @@ export class AddRecipeComponent {
       this.userInfo = result.name;
       console.log(this.userInfo);
       console.log(result);
-    
 
-    //this takes the email and finds the userId connected to it
-    userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
-      this.userId = id.id;
-      console.log(this.userId);
-    })
+
+      //this takes the email and finds the userId connected to it
+      userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
+        this.userId = id.id;
+        console.log(this.userId);
+      })
     });
 
-
+  }
   //Searches API and returns the ID number of ingredient
   SearchIngredient(food: string) {
     console.log(food);
