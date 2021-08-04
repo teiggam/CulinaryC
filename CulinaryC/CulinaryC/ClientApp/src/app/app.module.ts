@@ -15,6 +15,9 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { GroupComponent } from './group/group.component';
 import { DetailRecipeComponent } from './detail-recipe/detail-recipe.component';
+import { NewGroupComponent } from './new-group/new-group.component';
+import { InvitesComponent } from './invites/invites.component';
+import { FriendsComponent } from './friends/friends.component';
 
 
 @NgModule({
@@ -24,8 +27,12 @@ import { DetailRecipeComponent } from './detail-recipe/detail-recipe.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    GroupComponent
-    DetailRecipeComponent
+    GroupComponent,
+    DetailRecipeComponent,
+    AddRecipeComponent,
+    NewGroupComponent,
+    InvitesComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -35,10 +42,13 @@ import { DetailRecipeComponent } from './detail-recipe/detail-recipe.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
-      { path: 'add-recipe', component: AddRecipeComponent },
+      { path: 'add-recipe', component: AddRecipeComponent, canActivate: [AuthorizeGuard] },
       { path: 'detail-recipe' , component: DetailRecipeComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-      { path: 'app-group', component: GroupComponent, canActivate: [AuthorizeGuard] }
+      { path: 'app-group', component: GroupComponent, canActivate: [AuthorizeGuard] },
+      { path: 'app-new-group', component: NewGroupComponent, canActivate: [AuthorizeGuard] },
+      { path: 'app-invites', component: InvitesComponent, canActivate: [AuthorizeGuard] },
+      { path: 'app-friends', component: FriendsComponent, canActivate: [AuthorizeGuard] }
     ])
   ],
   providers: [

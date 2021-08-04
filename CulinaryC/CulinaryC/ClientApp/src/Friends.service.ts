@@ -3,11 +3,11 @@ import { Inject, Injectable } from '@angular/core';
 import { Friends } from './Friends';
 
 @Injectable()
-export class MyService {
+export class FriendsService {
   base: string;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    this.base = this.base + "Culinary";  // /friends={id}
+    this.base = baseUrl + "Culinary";  // /friends={id}
   }
 
   //shows friends a certain user
@@ -25,7 +25,7 @@ export class MyService {
 
   //this is actually going to be like removing a favorite =)
   removeFriend(userId: number, friendId: number) {
-    let url: string = this.base + `/removefriend/u=${userId}$f=${friendId}`;
+    let url: string = this.base + `/removefriend/u=${userId}&f=${friendId}`;
     return this.http.delete<Friends>(url).subscribe(result => { console.log(result) });
   }
 }

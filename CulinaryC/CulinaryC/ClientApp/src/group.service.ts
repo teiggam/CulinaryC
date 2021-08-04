@@ -17,4 +17,14 @@ export class GroupService {
     return this.http.get<Group[]>(url);
   }
 
+  createNewGroup(userId: number, title: string) {
+    let url: string = this.base + `/CreateGroup/gname=${title}&userId=${userId}`;
+    return this.http.post<Group>(url, {}).subscribe((result) => console.log(result));
+  }
+  //still delete user from group
+  //and delete entire group if creator (maybe add to the table)
+  addUsertoGroup(userId: number, name: string) {
+    let url: string = this.base + `/AddUserToGroup/id=${userId}&gn=${name}`
+    return this.http.post<Group>(url, {}).subscribe((result) => console.log(result));
+  }
 }
