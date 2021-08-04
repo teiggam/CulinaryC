@@ -12,6 +12,8 @@ namespace CulinaryC.Models
         public int GroupId { get; set; }
         public string GroupName { get; set; }
         public int? UserId { get; set; }
+        public bool? Admin { get; set; }
+        public int? Score { get; set; }
 
         public virtual Users User { get; set; }
     }
