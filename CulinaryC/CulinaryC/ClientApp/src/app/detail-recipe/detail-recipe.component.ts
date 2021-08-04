@@ -32,13 +32,13 @@ export class DetailRecipeComponent {
     })
   }
 
-  GetRecipeById(id: number)
-  {
-    this.recServ.getRecipeById(id).subscribe((Recipe) => {
-      this.r = Recipe; console.log(this.r)
-      return this.r;
-    });
-  }
+  //GetRecipeById(id: number)
+  //{
+  //  this.recServ.getRecipeById(id).subscribe((Recipe) => {
+  //    this.r = Recipe; console.log(this.r)
+  //    return this.r;
+  //  });
+  //}
 
   GetUsers() {
     this.UserServ.getUsers().subscribe((User) => {

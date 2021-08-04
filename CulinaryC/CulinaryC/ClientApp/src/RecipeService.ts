@@ -25,29 +25,35 @@ export class RecipeService {
   }
 
   addIngredient(newIng: DBIngredient) {
+    console.log(newIng.item);
     let url: string = this.base + "/Ingredients/Add";
-    this.http.post(url, newIng).subscribe(result => {console.log(result)})
+    return this.http.post(url, {
+      recipeId: newIng.recipeId,
+      item: newIng.item,
+      amount: newIng.amount,
+      calories: newIng.calories,
+      carbs: newIng.carbs,
+      protein: newIng.protein,
+      fats: newIng.fats,
+      aisle: newIng.aisle,
+      unit: newIng.unit
+    })
+      .subscribe(result => { console.log(result) });
   }
 
   addRecipe(title: string) {
     let url: string = this.base + `/Add/T=${title}`
-    this.http.post(url, {}).subscribe(result=> {console.log(result)})
+    this.http.post(url, {}).subscribe(result=> {console.log(result)});
   }
 
   getRecipeByName(name: string){
-    let url: string = this.base + `/N=${name}`
+    let url: string = this.base + `/N=${name}`;
     return this.http.get<Recipe>(url);
   }
 
-  //used in detail com
-  getRecipeById(id: number) {
-    let url: string = this.base + `/FindRecipe/Id=${id}`
-    return this.http.get<Recipe>(url);
-  }
-
-  //Haven't tested
-  getIngredientById(id: number) {
-    let url: string = this.base + `/Ingredients/Id=${id}`
-    return this.http.get<DBIngredient>(url);
+  updateDescription(name: string, description: string) {
+    console.log(description);
+    let url: string = this.base + `/Update/N=${name}/D=${description}`;
+    return this.http.put<Recipe>(url,{});
   }
 }
