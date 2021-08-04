@@ -16,18 +16,27 @@ export class UserService {
   }
 
   //We use this in the detail-recipe page, it does works
-  getUsers() {
+  leaderboard() {
     let url: string = this.base + "/Leaderboard";
     return this.http.get<User[]>(url);
   }
 
+  //serach by email
   getUserbyLoginId(loginId: string) {
     let url: string = this.base + `/Login=${loginId}`
     return this.http.get<User>(url);
   }
 
+  //search by user name
+  getUsersbyName(name: string) {
+    let url: string = this.base + `/name=${name}`
+    return this.http.get<User[]>(url);
+  }
+
+
   getUserbyId(userId: number) {
     let url: string = this.base + `/UserId=${userId}`
     return this.http.get<User>(url);
+
   }
 }
