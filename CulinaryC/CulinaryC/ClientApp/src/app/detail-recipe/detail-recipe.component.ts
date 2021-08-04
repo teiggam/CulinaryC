@@ -24,7 +24,7 @@ export class DetailRecipeComponent {
   dbIngList: DBIngredient[];
 
   constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private UserServ: UserService) {
-    this.UserServ.getUsers().subscribe((User) => {
+    this.UserServ.leaderboard().subscribe((User) => {
       this.u = User; console.log(this.u);
     })
     this.recServ.getIngredients().subscribe((DBIngredient) => {
@@ -41,7 +41,7 @@ export class DetailRecipeComponent {
   //}
 
   GetUsers() {
-    this.UserServ.getUsers().subscribe((User) => {
+    this.UserServ.leaderboard().subscribe((User) => {
       this.u = User; console.log(this.u)
       return this.u;
     })

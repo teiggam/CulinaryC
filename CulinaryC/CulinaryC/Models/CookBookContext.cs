@@ -41,7 +41,7 @@ namespace CulinaryC.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=CookBook;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=tcp:cc98765.database.windows.net,1433;Initial Catalog=CookBook;Persist Security Info=False;User ID=CulinaryC;Password=ShrimpTears5;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
 
@@ -268,7 +268,6 @@ namespace CulinaryC.Models
                     .HasForeignKey(d => d.GroupId)
                     .HasConstraintName("FK__UserGroup__Group__0A9D95DB");
 
-                    .HasConstraintName("FK__UserGroup__Group__07C12930");
 
                 entity.HasOne(d => d.User)
                     .WithMany()

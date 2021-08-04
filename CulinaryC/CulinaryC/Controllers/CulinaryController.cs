@@ -93,12 +93,11 @@ namespace CulinaryC.Controllers
             return u;
         }
 
-        //Need to test
-        [HttpGet("UserEmail={email}")]
-        public Users GetUserByEmail(string email)
+        [HttpGet("name={name}")]
+        public List<Users> GetUsersByName(string name)
         {
-            Users u = db.Users.Where(x => x.LoginId == email).ToList().First();
-            return u;
+            List<Users> users = db.Users.Where(x => x.Name.ToLower() == name.ToLower()).ToList();
+            return users;
         }
 
         [HttpGet("Login={email}")]
@@ -265,7 +264,9 @@ namespace CulinaryC.Controllers
             f.RecipeId = recipeid;
             f.UserId = userid;
 
-            db.Favorite.Remove(f);
+            Favorite fav = db.Favorite.Where(x => x.RecipeId == f.RecipeId && x.UserId == f.UserId).ToList().First();
+
+            db.Favorite.Remove(fav);
             db.SaveChanges();
         }
 

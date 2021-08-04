@@ -51,6 +51,20 @@
             <a class="nav-link text-dark" [routerLink]="['/app-friends']">Friends</a>
           </li>
 
+          <!--Will route to FavoritesList page-->
+          <li class="nav-item"
+              [routerLinkActive]="['link-active']"
+              [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link text-dark" [routerLink]="['/app-favorites']">Favorites</a>
+          </li>
+
+          <!--Will route to adding a friend page-->
+          <li class="nav-item"
+              [routerLinkActive]="['link-active']"
+              [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link text-dark" [routerLink]="['/app-add-friend']">Add Friends</a>
+          </li>
+
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/counter']">Counter</a>
           </li>
