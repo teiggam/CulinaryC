@@ -145,13 +145,13 @@ namespace CulinaryC.Controllers
         //Add user to a group
         //on accepting an invitation
         //for joining
-        [HttpPost("AddUserToGroup/e={email}&gn={groupName}")]
-        public void AddUserToGroup(string email, string groupName)
+        [HttpPost("AddUserToGroup/id={id}&gn={groupName}")]
+        public void AddUserToGroup(int id, string groupName)
         {
             //create a new group object
             Group g = new Group();
-            //find a user by the email 
-            Users u = db.Users.Where(x => x.LoginId.ToLower() == email.ToLower()).ToList().First();
+            //find a user by the email
+            Users u = db.Users.Find(id);
 
             //you can only join 5 groups at a time
             List<Group> groups = db.Group.Where(x => x.UserId == u.Id).ToList();
@@ -315,8 +315,48 @@ namespace CulinaryC.Controllers
             f.FriendId = friendid;
             f.UserId = userid;
 
-            db.Friends.Remove(f);
+            Friends f2 = db.Friends.Where(x => x.FriendId == friendid && x.UserId == userid).ToList().First();
+
+            db.Friends.Remove(f2);
+            db.SaveChanges();
+        }
+
+
+
+        //------------------------------------Invites----------------------------------------------------------
+
+        [HttpGet("Invites/U={userId}")]
+        public List<Invites> GetInvites(int userId)
+        {
+            List<Invites> invites = db.Invites.Where(x => x.InviteeId == userId).ToList();
+            return invites;
+        }
+
+
+        //this will be called for both not accepting and accepting an invite as for either one you no longer want to see it
+        [HttpDelete("removeI={InviteId}")]
+        public void RemoveInvite(int InviteId)
+        {
+            Invites I = db.Invites.Find(InviteId);
+
+            db.Invites.Remove(I);
+            db.SaveChanges();
+        }
+
+        //this happens when someone sends an invite the email is coming from the authorize.service in the front-end
+        //name will come from the group as they select the group they want to
+        //invite someone to before sending the invite
+        [HttpPost("NewInvite/U={inviteeId}&O={inviterEmail}&N={name}")]
+        public void NewInvite(int inviteeId, string inviterEmail, string name)
+        {
+            Invites I = new Invites();
+            I.InviteeId = inviteeId;
+            I.InviterEmail = inviterEmail;
+            I.NameofGroup = name;
+
+            db.Invites.Add(I);
             db.SaveChanges();
         }
     }
 }
+

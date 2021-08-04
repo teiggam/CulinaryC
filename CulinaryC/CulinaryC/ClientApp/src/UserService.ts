@@ -11,7 +11,7 @@ export class UserService {
 
   //needs to be tested still
   updateUsers(name: string, id: number) {
-    let url: string = this.base + "newname={name}&id={id}";
+    let url: string = this.base + `newname=${name}&id=${id}`;
     this.http.post(url, {}).subscribe(result => { console.log(result) })
   }
 
@@ -21,9 +21,12 @@ export class UserService {
     return this.http.get<User[]>(url);
   }
 
-  //NeedFindUserByEmail (for friends). Need to test still
-  getUserByEmail() {
-    let url: string = this.base + "/Login=";
+  getUserbyLoginId(loginId: string) {
+    let url: string = this.base + `/Login=${loginId}`
     return this.http.get<User>(url);
   }
+
+  getUserbyId(userId: number) {
+    let url: string = this.base + `/UserId=${userId}`
+
 }
