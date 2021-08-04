@@ -27,8 +27,10 @@ namespace CulinaryC.Controllers
         {
             Recipes r = new Recipes
             {
-                RecipeName = title
+                RecipeName = title,
+                Score = 0
             };
+
             db.Recipes.Add(r);
             db.SaveChanges();
         }
