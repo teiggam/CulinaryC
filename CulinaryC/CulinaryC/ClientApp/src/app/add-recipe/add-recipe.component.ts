@@ -71,6 +71,15 @@ export class AddRecipeComponent {
     });
 
   }
+
+  //Adds new recipe, only entering the title, to later be modified.
+  AddRecipe(title: string) {
+    this.rec = { id: null, recipeName: title, userId: this.userId, score: 0, description: null, user: null, favorite: null, ingredients: null, servings: null, picture:null };
+    this.recServ.addRecipe(title, this.userId);
+    return this.rec;
+
+
+  }
     //Searches API and returns the ID number of ingredient
     SearchIngredient(food: string) {
       console.log(food);
