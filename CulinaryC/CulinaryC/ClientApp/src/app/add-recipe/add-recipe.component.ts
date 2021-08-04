@@ -6,6 +6,8 @@ import { RecipeService } from 'src/RecipeService';
 import { Recipe } from 'src/Recipe';
 import { DBIngredient } from 'src/DBIngredient';
 import { NgForm } from '@angular/forms';
+import { UserService } from '../../UserService';
+import { AuthorizeService } from '../../api-authorization/authorize.service';
 
 
 
@@ -13,7 +15,7 @@ import { NgForm } from '@angular/forms';
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
   styleUrls: ['./add-recipe.component.css'],
-  providers: [SpoonacularAPI, RecipeService]
+  providers: [SpoonacularAPI, RecipeService, UserService, AuthorizeService]
 })
 /** AddRecipe component*/
 export class AddRecipeComponent {
@@ -27,6 +29,12 @@ export class AddRecipeComponent {
   r: Recipe;
   r1: Recipe;
   rec: Recipe;
+
+  //this holds the users email
+  userInfo: string;
+
+  //this holds the userId
+  userId: number;
   ozCon: number = 28.3495;
   cupCon: number = 128;
   lbCon: number = 453.592;
@@ -34,13 +42,26 @@ export class AddRecipeComponent {
   tspCon: number = 4.2
   amount: number;
   unit: string;
+
   recName: string;
   dbIng: DBIngredient;
 
 
-  constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService) {
+  constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private userService: UserService, private authorizeService: AuthorizeService) {
+    //will get the userName / Email from the login of identity
+    authorizeService.getUser().subscribe((result) => {
+      this.userInfo = result.name;
+      console.log(this.userInfo);
+      console.log(result);
+    
 
-  }
+    //this takes the email and finds the userId connected to it
+    userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
+      this.userId = id.id;
+      console.log(this.userId);
+    })
+    });
+
 
   //Searches API and returns the ID number of ingredient
   SearchIngredient(food: string) {
@@ -64,8 +85,8 @@ export class AddRecipeComponent {
 
   //Adds new recipe, only entering the title, to later be modified.
   AddRecipe(title: string) {
-    this.rec = { id: null, recipeName: title, userId: null, score: 0, description: null, user: null, favorite: null, ingredients: null, servings: null };
-    this.recServ.addRecipe(title);
+    this.rec = { id: null, recipeName: title, userId: this.userId, score: 0, description: null, user: null, favorite: null, ingredients: null, servings: null };
+    this.recServ.addRecipe(title, this.userId);
     return this.rec;
 
   }

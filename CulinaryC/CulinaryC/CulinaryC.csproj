@@ -36,6 +36,7 @@
     <None Remove="ClientApp\src\Friends.ts" />
     <None Remove="ClientApp\src\Group.ts" />
     <None Remove="ClientApp\src\Ingredient.ts" />
+    <None Remove="ClientApp\src\invites.ts" />
     <None Remove="ClientApp\src\SpoonacularAPIService.ts" />
     <None Remove="ClientApp\src\User.ts" />
     <None Remove="ClientApp\src\UserService.ts" />
@@ -46,6 +47,7 @@
     <TypeScriptCompile Include="ClientApp\src\Friends.ts" />
     <TypeScriptCompile Include="ClientApp\src\group.ts" />
     <TypeScriptCompile Include="ClientApp\src\Ingredient.ts" />
+    <TypeScriptCompile Include="ClientApp\src\invites.ts" />
     <TypeScriptCompile Include="ClientApp\src\SpoonacularAPIService.ts" />
     <TypeScriptCompile Include="ClientApp\src\User.ts" />
     <TypeScriptCompile Include="ClientApp\src\UserService.ts" />

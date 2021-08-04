@@ -11,7 +11,7 @@ export class UserService {
 
   //needs to be tested still
   updateUsers(name: string, id: number) {
-    let url: string = this.base + "newname={name}&id={id}";
+    let url: string = this.base + `newname=${name}&id=${id}`;
     this.http.post(url, {}).subscribe(result => { console.log(result) })
   }
 
@@ -19,5 +19,15 @@ export class UserService {
   getUsers() {
     let url: string = this.base + "/Leaderboard";
     return this.http.get<User[]>(url);
+  }
+
+  getUserbyLoginId(loginId: string) {
+    let url: string = this.base + `/Login=${loginId}`
+    return this.http.get<User>(url);
+  }
+
+  getUserbyId(userId: number) {
+    let url: string = this.base + `/UserId=${userId}`
+    return this.http.get<User>(url);
   }
 }

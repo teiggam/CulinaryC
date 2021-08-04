@@ -41,9 +41,10 @@ export class RecipeService {
       .subscribe(result => { console.log(result) });
   }
 
-  addRecipe(title: string) {
-    let url: string = this.base + `/Add/T=${title}`
-    this.http.post(url, {}).subscribe(result=> {console.log(result)});
+
+  addRecipe(title: string, userId: number) {
+    let url: string = this.base + `/Add/T=${title}&U=${userId}`
+    this.http.post(url, {}).subscribe(result=> {console.log(result)})
   }
 
   getRecipeByName(name: string){
