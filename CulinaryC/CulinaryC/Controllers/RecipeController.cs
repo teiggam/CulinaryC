@@ -58,11 +58,12 @@ namespace CulinaryC.Controllers
             db.SaveChanges();
         }
 
-        [HttpPut("Update/N={name}/D={description}")]
-        public void UpdateRecipe(string name, string description)
+        [HttpPut("Update/N={name}/D={des}/S={serv}")]
+        public void UpdateRecipe(string name, string des, int serv)
         {
             Recipes r = db.Recipes.Where(x => x.RecipeName == name).ToList().Last();
-            r.Description = description;
+            r.Description = des;
+            r.Servings = serv;
             db.Recipes.Update(r);
             db.SaveChanges();
         }

@@ -51,9 +51,9 @@ export class RecipeService {
     return this.http.get<Recipe>(url);
   }
 
-  updateDescription(name: string, description: string) {
-    console.log(description);
-    let url: string = this.base + `/Update/N=${name}/D=${description}`;
-    return this.http.put<Recipe>(url,{});
+  updateRecipe(name: string, des: string, serv: number) {
+
+    let url: string = this.base + `/Update/N=${name}/D=${des}/S=${serv}`;
+    return this.http.put<Recipe>(url, {});
   }
 }
