@@ -77,13 +77,7 @@ namespace CulinaryC.Controllers
         [HttpGet("Leaderboard")]
         public List<Users> GetUsers()
         {
-            List<Users> usersList = new List<Users>();
-            foreach (Users u in db.Users)
-            {
-                usersList.Add(u);
-            }
-
-            return usersList;
+           return db.Users.OrderByDescending(o=>o.Score).ToList();
         }
 
         [HttpGet("UserId={id}")]
