@@ -18,6 +18,7 @@ import { DetailRecipeComponent } from './detail-recipe/detail-recipe.component';
 import { NewGroupComponent } from './new-group/new-group.component';
 import { InvitesComponent } from './invites/invites.component';
 import { FriendsComponent } from './friends/friends.component';
+import { AllRecipesComponent } from './all-recipes/all-recipes.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { FriendsComponent } from './friends/friends.component';
     AddRecipeComponent,
     NewGroupComponent,
     InvitesComponent,
-    FriendsComponent
+    FriendsComponent,
+    AllRecipesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -48,7 +50,8 @@ import { FriendsComponent } from './friends/friends.component';
       { path: 'app-group', component: GroupComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-new-group', component: NewGroupComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-invites', component: InvitesComponent, canActivate: [AuthorizeGuard] },
-      { path: 'app-friends', component: FriendsComponent, canActivate: [AuthorizeGuard] }
+      { path: 'app-friends', component: FriendsComponent, canActivate: [AuthorizeGuard] },
+      { path: 'all-recipes', component: AllRecipesComponent }
     ])
   ],
   providers: [
