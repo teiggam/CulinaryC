@@ -174,28 +174,18 @@ namespace CulinaryC.Models
             {
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Favorite)
-
-
-
-                    .HasForeignKey(d => d.RecipeId)
-
-
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK__Favorite__UserId__17036CC0");
             });
 
-
-
             modelBuilder.Entity<Friends>(entity =>
             {
+                entity.Property(e => e.Id).HasColumnName("id");
+
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Friends)
                     .HasForeignKey(d => d.UserId)
-
-
-                    .HasConstraintName("FK__Friends__UserId__114A936A");
-
-
+                    .HasConstraintName("FK__Friends__UserId__1DB06A4F");
             });
 
             modelBuilder.Entity<Group>(entity =>
@@ -205,110 +195,86 @@ namespace CulinaryC.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Group)
                     .HasForeignKey(d => d.UserId)
-
-
-                    .HasConstraintName("FK__Group__UserId__04E4BC85");
-
-
+                    .HasConstraintName("FK__Group__UserId__07C12930");
             });
 
             modelBuilder.Entity<Ingredients>(entity =>
             {
                 entity.Property(e => e.Aisle).HasMaxLength(50);
 
-                entity.Property(e => e.Amount).HasMaxLength(50);
-
                 entity.Property(e => e.Item).HasMaxLength(50);
+
+                entity.Property(e => e.Unit).HasMaxLength(10);
 
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.Ingredients)
                     .HasForeignKey(d => d.RecipeId)
+                    .HasConstraintName("FK__Ingredien__Recip__19DFD96B");
+            });
 
+            modelBuilder.Entity<Invites>(entity =>
+            {
+                entity.Property(e => e.InviterEmail).HasMaxLength(50);
 
+                entity.Property(e => e.NameofGroup).HasMaxLength(50);
+            });
 
-                    .HasConstraintName("FK__Ingredien__Recip__0D7A0286");
+            modelBuilder.Entity<PersistedGrants>(entity =>
+            {
+                entity.HasKey(e => e.Key);
 
+                entity.HasIndex(e => e.Expiration);
 
-                modelBuilder.Entity<Invites>(entity =>
-                {
-                    entity.Property(e => e.InviterEmail).HasMaxLength(50);
+                entity.HasIndex(e => new { e.SubjectId, e.ClientId, e.Type });
 
-                    entity.Property(e => e.NameofGroup).HasMaxLength(50);
-                });
+                entity.Property(e => e.Key).HasMaxLength(200);
 
-                modelBuilder.Entity<PersistedGrants>(entity =>
-                {
-                    entity.HasKey(e => e.Key);
+                entity.Property(e => e.ClientId)
+                    .IsRequired()
+                    .HasMaxLength(200);
 
-                    entity.HasIndex(e => e.Expiration);
+                entity.Property(e => e.Data).IsRequired();
 
-                    entity.HasIndex(e => new { e.SubjectId, e.ClientId, e.Type });
+                entity.Property(e => e.SubjectId).HasMaxLength(200);
 
-                    entity.Property(e => e.Key).HasMaxLength(200);
+                entity.Property(e => e.Type)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
 
-                    entity.Property(e => e.ClientId)
-                        .IsRequired()
-                        .HasMaxLength(200);
+            modelBuilder.Entity<Recipes>(entity =>
+            {
+                entity.Property(e => e.RecipeName).HasMaxLength(50);
 
-                    entity.Property(e => e.Data).IsRequired();
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Recipes)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Recipes__UserId__0D7A0286");
+            });
 
-                    entity.Property(e => e.SubjectId).HasMaxLength(200);
+            modelBuilder.Entity<UserGroup>(entity =>
+            {
+                entity.HasNoKey();
 
-                    entity.Property(e => e.Type)
-                        .IsRequired()
-                        .HasMaxLength(50);
-                });
+                entity.HasOne(d => d.Group)
+                    .WithMany()
+                    .HasForeignKey(d => d.GroupId)
+                    .HasConstraintName("FK__UserGroup__Group__0A9D95DB");
 
-                modelBuilder.Entity<Recipes>(entity =>
-                {
-                    entity.Property(e => e.RecipeName).HasMaxLength(50);
+                entity.HasOne(d => d.User)
+                    .WithMany()
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__UserGroup__UserI__09A971A2");
+            });
 
-                    entity.HasOne(d => d.User)
-                        .WithMany(p => p.Recipes)
-                        .HasForeignKey(d => d.UserId)
+            modelBuilder.Entity<Users>(entity =>
+            {
+                entity.Property(e => e.LoginId).HasMaxLength(450);
 
-                        .HasConstraintName("FK__Recipes__UserId__0D7A0286");
+                entity.Property(e => e.Name).HasMaxLength(50);
+            });
 
-
-
-                });
-
-                modelBuilder.Entity<UserGroup>(entity =>
-                {
-                    entity.HasNoKey();
-
-                    entity.HasOne(d => d.Group)
-                        .WithMany()
-                        .HasForeignKey(d => d.GroupId)
-
-
-
-                        .HasConstraintName("FK__UserGroup__Group__07C12930");
-
-
-
-                    entity.HasOne(d => d.User)
-                        .WithMany()
-                        .HasForeignKey(d => d.UserId)
-
-
-
-                        .HasConstraintName("FK__UserGroup__UserI__06CD04F7");
-
-
-
-                });
-
-                modelBuilder.Entity<Users>(entity =>
-                {
-                    entity.Property(e => e.LoginId).HasMaxLength(450);
-
-                    entity.Property(e => e.Name).HasMaxLength(50);
-                });
-
-                OnModelCreatingPartial(modelBuilder);
-            }); 
-        
+            OnModelCreatingPartial(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
