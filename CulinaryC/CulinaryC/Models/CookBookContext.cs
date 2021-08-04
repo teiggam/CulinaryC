@@ -195,6 +195,7 @@ namespace CulinaryC.Models
                     .WithMany(p => p.Group)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK__Group__UserId__71D1E811");
+
             });
 
             modelBuilder.Entity<Ingredients>(entity =>
@@ -249,6 +250,7 @@ namespace CulinaryC.Models
                     .WithMany(p => p.Recipes)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK__Recipes__UserId__778AC167");
+
             });
 
             modelBuilder.Entity<UserGroup>(entity =>
@@ -260,10 +262,12 @@ namespace CulinaryC.Models
                     .HasForeignKey(d => d.GroupId)
                     .HasConstraintName("FK__UserGroup__Group__74AE54BC");
 
+
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK__UserGroup__UserI__73BA3083");
+
             });
 
             modelBuilder.Entity<Users>(entity =>

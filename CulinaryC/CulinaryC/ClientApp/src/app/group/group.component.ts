@@ -53,7 +53,7 @@ export class GroupComponent {
     
   }
 
-  friendsList() {
+  friendsList(){
     this.friendsService.getFriends(this.userId).subscribe((result) => {
       this.fList = result;
       console.log(result)
