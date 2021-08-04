@@ -54,6 +54,14 @@ export class AddRecipeComponent {
       console.log(this.userInfo);
       console.log(result);
 
+      //this takes the email and finds the userId connected to it
+      userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
+        this.userId = id.id;
+        console.log(this.userId);
+      })
+    });
+
+  }
 
       //this takes the email and finds the userId connected to it
       userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
@@ -88,11 +96,12 @@ export class AddRecipeComponent {
       this.rec = { id: null, recipeName: title, userId: this.userId, score: 0, description: null, user: null, favorite: null, ingredients: null, servings: null };
       this.recServ.addRecipe(title, this.userId);
       return this.rec;
-
     }
+
     ConfirmTitle(title: string) {
       document.getElementById("confirm").innerHTML = `<h2>${title}</h2>`;
       this.recName = title;
+
 
     }
     AddToIngArray(form: NgForm) {

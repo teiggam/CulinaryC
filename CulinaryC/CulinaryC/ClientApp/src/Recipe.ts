@@ -6,6 +6,7 @@ export interface Recipe {
   servings: number;
   description: string;
   recipeName: string;
+  picture: string;
   user: null;
   favorite: any[];
   ingredients: any[];

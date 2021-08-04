@@ -41,7 +41,6 @@ namespace CulinaryC.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=CookBook;Trusted_Connection=True;");
             }
         }
@@ -174,8 +173,14 @@ namespace CulinaryC.Models
             {
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Favorite)
+
+
+                    .HasForeignKey(d => d.RecipeId)
+
                     .HasForeignKey(d => d.UserId)
+
                     .HasConstraintName("FK__Favorite__UserId__17036CC0");
+
             });
 
             modelBuilder.Entity<Friends>(entity =>
@@ -212,11 +217,13 @@ namespace CulinaryC.Models
                     .HasConstraintName("FK__Ingredien__Recip__19DFD96B");
             });
 
+
             modelBuilder.Entity<Invites>(entity =>
             {
                 entity.Property(e => e.InviterEmail).HasMaxLength(50);
 
                 entity.Property(e => e.NameofGroup).HasMaxLength(50);
+
             });
 
             modelBuilder.Entity<PersistedGrants>(entity =>
@@ -261,6 +268,8 @@ namespace CulinaryC.Models
                     .HasForeignKey(d => d.GroupId)
                     .HasConstraintName("FK__UserGroup__Group__0A9D95DB");
 
+                    .HasConstraintName("FK__UserGroup__Group__07C12930");
+
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId)
@@ -284,3 +293,4 @@ namespace CulinaryC.Models
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
+
