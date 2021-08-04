@@ -163,7 +163,7 @@ namespace CulinaryC.Controllers
                 db.Group.Add(g);
                 db.SaveChanges();
             }
-            
+
         }
 
         //creating group
@@ -180,7 +180,7 @@ namespace CulinaryC.Controllers
             List<Group> groups = db.Group.Where(x => x.GroupName == name).ToList();
 
             List<Group> userGroups = db.Group.Where(x => x.UserId == id).ToList();
-            if(groups.Count == 0)
+            if (groups.Count == 0)
             {
                 //if they are in five groups they cannot make a group
                 if (userGroups.Count < 5)
@@ -210,7 +210,7 @@ namespace CulinaryC.Controllers
         public void RemoveGroup(string name)
         {
             List<Group> groups = db.Group.Where(x => x.GroupName == name).ToList();
-            foreach(Group g in groups)
+            foreach (Group g in groups)
             {
                 db.Group.Remove(g);
             }
@@ -227,11 +227,11 @@ namespace CulinaryC.Controllers
             List<Favorite> favorites = db.Favorite.Where(x => x.UserId == id).ToList();
             List<Recipes> recipes = new List<Recipes>();
 
-            foreach (Favorite f in favorites) 
+            foreach (Favorite f in favorites)
             {
                 foreach (Recipes r in rList)
                 {
-                    if(f.RecipeId == r.Id)
+                    if (f.RecipeId == r.Id)
                     {
                         recipes.Add(r);
                     }
@@ -313,7 +313,9 @@ namespace CulinaryC.Controllers
         }
     }
 
+
     //------------------------------------Invites----------------------------------------------------------
 
 
 }
+
