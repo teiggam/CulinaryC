@@ -29,7 +29,9 @@ namespace CulinaryC.Controllers
             {
                 RecipeName = title,
                 UserId = userId
+                Score = 0
             };
+
             db.Recipes.Add(r);
             db.SaveChanges();
         }
@@ -44,7 +46,9 @@ namespace CulinaryC.Controllers
         public Recipes GetRecipeByName(string name)
         {
             Recipes rec = new Recipes();
-            rec = db.Recipes.Where(x => x.RecipeName.ToLower() == name.ToLower()).Last();
+
+            rec = db.Recipes.Where(x => x.RecipeName.ToLower() == name.ToLower()).ToList().Last();
+
             return rec;
         }
 
@@ -52,6 +56,16 @@ namespace CulinaryC.Controllers
         public void AddIngredient(Ingredients ing)
         {
             db.Ingredients.Add(ing);
+            db.SaveChanges();
+        }
+
+        [HttpPut("Update/N={name}/D={des}/S={serv}")]
+        public void UpdateRecipe(string name, string des, int serv)
+        {
+            Recipes r = db.Recipes.Where(x => x.RecipeName == name).ToList().Last();
+            r.Description = des;
+            r.Servings = serv;
+            db.Recipes.Update(r);
             db.SaveChanges();
         }
 
@@ -69,6 +83,7 @@ namespace CulinaryC.Controllers
         {
             Ingredients ing = db.Ingredients.Find(id);
             return ing;
+
         }
     }
 }
