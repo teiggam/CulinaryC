@@ -20,6 +20,7 @@ namespace CulinaryC.Models
         public string Description { get; set; }
         public string RecipeName { get; set; }
         public int? Servings { get; set; }
+        public string Picture { get; set; }
 
         public virtual Users User { get; set; }
         public virtual ICollection<Ingredients> Ingredients { get; set; }
