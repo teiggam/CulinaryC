@@ -64,7 +64,7 @@ export class AddRecipeComponent {
 
   //Adds new recipe, only entering the title, to later be modified.
   AddRecipe(title: string) {
-    this.rec = { id: null, recipeName: title, userId: null, score: 0, description: null, user: null, favorite: null, ingredients: null };
+    this.rec = { id: null, recipeName: title, userId: null, score: 0, description: null, user: null, favorite: null, ingredients: null, servings: null };
     this.recServ.addRecipe(title);
     return this.rec;
 
@@ -148,11 +148,11 @@ export class AddRecipeComponent {
     this.iList.splice(index, 1);
   }
 
-  AddRecipeDescription(form: NgForm) {
-    let des: string = form.form.value.directions;
-    console.log(form.form.value.directions);
+  UpdateRecipe(form: NgForm) {
+    let des: string = form.form.value.description;
+    let serv: number = form.form.value.servings;
     console.log(this.recName);
-    this.recServ.updateDescription(this.recName, des)
+    this.recServ.updateRecipe(this.recName, des, serv)
       .subscribe(result => { console.log(result) });
   }
 }
