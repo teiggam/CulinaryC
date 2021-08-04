@@ -44,12 +44,14 @@ export class AddRecipeComponent {
       this.userInfo = result.name;
       console.log(this.userInfo);
       console.log(result);
+
       //this takes the email and finds the userId connected to it
       userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
         this.userId = id.id;
         console.log(this.userId);
       })
     });
+
   }
   //Searches API and returns the ID number of ingredient
   SearchIngredient(food: string) {
@@ -108,20 +110,27 @@ export class AddRecipeComponent {
     this.iList.push(this.dbIng);
     console.log(this.iList);
     console.log()
+
+
   }
+
+  
   ConvertUnits(unitCon: number) {
     for (var k = 0; k < this.ing.nutrition.nutrients.length; k++) {
+
       if (this.ing.nutrition.nutrients[k].title === 'Carbohydrates') {
         let carb: number = (this.ing.nutrition.nutrients[k].amount / this.ing.nutrition.weightPerServing.amount) * unitCon * this.amount;
         this.dbIng.carbs = carb;
         console.log(carb);
       }
       if (this.ing.nutrition.nutrients[k].title === 'Fat') {
+
         let fat: number = (this.ing.nutrition.nutrients[k].amount / this.ing.nutrition.weightPerServing.amount) * unitCon * this.amount;
         this.dbIng.fats = fat;
         console.log(fat);
       }
       if (this.ing.nutrition.nutrients[k].title === 'Protein') {
+
         let prot: number = (this.ing.nutrition.nutrients[k].amount / this.ing.nutrition.weightPerServing.amount) * unitCon * this.amount;
         this.dbIng.protein = prot;
         console.log(prot);
@@ -133,10 +142,12 @@ export class AddRecipeComponent {
       }
     }
   }
+
   AddIngredientsToDB() {
     for (var a = 0; a < this.iList.length; a++) {
       this.recServ.addIngredient(this.iList[a]);
     }
+
   }
   RemoveIngredient(index: number) {
     this.iList.splice(index, 1);
