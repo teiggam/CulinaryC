@@ -21,8 +21,8 @@ export class InvitesService {
     return this.http.post<Invites>(url, {}).subscribe((result) => console.log(result));
   }
 
-  removeInvite(inviteId: number) {
-    let url: string = this.base + `/removeI=${inviteId}`;
+  removeInvite(name: string, userId: number) {
+    let url: string = this.base + `/removeI=${name}&u=${userId}`;
     return this.http.delete<Invites>(url).subscribe(result => { console.log(result) });
   }
 }
