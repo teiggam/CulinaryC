@@ -29,8 +29,8 @@ export class FriendsService {
     return this.http.delete<Friends>(url).subscribe(result => { console.log(result) });
   }
 
-  checkFriends(id: number) {
-    let url: string = this.base + `/checkfriends=${id}`;
+  checkFriends(id: number, friendId: number) {
+    let url: string = this.base + `/checkfriends=${id}/f=${friendId}`;
     return this.http.get<Friends[]>(url);
   }
 }
