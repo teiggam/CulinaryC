@@ -17,7 +17,7 @@ namespace CulinaryC.Controllers
         [HttpGet("All")]
         public List<Recipes> GetRecipes()
         {
-            List<Recipes> recipeList = db.Recipes.ToList().ToList();
+            List<Recipes> recipeList = db.Recipes.OrderByDescending(x => x.Score).ToList();
             return recipeList;
         }
 
@@ -42,7 +42,17 @@ namespace CulinaryC.Controllers
             List<Ingredients> ingrList = db.Ingredients.ToList();
             return ingrList;
         }
-        [HttpGet("N={name}")]
+
+        [HttpGet("IngName=${ing}")]
+        public List<Ingredients> GetIngredientsByName(string ing)
+        {
+
+            List<Ingredients> ingNameList = db.Ingredients.Where(x => x.Item.ToLower() == ing.ToLower()).ToList();
+            
+        }
+
+
+[HttpGet("N={name}")]
         public Recipes GetRecipeByName(string name)
         {
             Recipes rec = new Recipes();
