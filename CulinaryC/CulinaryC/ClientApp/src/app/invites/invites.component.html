@@ -8,6 +8,6 @@
     <h5>{{i.inviterEmail}} Invited You To {{i.nameofGroup}}</h5>
     <button (click)="acceptInvite(i.nameofGroup, i.id)">Accept</button>
     <br/>
-    <button (click)="declineInvite(i.id)">Decline</button>
+    <button (click)="declineInvite(i.nameofGroup, i.id)">Decline</button>
   </div>
 </div>
