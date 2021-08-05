@@ -63,14 +63,15 @@ export class AddFriendComponent {
   }
 
   AddFriend(friendId: number) {
-    this.friendService.checkFriends(this.userId).subscribe((result) => {
+    this.friendService.checkFriends(this.userId, friendId).subscribe((result) => {
+      this.value = null;
       this.fList = result;
       console.log(this.fList)
       if (this.fList.length > 0) {
         this.value = 1;
       }
       console.log(this.value);
-      if (this.value === undefined && friendId != this.userId) {
+      if (this.value === null && friendId != this.userId) {
         this.friendService.addFriend(this.userId, friendId);
         this.message = "Friend Added!"
       }

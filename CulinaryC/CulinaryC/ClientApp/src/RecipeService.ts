@@ -19,9 +19,16 @@ export class RecipeService {
     return this.http.get<Recipe[]>(url);
   }
 
+
+  displayUserRecipes(userId : number) {
+    let url: string = this.base + `/id=${userId}`;
+    return this.http.get<Recipe[]>(url);
+  }
+  
   getRecipeById(id: number) {
     let url: string = this.base + "/FindRecipe/Id=" + id;
     return this.http.get<Recipe>(url);
+
   }
 
   getIngredients() {

@@ -21,6 +21,14 @@ namespace CulinaryC.Controllers
             return recipeList;
         }
 
+        [HttpGet("id={userId}")]
+        public List<Recipes> DisplayUserRecipes(int userId)
+        {
+            List<Recipes> userRecipes = db.Recipes.Where(x => x.UserId == userId).ToList();
+
+            return userRecipes.OrderByDescending(x => x.Id).ToList();
+        }
+
         [HttpPost("Add/T={title}&U={userId}")]
 
         public void AddNewRecipe(string title, int userId)
@@ -58,6 +66,7 @@ namespace CulinaryC.Controllers
                         RFound.Add(r);
                     }
                 }
+
             }
             return RFound;
         }
