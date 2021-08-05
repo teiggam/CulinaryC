@@ -1,7 +1,9 @@
 <h1>Add Friend</h1>
-<button id=button (click)="revealEmail(); hide()">Search by Email?</button>
-<button id=button2 (click)="revealName(); hide()">Search by Name?</button>
-
+<button id=button (click)="revealEmail()">Search by Email?</button>
+<button id=button2 (click)="revealName()">Search by Name?</button>
+<div *ngIf="message != null">
+  <p>{{message}}</p>
+</div>
 <div *ngIf="reveal1 != null">
   <form #Searchemail="ngForm" (ngSubmit)="searchbyEmail(Searchemail.form.value.search)">
     <input type="text" name="search" ngModel />
@@ -26,7 +28,7 @@
   <h3>results</h3>
   <div *ngFor="let u of uList">
     <p>{{u.name}}</p>
-    <button (click)="AddFriend(u.id)">Add Friend</button>
+      <button (click)="AddFriend(u.id)">Add Friend</button>
   </div>
 </div>
 

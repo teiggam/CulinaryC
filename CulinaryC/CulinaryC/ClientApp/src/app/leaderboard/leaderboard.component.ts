@@ -20,7 +20,7 @@ export class LeaderboardComponent {
   }
 
   GetLeaderboard() {
-    this.userServ.getUsers()
+    this.userServ.leaderboard()
       .subscribe(uList => {
         this.userList = uList;
         console.log(uList);

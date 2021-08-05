@@ -17,6 +17,17 @@ export class GroupService {
     return this.http.get<Group[]>(url);
   }
 
+  //needed for dispaying users of groups inorder to remove them if admin
+  getGroupbyName(name: string) {
+    let url: string = this.base + `/gname=${name}`;
+    return this.http.get<Group[]>(url);
+  }
+
+  checkGroups(userId: number, title: string) {
+    let url: string = this.base + `/checkgroup/u=${userId}&n=${title}`
+    return this.http.get<Group[]>(url);
+  }
+
   createNewGroup(userId: number, title: string) {
     let url: string = this.base + `/CreateGroup/gname=${title}&userId=${userId}`;
     return this.http.post<Group>(url, {}).subscribe((result) => console.log(result));
@@ -26,5 +37,15 @@ export class GroupService {
   addUsertoGroup(userId: number, name: string) {
     let url: string = this.base + `/AddUserToGroup/id=${userId}&gn=${name}`
     return this.http.post<Group>(url, {}).subscribe((result) => console.log(result));
+  }
+
+  removeGroup(name: string) {
+    let url: string = this.base + `/removegroup/gname=${name}`
+    return this.http.delete<Group>(url, {}).subscribe((result) => console.log(result));
+  }
+
+  removeUser(name: string, userId: number) {
+    let url: string = this.base + `/removeuser=${userId}&n=${name}`;
+    return this.http.delete<Group>(url).subscribe(result => { console.log(result) });
   }
 }
