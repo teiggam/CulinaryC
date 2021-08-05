@@ -78,6 +78,9 @@ export class AddRecipeComponent {
     document.getElementById("confirm").innerHTML = `<h2>${title}</h2>`;
     this.recName = title;
   }
+  ConfirmRecipe() {
+    document.getElementById("recipe").innerHTML = "<h3>Your recipe has been submitted</h3> <br> <a href='all-recipes'>View All Recipes</a>";
+  }
   AddToIngArray(form: NgForm) {
     this.dbIng = { id: null, recipeId: null, item: null, amount: null, unit: null, calories: null, carbs: null, protein: null, fats: null, aisle: null }
     this.recServ.getRecipeByName(this.recName).subscribe((Recipe2) => {
