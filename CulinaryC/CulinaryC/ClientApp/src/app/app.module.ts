@@ -51,7 +51,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
       { path: 'app-new-group', component: NewGroupComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-invites', component: InvitesComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-friends', component: FriendsComponent, canActivate: [AuthorizeGuard] },
-      { path: 'leaderboard', component: LeaderboardComponent, canActivate: [AuthorizeGuard] }
+      { path: 'app-leaderboard', component: LeaderboardComponent, canActivate: [AuthorizeGuard] }
     ])
   ],
   providers: [
