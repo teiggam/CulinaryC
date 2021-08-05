@@ -54,6 +54,7 @@ namespace CulinaryC.Controllers
         [HttpGet("GetRecipesByIngName={ingName}")]
         public List<Recipes> GetRecipesByIngName(string ingName)
         {
+
             List<Recipes> RList = db.Recipes.ToList();
             List<Ingredients> I = db.Ingredients.Where(x => x.Item.Contains(ingName)).ToList();
             List<Recipes> RFound = new List<Recipes>();
@@ -69,6 +70,7 @@ namespace CulinaryC.Controllers
 
             }
             return RFound;
+
         }
             
 

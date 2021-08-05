@@ -5,12 +5,9 @@
 <input type="submit" (click)="searchRecipeByName(name)" />
 <br />
 <br />
-
 {{r.recipeName}} <br />
 {{r.description}}
 <br />
-
-
 <!--Search by ingredients-->
 <div>Search for recipes by ingredient </div>
 <input type="text" name="searchIng" [(ngModel)]="ing" />
@@ -22,7 +19,6 @@
   {{recipe.description}} <br />
 
 </div>
-
 
 <div *ngFor="let r of recipes">
   <h3>  {{r.recipeName}} </h3>
