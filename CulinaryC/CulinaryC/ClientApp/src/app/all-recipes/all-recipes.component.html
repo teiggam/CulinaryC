@@ -5,23 +5,20 @@
 <input type="submit" (click)="searchRecipeByName(name)" />
 <br />
 <br />
-
-{{r.recipeName}}
+{{r.recipeName}} <br />
 {{r.description}}
 <br />
-
-
 <!--Search by ingredients-->
 <div>Search for recipes by ingredient </div>
 <input type="text" name="searchIng" [(ngModel)]="ing" />
 <input type="submit" (click)="searchRecipeByIng(ing)" />
 <br />
 <br />
-<div *ngFor="let recipe of foundRecipe">{{r.recipeName}}</div>
+<div *ngFor="let recipe of foundRecipe">
+  {{recipe.recipeName}} <br />
+  {{recipe.description}} <br />
 
-{{recipe.recipeName}}
-{{recipe.description}}
-
+</div>
 
 <div *ngFor="let r of recipes">
   <h3>  {{r.recipeName}} </h3>
