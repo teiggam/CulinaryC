@@ -48,6 +48,7 @@ namespace CulinaryC.Controllers
         {
 
             List<Ingredients> ingNameList = db.Ingredients.Where(x => x.Item.ToLower() == ing.ToLower()).ToList();
+            return ingNameList;
             
         }
 
