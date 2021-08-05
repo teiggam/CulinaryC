@@ -23,6 +23,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DetailGroupComponent } from './detail-group/detail-group.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ProfileComponent } from './profile/profile.component';
     LeaderboardComponent,
     FavoritesComponent,
     AddFriendComponent,
-    ProfileComponent
+    ProfileComponent,
+    DetailGroupComponent
 
   ],
   imports: [
@@ -54,7 +56,8 @@ import { ProfileComponent } from './profile/profile.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'add-recipe', component: AddRecipeComponent, canActivate: [AuthorizeGuard] },
-      { path: 'detail-recipe' , component: DetailRecipeComponent },
+      { path: 'detail-recipe/:id', component: DetailRecipeComponent },
+      { path: 'detail-group/:id', component: DetailGroupComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-group', component: GroupComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-new-group', component: NewGroupComponent, canActivate: [AuthorizeGuard] },
