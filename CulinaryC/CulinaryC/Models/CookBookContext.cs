@@ -270,7 +270,7 @@ namespace CulinaryC.Models
 
                 entity.HasOne(d => d.Group)
                     .WithMany()
-                    .HasForeignKey(d => d.GroupId)
+                    .HasForeignKey(d => d.GroupId);
 
 
                 entity.HasOne(d => d.User)

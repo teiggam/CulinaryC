@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
+import { Friends } from '../../Friends';
 import { FriendsService } from '../../Friends.service';
 import { User } from '../../User';
 import { UserService } from '../../UserService';
@@ -19,6 +20,9 @@ export class AddFriendComponent {
   reveal1: string | null = null;
   reveal2: string | null = null;
   message: string = "";
+  fList: Friends[] = null;
+  newList: Friends[] = null;
+  value: number;
 
   /** addFriend ctor */
   constructor(private authorizeService: AuthorizeService, private userService: UserService, private friendService: FriendsService) {
@@ -34,6 +38,7 @@ export class AddFriendComponent {
       })
     });
   }
+
 
   revealEmail() {
     this.reveal1 = "not null";
@@ -57,17 +62,26 @@ export class AddFriendComponent {
     })
   }
 
-  hide() {
-    let div = document.getElementById("button");
-    div.style.display = 'none';
-
-    let div2 = document.getElementById("button2");
-    div2.style.display = 'none';
-  }
-
   AddFriend(friendId: number) {
-    this.friendService.addFriend(this.userId, friendId);
-    this.message = "Friend Added!"
+    this.friendService.checkFriends(this.userId).subscribe((result) => {
+      this.fList = result;
+      console.log(this.fList)
+      if (this.fList.length > 0) {
+        this.value = 1;
+      }
+      console.log(this.value);
+      if (this.value === undefined && friendId != this.userId) {
+        this.friendService.addFriend(this.userId, friendId);
+        this.message = "Friend Added!"
+      }
+      else if (this.value === 1) {
+        this.message = "Already Friend!"
+      }
+      else if (friendId == this.userId)
+      {
+        this.message = "Cannot Add Self"
+      }
+    })
   }
 
 }
