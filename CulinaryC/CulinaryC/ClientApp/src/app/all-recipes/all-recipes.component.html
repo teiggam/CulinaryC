@@ -8,6 +8,8 @@
 
 {{r.recipeName}}
 {{r.description}}
+<br />
+
 
 <!--Search by ingredients-->
 <div>Search for recipes by ingredient </div>
@@ -15,6 +17,11 @@
 <input type="submit" (click)="searchRecipeByIng(ing)" />
 <br />
 <br />
+<div *ngFor="let recipe of foundRecipe">{{r.recipeName}}</div>
+
+{{recipe.recipeName}}
+{{recipe.description}}
+
 
 <div *ngFor="let r of recipes">
   <h3>  {{r.recipeName}} </h3>

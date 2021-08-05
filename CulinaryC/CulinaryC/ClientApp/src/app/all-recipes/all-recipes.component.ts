@@ -21,7 +21,7 @@ export class AllRecipesComponent {
   //Load in all the Recipes
   recipes: Recipe[];
   r: Recipe
-  ingFindByNameList: DBIngredient[];
+  foundRecipe: Recipe[];
   ingList: DBIngredient[];
 
 
@@ -36,7 +36,7 @@ export class AllRecipesComponent {
   }
 
   //Search function by Name
-  //NEED TO CHANGE THE BACK END TO CONTAINS?
+  //NEED TO CHANGE THE BACK END TO CONTAINS
   searchRecipeByName(name: string) {
     this.recServ.getRecipeByName(name).subscribe((Recipe) => {
       this.r = Recipe;
@@ -46,14 +46,14 @@ export class AllRecipesComponent {
 
   //and ingredient
   searchRecipeByIng(ing: string) {
-    this.recServ.getIngredientsByName(ing).subscribe((DBIngredient) => {
-      this.ingFindByNameList = DBIngredient;
-
-
+    this.recServ.getRecipesByIngName(ing).subscribe((Recipe) => {
+      this.foundRecipe = Recipe;
+      console.log(this.foundRecipe);
+      return this.foundRecipe;
     })
   }
 
-  //Favorite Button 
+  //Need Favorite Button 
 
 
 }
