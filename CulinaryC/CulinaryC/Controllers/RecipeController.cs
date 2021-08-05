@@ -54,18 +54,14 @@ namespace CulinaryC.Controllers
         [HttpGet("GetRecipesByIngName={ingName}")]
         public List<Recipes> GetRecipesByIngName(string ingName)
         {
-
-
             List<Recipes> RList = db.Recipes.ToList();
-
             List<Ingredients> I = db.Ingredients.Where(x => x.Item.Contains(ingName)).ToList();
             List<Recipes> RFound = new List<Recipes>();
-
-            foreach (Ingredients i in I) { 
-
+            foreach (Ingredients i in I)
+            {
                 foreach (Recipes r in RList)
                 {
-                    if(i.RecipeId == r.Id)
+                    if (i.RecipeId == r.Id)
                     {
                         RFound.Add(r);
                     }
@@ -73,11 +69,11 @@ namespace CulinaryC.Controllers
 
             }
             return RFound;
-
         }
+            
 
-        // Need to switch to contains
-        [HttpGet("N={name}")]
+            // Need to switch to contains
+            [HttpGet("N={name}")]
         public Recipes GetRecipeByName(string name)
         {
             Recipes rec = new Recipes();
