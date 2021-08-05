@@ -49,7 +49,7 @@ export class InvitesComponent {
       if (result.length + 1 > 5) {
         this.message2 = true;
       }
-      else if (result.length + 1 < 5) {
+      else if (result.length + 1 <= 5) {
         this.message2 = false;
       }
       console.log(this.message2);
