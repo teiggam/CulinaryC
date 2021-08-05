@@ -18,6 +18,7 @@ import { DetailRecipeComponent } from './detail-recipe/detail-recipe.component';
 import { NewGroupComponent } from './new-group/new-group.component';
 import { InvitesComponent } from './invites/invites.component';
 import { FriendsComponent } from './friends/friends.component';
+import { AllRecipesComponent } from './all-recipes/all-recipes.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
@@ -36,9 +37,11 @@ import { AddFriendComponent } from './add-friend/add-friend.component';
     NewGroupComponent,
     InvitesComponent,
     FriendsComponent,
+    AllRecipesComponent,
     LeaderboardComponent,
     FavoritesComponent,
     AddFriendComponent
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -56,6 +59,8 @@ import { AddFriendComponent } from './add-friend/add-friend.component';
       { path: 'app-invites', component: InvitesComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-friends', component: FriendsComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-leaderboard', component: LeaderboardComponent, canActivate: [AuthorizeGuard] },
+      { path: 'all-recipes', component: AllRecipesComponent },
+      { path: 'leaderboard', component: LeaderboardComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-favorites', component: FavoritesComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-add-friend', component: AddFriendComponent, canActivate: [AuthorizeGuard] }
     ])
