@@ -43,16 +43,38 @@ namespace CulinaryC.Controllers
             return ingrList;
         }
 
-        [HttpGet("IngName=${ing}")]
-        public List<Ingredients> GetIngredientsByName(string ing)
-        {
+        [HttpGet("GetRecipesByIngName={ingName}")]
+        public List<Recipes> GetRecipesByIngName(string ingName)
+        { 
+            //Creating a list to store Ingredient matches
+            List<Ingredients> IngMatch = new List<Ingredients>();
+            //Creating a list of Ingredients
+            List<Ingredients> IngNameList = db.Ingredients.ToList();
+            //Creating a list of all the Recipes
+            List<Recipes> RecipeList = db.Recipes.ToList();
+            //Creating a list to store all the Recipes found
+            List<Recipes> RecipesFound = new List<Recipes>();
 
-            List<Ingredients> ingNameList = db.Ingredients.Where(x => x.Item.ToLower() == ing.ToLower()).ToList();
-            
+            foreach (Ingredients Ing in IngNameList)
+            {
+                if (Ing.Item.ToLower().Contains(ingName.ToLower()))
+                {
+                    IngMatch.Add(Ing);
+                    Console.WriteLine("Found");
+                }
+            }
+            foreach (Ingredients Ing in IngMatch)
+            {
+                Recipes Rec = new Recipes();
+                Rec = db.Recipes.Where(x => x.Id == Ing.RecipeId).ToList().Last();
+                RecipesFound.Add(Rec);
+            }
+
+            return RecipesFound;
         }
 
-
-[HttpGet("N={name}")]
+        // Need to switch to contains
+        [HttpGet("N={name}")]
         public Recipes GetRecipeByName(string name)
         {
             Recipes rec = new Recipes();
@@ -87,7 +109,6 @@ namespace CulinaryC.Controllers
            return r;
         }
 
-        //need to test
         [HttpGet("Ingredients/Id={id}")]
         public Ingredients GetIngredientById(int id)
         {

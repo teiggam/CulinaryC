@@ -60,7 +60,7 @@ import { AddFriendComponent } from './add-friend/add-friend.component';
       { path: 'app-friends', component: FriendsComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-leaderboard', component: LeaderboardComponent, canActivate: [AuthorizeGuard] },
       { path: 'all-recipes', component: AllRecipesComponent },
-      { path: 'leaderboard', component: LeaderboardComponent, canActivate: [AuthorizeGuard] },
+      { path: 'app-leaderboard', component: LeaderboardComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-favorites', component: FavoritesComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-add-friend', component: AddFriendComponent, canActivate: [AuthorizeGuard] }
     ])
