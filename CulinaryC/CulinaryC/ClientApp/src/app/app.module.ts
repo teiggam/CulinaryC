@@ -22,6 +22,7 @@ import { AllRecipesComponent } from './all-recipes/all-recipes.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { AddFriendComponent } from './add-friend/add-friend.component';
     AllRecipesComponent,
     LeaderboardComponent,
     FavoritesComponent,
-    AddFriendComponent
+    AddFriendComponent,
+    ProfileComponent
 
   ],
   imports: [
@@ -59,10 +61,13 @@ import { AddFriendComponent } from './add-friend/add-friend.component';
       { path: 'app-invites', component: InvitesComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-friends', component: FriendsComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-leaderboard', component: LeaderboardComponent, canActivate: [AuthorizeGuard] },
+      { path: 'app-leaderboard', component: LeaderboardComponent, canActivate: [AuthorizeGuard] },
       { path: 'all-recipes', component: AllRecipesComponent },
       { path: 'app-leaderboard', component: LeaderboardComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-favorites', component: FavoritesComponent, canActivate: [AuthorizeGuard] },
-      { path: 'app-add-friend', component: AddFriendComponent, canActivate: [AuthorizeGuard] }
+      { path: 'app-add-friend', component: AddFriendComponent, canActivate: [AuthorizeGuard] },
+      { path: 'app-profile', component: ProfileComponent, canActivate: [AuthorizeGuard] }
+
     ])
   ],
   providers: [
