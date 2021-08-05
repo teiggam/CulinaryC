@@ -24,6 +24,11 @@ export class RecipeService {
     return this.http.get<DBIngredient[]>(url);
   }
 
+  getIngredientsByName(name: string) {
+    let url: string = this.base + "/N=" + name;
+    return this.http.get<DBIngredient[]>(url);
+  }
+
   addIngredient(newIng: DBIngredient) {
     console.log(newIng.item);
     let url: string = this.base + "/Ingredients/Add";

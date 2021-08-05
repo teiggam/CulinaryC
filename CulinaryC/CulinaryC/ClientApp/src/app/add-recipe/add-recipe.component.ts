@@ -8,9 +8,6 @@ import { DBIngredient } from 'src/DBIngredient';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../../UserService';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
-
-
-
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
@@ -19,7 +16,6 @@ import { AuthorizeService } from '../../api-authorization/authorize.service';
 })
 /** AddRecipe component*/
 export class AddRecipeComponent {
-
   wf: WholeFood;
   ing: Ingredient;
   ing2: Ingredient;
@@ -29,10 +25,8 @@ export class AddRecipeComponent {
   r: Recipe;
   r1: Recipe;
   rec: Recipe;
-
   //this holds the users email
   userInfo: string;
-
   //this holds the userId
   userId: number;
   ozCon: number = 28.3495;
@@ -42,19 +36,14 @@ export class AddRecipeComponent {
   tspCon: number = 4.2
   amount: number;
   unit: string;
-
   recName: string;
   dbIng: DBIngredient;
-
-
   constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private userService: UserService, private authorizeService: AuthorizeService) {
     //will get the userName / Email from the login of identity
     authorizeService.getUser().subscribe((result) => {
       this.userInfo = result.name;
       console.log(this.userInfo);
       console.log(result);
-
-
       //this takes the email and finds the userId connected to it
       userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
         this.userId = id.id;
@@ -71,9 +60,7 @@ export class AddRecipeComponent {
       console.log(this.foodId)
       this.GetIngredient(this.foodId);
     });
-
   }
-
   //Pulls ingredient from list using ID from above, to access all details
   GetIngredient(id: number): any {
     this.SpoonApi.GetFoodFromId(id).subscribe((Ingredient) => {
@@ -81,18 +68,15 @@ export class AddRecipeComponent {
       return this.ing;
     });
   }
-
   //Adds new recipe, only entering the title, to later be modified.
   AddRecipe(title: string) {
-    this.rec = { id: null, recipeName: title, userId: this.userId, score: 0, description: null, user: null, favorite: null, ingredients: null, servings: null, picture:null };
+    this.rec = { id: null, recipeName: title, userId: this.userId, score: 0, description: null, user: null, favorite: null, ingredients: null, servings: null, picture: null };
     this.recServ.addRecipe(title, this.userId);
     return this.rec;
-
   }
   ConfirmTitle(title: string) {
     document.getElementById("confirm").innerHTML = `<h2>${title}</h2>`;
     this.recName = title;
-
   }
   AddToIngArray(form: NgForm) {
     this.dbIng = { id: null, recipeId: null, item: null, amount: null, unit: null, calories: null, carbs: null, protein: null, fats: null, aisle: null }
@@ -100,7 +84,6 @@ export class AddRecipeComponent {
       let r2: Recipe = Recipe2;
       this.dbIng.recipeId = r2.id;
     })
-
     this.amount = form.form.value.amount;
     this.unit = form.form.value.unit;
     if (this.unit === 'oz') {
@@ -125,39 +108,31 @@ export class AddRecipeComponent {
     this.iList.push(this.dbIng);
     console.log(this.iList);
     console.log()
-
   }
-
   ConvertUnits(unitCon: number) {
     for (var k = 0; k < this.ing.nutrition.nutrients.length; k++) {
-
       if (this.ing.nutrition.nutrients[k].title === 'Carbohydrates') {
         let carb: number = (this.ing.nutrition.nutrients[k].amount / this.ing.nutrition.weightPerServing.amount) * unitCon * this.amount;
         this.dbIng.carbs = carb;
         console.log(carb);
       }
       if (this.ing.nutrition.nutrients[k].title === 'Fat') {
-
         let fat: number = (this.ing.nutrition.nutrients[k].amount / this.ing.nutrition.weightPerServing.amount) * unitCon * this.amount;
         this.dbIng.fats = fat;
         console.log(fat);
       }
       if (this.ing.nutrition.nutrients[k].title === 'Protein') {
-
         let prot: number = (this.ing.nutrition.nutrients[k].amount / this.ing.nutrition.weightPerServing.amount) * unitCon * this.amount;
         this.dbIng.protein = prot;
         console.log(prot);
       }
       if (this.ing.nutrition.nutrients[k].title === 'Calories') {
-
         let cal: number = (this.ing.nutrition.nutrients[k].amount / this.ing.nutrition.weightPerServing.amount) * unitCon * this.amount;
         this.dbIng.calories = cal;
         console.log(cal);
       }
     }
   }
-
-
   AddIngredientsToDB() {
     for (var a = 0; a < this.iList.length; a++) {
       this.recServ.addIngredient(this.iList[a]);
@@ -166,7 +141,6 @@ export class AddRecipeComponent {
   RemoveIngredient(index: number) {
     this.iList.splice(index, 1);
   }
-
   UpdateRecipe(form: NgForm) {
     let des: string = form.form.value.description;
     let serv: number = form.form.value.servings;
@@ -175,3 +149,4 @@ export class AddRecipeComponent {
       .subscribe(result => { console.log(result) });
   }
 }
+
