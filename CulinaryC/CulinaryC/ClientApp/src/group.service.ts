@@ -23,6 +23,16 @@ export class GroupService {
     return this.http.get<Group[]>(url);
   }
 
+  getGroupByGroupId(id: number) {
+    let url: string = this.base + `/GetGroupByGroupId/Id={$id}`;
+    return this.http.get<Group>(url);
+  }
+ 
+  getGroupbyId(groupId: number) {
+    let url: string = this.base + `/GetGroup/Id=${groupId}`;
+    return this.http.get<Group>(url);
+  }
+
   checkGroups(userId: number, title: string) {
     let url: string = this.base + `/checkgroup/u=${userId}&n=${title}`
     return this.http.get<Group[]>(url);
