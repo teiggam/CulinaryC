@@ -6,7 +6,7 @@
 <br />
 <br />
 
-{{r.recipeName}}
+{{r.recipeName}} <br />
 {{r.description}}
 <br />
 
@@ -17,10 +17,11 @@
 <input type="submit" (click)="searchRecipeByIng(ing)" />
 <br />
 <br />
-<div *ngFor="let recipe of foundRecipe">{{r.recipeName}}</div>
+<div *ngFor="let recipe of foundRecipe">
+  {{recipe.recipeName}} <br />
+  {{recipe.description}} <br />
 
-{{recipe.recipeName}}
-{{recipe.description}}
+</div>
 
 
 <div *ngFor="let r of recipes">
