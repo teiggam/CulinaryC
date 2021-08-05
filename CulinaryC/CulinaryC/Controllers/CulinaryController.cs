@@ -87,12 +87,11 @@ namespace CulinaryC.Controllers
             return u;
         }
 
-        //Need to test
-        [HttpGet("UserEmail={email}")]
-        public Users GetUserByEmail(string email)
+        [HttpGet("name={name}")]
+        public List<Users> GetUsersByName(string name)
         {
-            Users u = db.Users.Where(x => x.LoginId == email).ToList().First();
-            return u;
+            List<Users> users = db.Users.Where(x => x.Name.ToLower() == name.ToLower()).ToList();
+            return users;
         }
 
         [HttpGet("Login={email}")]
@@ -160,11 +159,27 @@ namespace CulinaryC.Controllers
                 g.UserId = u.Id;
                 //update groupName through paremeter
                 g.GroupName = groupName;
+                g.Admin = false;
                 //update and save changes to DB
                 db.Group.Add(g);
                 db.SaveChanges();
             }
 
+        }
+
+        //to check if user is already in the group on the front end
+        [HttpGet("checkgroup/u={userid}&n={name}")]
+        public List<Group> CheckGroup(int userid, string name)
+        {
+            List<Group> g = db.Group.Where(x => x.UserId == userid && x.GroupName == name).ToList();
+            return g;
+        }
+
+        [HttpGet("gname={name}")]
+        public List<Group> GetGroupsByName(string name)
+        {
+            List<Group> g = db.Group.Where(x => x.GroupName == name).ToList();
+            return g;
         }
 
         //creating group
@@ -176,6 +191,7 @@ namespace CulinaryC.Controllers
             Group g = new Group();
             g.GroupName = name;
             g.UserId = id;
+            g.Admin = true;
 
             Users u = db.Users.Find(id);
             List<Group> groups = db.Group.Where(x => x.GroupName == name).ToList();
@@ -199,10 +215,9 @@ namespace CulinaryC.Controllers
         [HttpDelete("removeuser={id}&n={groupName}")]
         public void RemoveUserFromGroup(int id, string groupName)
         {
-            List<Group> groups = db.Group.Where(x => x.GroupName == groupName).ToList();
-            Group user = groups.Where(x => x.UserId == id).ToList().First();
+            Group groups = db.Group.Where(x => x.GroupName == groupName && x.UserId == id).ToList().First();
 
-            db.Group.Remove(user);
+            db.Group.Remove(groups);
             db.SaveChanges();
         }
 
@@ -210,7 +225,7 @@ namespace CulinaryC.Controllers
         [HttpDelete("removegroup/gname={name}")]
         public void RemoveGroup(string name)
         {
-            List<Group> groups = db.Group.Where(x => x.GroupName == name).ToList();
+            List<Group> groups = db.Group.Where(x => x.GroupName.ToLower() == name.ToLower()).ToList();
             foreach (Group g in groups)
             {
                 db.Group.Remove(g);
@@ -259,7 +274,9 @@ namespace CulinaryC.Controllers
             f.RecipeId = recipeid;
             f.UserId = userid;
 
-            db.Favorite.Remove(f);
+            Favorite fav = db.Favorite.Where(x => x.RecipeId == f.RecipeId && x.UserId == f.UserId).ToList().First();
+
+            db.Favorite.Remove(fav);
             db.SaveChanges();
         }
 
@@ -285,21 +302,34 @@ namespace CulinaryC.Controllers
             return users;
         }
 
+        //this to get friends data and display that that way I can ensure that if the user already
+        //has someone as a friend the button wont even show to add friend!
+        [HttpGet("checkfriends={userId}")]
+        public List<Friends> checkFriends(int userId)
+        {
+            List<Friends> f = db.Friends.Where(x => x.UserId == userId).ToList();
+            return f;
+        }
+
         //maybe this would be easier with an email and then finding the user(friend) to that email
         [HttpPost("newfriend/u={userid}&f={friendid}")]
         public void AddFriend(int userid, int friendid)
         {
+            
             Users u = db.Users.Find(userid);
 
             u.Score = u.Score + 5;
 
+            //checking if they are already friends and then not adding it if they are friends
             Friends f = new Friends();
             f.UserId = userid;
             f.FriendId = friendid;
 
-            db.Users.Update(u);
-            db.Friends.Add(f);
-            db.SaveChanges();
+                db.Users.Update(u);
+                db.Friends.Add(f);
+                db.SaveChanges();
+
+
         }
 
         [HttpDelete("removefriend/u={userid}&f={friendid}")]
@@ -328,12 +358,15 @@ namespace CulinaryC.Controllers
 
 
         //this will be called for both not accepting and accepting an invite as for either one you no longer want to see it
-        [HttpDelete("removeI={InviteId}")]
-        public void RemoveInvite(int InviteId)
+        [HttpDelete("removeI={name}&u={inviteeId}")]
+        public void RemoveInvite(string name, int inviteeId)
         {
-            Invites I = db.Invites.Find(InviteId);
-
-            db.Invites.Remove(I);
+            List<Invites> I = db.Invites.Where(x => x.InviteeId == inviteeId && x.NameofGroup == name).ToList();
+            foreach(Invites In in I)
+            {
+                db.Invites.Remove(In);
+            }
+            
             db.SaveChanges();
         }
 

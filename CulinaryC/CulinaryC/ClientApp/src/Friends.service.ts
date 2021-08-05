@@ -19,7 +19,7 @@ export class FriendsService {
   //not sure how to get the friendId have it linked to the button to delete maybe?
   //like removing a favorite..but adding a friend from their profile page
   addFriend(userId: number, friendId: number) {
-    let url: string = this.base + `/newfriend/u=${userId}$f=${friendId}`;
+    let url: string = this.base + `/newfriend/u=${userId}&f=${friendId}`;
     return this.http.post<Friends>(url, {}).subscribe(result => { console.log(result) });
   }
 
@@ -27,5 +27,10 @@ export class FriendsService {
   removeFriend(userId: number, friendId: number) {
     let url: string = this.base + `/removefriend/u=${userId}&f=${friendId}`;
     return this.http.delete<Friends>(url).subscribe(result => { console.log(result) });
+  }
+
+  checkFriends(id: number) {
+    let url: string = this.base + `/checkfriends=${id}`;
+    return this.http.get<Friends[]>(url);
   }
 }

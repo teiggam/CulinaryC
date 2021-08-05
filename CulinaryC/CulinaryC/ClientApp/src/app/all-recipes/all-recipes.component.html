@@ -1,0 +1,25 @@
+<h1>Recipes! </h1>
+<!-- Search by Name: -->
+<div>Search for a recipe by Name</div>
+<input type="text" name="searchName" [(ngModel)]="name" />
+<input type="submit" (click)="searchRecipeByName(name)" />
+<br />
+<br />
+
+{{r.recipeName}}
+{{r.description}}
+
+<!--Search by ingredients-->
+<div>Search for recipes by ingredient </div>
+<input type="text" name="searchIng" [(ngModel)]="ing" />
+<input type="submit" (click)="searchRecipeByIng(ing)" />
+<br />
+<br />
+
+<div *ngFor="let r of recipes">
+  <h3>  {{r.recipeName}} </h3>
+  <b>Score: </b>{{r.score}} <br />
+  <p> {{r.description}}</p>
+  <div *ngIf="r.servings !== null"> <b> Servings: </b> {{r.servings}}</div>
+  <br />
+</div>
