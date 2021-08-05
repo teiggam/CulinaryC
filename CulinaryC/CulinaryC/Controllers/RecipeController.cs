@@ -21,6 +21,14 @@ namespace CulinaryC.Controllers
             return recipeList;
         }
 
+        [HttpGet("id={userId}")]
+        public List<Recipes> DisplayUserRecipes(int userId)
+        {
+            List<Recipes> userRecipes = db.Recipes.Where(x => x.UserId == userId).ToList();
+
+            return userRecipes.OrderByDescending(x => x.Id).ToList();
+        }
+
         [HttpPost("Add/T={title}&U={userId}")]
 
         public void AddNewRecipe(string title, int userId)
@@ -43,17 +51,31 @@ namespace CulinaryC.Controllers
             return ingrList;
         }
 
-        [HttpGet("IngName=${ing}")]
-        public List<Ingredients> GetIngredientsByName(string ing)
+        [HttpGet("GetRecipesByIngName={ingName}")]
+        public List<Recipes> GetRecipesByIngName(string ingName)
         {
 
-            List<Ingredients> ingNameList = db.Ingredients.Where(x => x.Item.ToLower() == ing.ToLower()).ToList();
-            return ingNameList;
-            
+            List<Recipes> RList = db.Recipes.ToList();
+            List<Ingredients> I = db.Ingredients.Where(x => x.Item.Contains(ingName)).ToList();
+            List<Recipes> RFound = new List<Recipes>();
+            foreach (Ingredients i in I)
+            {
+                foreach (Recipes r in RList)
+                {
+                    if (i.RecipeId == r.Id)
+                    {
+                        RFound.Add(r);
+                    }
+                }
+
+            }
+            return RFound;
+
         }
+            
 
-
-[HttpGet("N={name}")]
+            // Need to switch to contains
+            [HttpGet("N={name}")]
         public Recipes GetRecipeByName(string name)
         {
             Recipes rec = new Recipes();
@@ -74,6 +96,11 @@ namespace CulinaryC.Controllers
         public void UpdateRecipe(string name, string des, int serv)
         {
             Recipes r = db.Recipes.Where(x => x.RecipeName == name).ToList().Last();
+            Users u = db.Users.Where(x => x.Id == r.UserId).ToList().First();
+
+            u.Score = u.Score + 20;
+            db.Users.Update(u);
+
             r.Description = des;
             r.Servings = serv;
             db.Recipes.Update(r);
@@ -88,7 +115,6 @@ namespace CulinaryC.Controllers
            return r;
         }
 
-        //need to test
         [HttpGet("Ingredients/Id={id}")]
         public Ingredients GetIngredientById(int id)
         {

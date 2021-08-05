@@ -19,14 +19,26 @@ export class RecipeService {
     return this.http.get<Recipe[]>(url);
   }
 
+
+  displayUserRecipes(userId : number) {
+    let url: string = this.base + `/id=${userId}`;
+    return this.http.get<Recipe[]>(url);
+  }
+  
+  getRecipeById(id: number) {
+    let url: string = this.base + "/FindRecipe/Id=" + id;
+    return this.http.get<Recipe>(url);
+
+  }
+
   getIngredients() {
     let url: string = this.base + "/Ingredients/All";
     return this.http.get<DBIngredient[]>(url);
   }
 
-  getIngredientsByName(name: string) {
-    let url: string = this.base + "/N=" + name;
-    return this.http.get<DBIngredient[]>(url);
+  getRecipesByIngName(ingName: string) {
+    let url: string = this.base + "/getRecipesByIngName=" + ingName;
+    return this.http.get<Recipe[]>(url);
   }
 
   addIngredient(newIng: DBIngredient) {

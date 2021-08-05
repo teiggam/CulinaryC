@@ -23,6 +23,7 @@ export class GroupComponent {
   userList: User[] = [];
   message: string | null = null;
   gList: User[] = [];
+  message2: string | null = null;
 
   //------------ ADD USER service to group ---------------
   constructor(private groupService: GroupService, private authorizeService: AuthorizeService, private userService: UserService,
@@ -160,6 +161,7 @@ export class GroupComponent {
       })
     });
   }
+
 
   //this._router.navigate(['SecondComponent', {p1: this.property1, p2: property2 }]);
 

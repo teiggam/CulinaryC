@@ -146,6 +146,8 @@ namespace CulinaryC.Controllers
             //find a user by the email
             Users u = db.Users.Find(id);
 
+            //if statement if a list base on group name is = 0
+
             //you can only join 5 groups at a time
             List<Group> groups = db.Group.Where(x => x.UserId == u.Id).ToList();
             if (groups.Count < 5)
@@ -304,10 +306,10 @@ namespace CulinaryC.Controllers
 
         //this to get friends data and display that that way I can ensure that if the user already
         //has someone as a friend the button wont even show to add friend!
-        [HttpGet("checkfriends={userId}")]
-        public List<Friends> checkFriends(int userId)
+        [HttpGet("checkfriends={userId}/f={friendId}")]
+        public List<Friends> checkFriends(int userId, int friendId)
         {
-            List<Friends> f = db.Friends.Where(x => x.UserId == userId).ToList();
+            List<Friends> f = db.Friends.Where(x => x.UserId == userId && x.FriendId == friendId).ToList();
             return f;
         }
 
