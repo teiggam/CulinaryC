@@ -260,6 +260,7 @@ namespace CulinaryC.Models
                     .HasConstraintName("FK__UserGroup__Group__74AE54BC");
 
 
+
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId)

@@ -16,6 +16,7 @@ export class NewGroupComponent {
   userInfo: string = "";
   userId: number;
   message: string;
+  message2: boolean;
 
   constructor(private authorizeService: AuthorizeService, private userService: UserService, private groupService: GroupService) {
     authorizeService.getUser().subscribe((result) => {
@@ -27,6 +28,7 @@ export class NewGroupComponent {
       userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
         this.userId = id.id;
         console.log(this.userId);
+        this.numberOfGroups();
       })
     });
   }
@@ -35,5 +37,30 @@ export class NewGroupComponent {
     this.groupService.createNewGroup(this.userId, name);
     console.log(name);
     this.message = "Group Created!"
+    this.authorizeService.getUser().subscribe((result) => {
+      this.userInfo = result.name;
+      console.log(result);
+      console.log(this.userInfo);
+
+
+      this.userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
+        this.userId = id.id;
+        console.log(this.userId);
+        this.numberOfGroups();
+      })
+    });
+  }
+
+  numberOfGroups() {
+    this.groupService.getGroupsByUser(this.userId).subscribe((result) => {
+      console.log(result.length);
+      if (result.length + 1 > 5) {
+        this.message2 = true;
+      }
+      else if (result.length + 1 <= 5)
+      {
+        this.message2 = false;
+      }
+    })
   }
 }
