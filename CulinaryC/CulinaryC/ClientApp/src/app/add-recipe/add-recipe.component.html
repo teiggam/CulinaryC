@@ -14,7 +14,7 @@
     <h2>Ingredients</h2>
     <ul *ngIf="iList !==null">
       <li *ngFor="let in of iList; index as i">
-        <p>{{in.amount}} of {{in.item}} <button class="b2" (click)="RemoveIngredient(i)">x</button></p>
+        <p>{{in.amount}} {{in.unit}} - {{in.item}} <button class="b2" (click)="RemoveIngredient(i)">x</button></p>
       </li>
     </ul>
     <form id="firstIng" #searchFoodForm="ngForm" (ngSubmit)="SearchIngredient(searchFoodForm.form.value.food)">
@@ -40,11 +40,14 @@
     </div>
     <div>
       <h2>Directions:</h2>
-      <form #directionsForm="ngForm" (ngSubmit)="UpdateRecipe(directionsForm); AddIngredientsToDB(); ConfirmRecipe()" id="dirform">
+      <form #directionsForm="ngForm" (ngSubmit)="UpdateRecipe(directionsForm); AddIngredientsToDB(); ConfirmRecipe()" id="dirform" enctype="multipart/form-data">
         Servings: <input type="number" name="servings" ngModel /><br />
-        <label for="myimage">Select an Image:</label><br>
-        <input type="file" id="myimage" name="myimage" /><br />
-        <textarea rows="6" cols="50" name="description" form="dirform" ngModel>Type directions here...</textarea>
+        <!--<label for="ImageFile">Select an Image:</label><br>
+        <img [src]="imageUrl"  style="width:250px; height:250px">
+        <input for="ImageFile" type="file" accept="image/*"  (change)="handleFileInput($event.target.files)" ><br />-->
+        
+        <textarea rows="6" cols="50" name="description" form="dirform" ngModel>Type directions here...</textarea><br />
+<app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
         <br>
         <input type="submit" value="Add Recipe" />
       </form>

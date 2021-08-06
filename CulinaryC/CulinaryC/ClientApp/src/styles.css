@@ -1,6 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
 
-/* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
 }
@@ -15,6 +13,7 @@ code {
   border-color: #1861ac;
 }
 
+
 .favButton {
   float: left;
   height: 20px;
@@ -26,4 +25,13 @@ code {
 
 i {
   border: 3px solid rgba(0, 0, 0, 0.514);
+
+html, header, body {
+  background-color: #003638;
+  color: #53B8BB;
+}
+
+h1, h2, h3 {
+  color: #F3F2C9;
+
 }

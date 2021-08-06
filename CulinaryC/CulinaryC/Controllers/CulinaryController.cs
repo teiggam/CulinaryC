@@ -134,6 +134,14 @@ namespace CulinaryC.Controllers
             return g;
         }
 
+        [HttpGet("GetGroupByGroupId/Id={id}")]
+        public Group GetGroupByGroupId(int id)
+        {
+            Group g = db.Group.Where(x => x.GroupId == id).ToList().First();
+
+            return g;
+        }
+
         //--------------- Need to test This!! ------------------
         //Add user to a group
         //on accepting an invitation

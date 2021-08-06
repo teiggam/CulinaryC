@@ -4,12 +4,10 @@
 <input type="text" name="searchName" [(ngModel)]="name" />
 <input type="submit" (click)="searchRecipeByName(name)" />
 <br />
-<br />
 <div *ngIf="r != undefined">
   {{r.recipeName}} <br />
-  {{r.description}}
-</div>
-<br />
+  <a [routerLink]="['/detail-recipe', r.id]"> More Details </a></div>
+  <br />
 <!--Search by ingredients-->
 <div>Search for recipes by ingredient </div>
 <input type="text" name="searchIng" [(ngModel)]="ing" />
@@ -18,8 +16,7 @@
 <br />
 <div *ngFor="let recipe of foundRecipe">
   {{recipe.recipeName}} <br />
-  {{recipe.description}} <br />
-
+  <a [routerLink]="['/detail-recipe', recipe.id]"> More Details </a>
 </div>
 
 <div *ngFor="let r of recipes">
@@ -31,7 +28,7 @@
     <img id ="i" class="favButton" src='outlineStar.png' />
   </button>
   <b>Score: </b>{{r.score}} <br />
-  <p> {{r.description}}</p>
+  <a [routerLink]="['/detail-recipe', r.id]"> More Details </a>
   <div *ngIf="r.servings !== null"> <b> Servings: </b> {{r.servings}}</div>
   <br />
 </div>

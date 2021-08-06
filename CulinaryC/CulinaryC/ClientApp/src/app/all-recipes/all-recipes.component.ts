@@ -11,6 +11,7 @@ import { AuthorizeService } from '../../api-authorization/authorize.service';
 import { FavoritesService } from '../../favorites.service';
 import { Favorites } from '../../favorites';
 
+
 @Component({
   selector: 'app-all-recipes',
   templateUrl: './all-recipes.component.html',
