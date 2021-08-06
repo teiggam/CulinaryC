@@ -5,9 +5,10 @@ import { Ingredient } from '../../Ingredient';
 import { RecipeService } from 'src/RecipeService';
 import { Recipe } from 'src/Recipe';
 import { DBIngredient } from 'src/DBIngredient';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { UserService } from '../../UserService';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
+import { User } from 'oidc-client';
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
@@ -38,6 +39,8 @@ export class AddRecipeComponent {
   unit: string;
   recName: string;
   dbIng: DBIngredient;
+  userIngredient: DBIngredient;
+
   constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private userService: UserService, private authorizeService: AuthorizeService) {
     //will get the userName / Email from the login of identity
     authorizeService.getUser().subscribe((result) => {
@@ -63,14 +66,25 @@ export class AddRecipeComponent {
   }
   //Pulls ingredient from list using ID from above, to access all details
   GetIngredient(id: number): any {
-    this.SpoonApi.GetFoodFromId(id).subscribe((Ingredient) => {
-      this.ing = Ingredient; console.log(this.ing); console.log(this.ing.name);
-      return this.ing;
-    });
+      this.SpoonApi.GetFoodFromId(id).subscribe((Ingredient) => {
+        this.ing = Ingredient; console.log(this.ing); console.log(this.ing.name);
+        return this.ing;
+      });
   }
   //Adds new recipe, only entering the title, to later be modified.
   AddRecipe(title: string) {
-    this.rec = { id: null, recipeName: title, userId: this.userId, score: 0, description: null, user: null, favorite: null, ingredients: null, servings: null, picture: null };
+    this.rec = {
+      id: null,
+      recipeName: title,
+      userId: this.userId,
+      score: 0,
+      description: null,
+      user: null,
+      favorite: null,
+      ingredients: null,
+      servings: null,
+      picture: null
+    };
     this.recServ.addRecipe(title, this.userId);
     return this.rec;
   }
@@ -82,7 +96,18 @@ export class AddRecipeComponent {
     document.getElementById("recipe").innerHTML = "<h3>Your recipe has been submitted</h3> <br> <a href='all-recipes'>View All Recipes</a>";
   }
   AddToIngArray(form: NgForm) {
-    this.dbIng = { id: null, recipeId: null, item: null, amount: null, unit: null, calories: null, carbs: null, protein: null, fats: null, aisle: null }
+    this.dbIng = {
+      id: null,
+      recipeId: null,
+      item: null,
+      amount: null,
+      unit: null,
+      calories: null,
+      carbs: null,
+      protein: null,
+      fats: null,
+      aisle: null
+    }
     this.recServ.getRecipeByName(this.recName).subscribe((Recipe2) => {
       let r2: Recipe = Recipe2;
       this.dbIng.recipeId = r2.id;
@@ -150,6 +175,34 @@ export class AddRecipeComponent {
     console.log(this.recName);
     this.recServ.updateRecipe(this.recName, des, serv)
       .subscribe(result => { console.log(result) });
+  }
+
+  //Let the user add their own ingredients
+  //create a new ingredient object
+  //add that new ingredient object to the array
+  AddUserIngredient(form: NgForm) {
+
+    this.recServ.getRecipeByName(this.recName).subscribe((Recipe2) => {
+      let r2: Recipe = Recipe2;
+
+      this.userIngredient = {
+        id: null,
+        recipeId: r2.id,
+        item: form.form.value.userIng,
+        amount: form.form.value.amount,
+        unit: form.form.value.unit,
+        calories: form.form.value.calories,
+        carbs: form.form.value.carbs,
+        protein: form.form.value.protein,
+        fats: form.form.value.fats,
+        aisle: null
+      }
+
+      //add new ingredient to array
+      console.log(this.userIngredient);
+      console.log(this.userIngredient.calories);
+      this.iList.push(this.userIngredient);
+    })
   }
 }
 
