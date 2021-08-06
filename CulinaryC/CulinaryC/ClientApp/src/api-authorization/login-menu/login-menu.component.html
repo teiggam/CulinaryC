@@ -1,20 +1,20 @@
 
 <ul class="navbar-nav" *ngIf="isAuthenticated | async">
   <li class="nav-item">
-    <a class="nav-link text-dark" [routerLink]="['/app-profile']">Profile</a>
+    <a class="nav-link text-light" [routerLink]="['/app-profile']">Profile</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-dark" [routerLink]="['/app-friends']">Friends</a>
+    <a class="nav-link text-light" [routerLink]="['/app-friends']">Friends</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-dark" [routerLink]="['/app-group']">Groups</a>
+    <a class="nav-link text-light" [routerLink]="['/app-group']">Groups</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-dark" [routerLink]="['/app-leaderboard']">Leaderboard</a>
+    <a class="nav-link text-light" [routerLink]="['/app-leaderboard']">Leaderboard</a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link text-dark" [routerLink]='["/authentication/logout"]' [state]='{ local: true }' title="Logout">Logout</a>
+    <a class="nav-link text-light" [routerLink]='["/authentication/logout"]' [state]='{ local: true }' title="Logout">Logout</a>
   </li>
 </ul>
 
@@ -22,9 +22,9 @@
 
 <ul class="navbar-nav" *ngIf="!(isAuthenticated | async)">
   <li class="nav-item">
-    <a class="nav-link text-dark" [routerLink]='["/authentication/register"]'>Register</a>
+    <a class="nav-link text-light" [routerLink]='["/authentication/register"]'>Register</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-dark" [routerLink]='["/authentication/login"]'>Login</a>
+    <a class="nav-link text-light" [routerLink]='["/authentication/login"]'>Login</a>
   </li>
 </ul>

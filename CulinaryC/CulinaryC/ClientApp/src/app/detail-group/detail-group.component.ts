@@ -45,10 +45,12 @@ export class DetailGroupComponent {
     });
   }
 
+  //breaking somewhere in here
   getGroup(id: number)
   {
     this.groupService.getGroupByGroupId(id).subscribe((G) => {
       this.group = G;
+      console.log(this.group)
       return this.group;
     });
   }

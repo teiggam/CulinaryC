@@ -161,13 +161,12 @@ export class AddRecipeComponent {
   }
   UpdateRecipe(form: NgForm) {
     let serv: number = form.form.value.servings;
-
-    this.rec.description = this.des;
-    this.rec.servings = serv;
-    this.rec.recipeName = this.recName;
-    this.rec.picture = this.response.dbPath;
+    let newPath: string = this.response.dbPath.slice(17);
     console.log(this.response.dbPath);
     this.recServ.updateRecipe(this.rec)
+    console.log(newPath);
+    this.recServ.updateRecipe(this.recName, this.des, serv, newPath)
+
       .subscribe(result => { console.log(result) });
   }
 
