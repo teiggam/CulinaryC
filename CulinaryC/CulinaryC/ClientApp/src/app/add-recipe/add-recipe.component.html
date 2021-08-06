@@ -25,7 +25,7 @@
         <h2>Ingredients</h2>
         <ul *ngIf="iList !== null">
           <li *ngFor="let in of iList; index as i">
-            <p>{{in.amount}} of {{in.item}} <button class="b2" (click)="RemoveIngredient(i)">x</button></p>
+            <p>{{in.amount}} {{in.unit}} - {{in.item}} <button class="b2" (click)="RemoveIngredient(i)">x</button></p>
           </li>
         </ul>
         <form id="firstIng" #searchFoodForm="ngForm" (ngSubmit)="SearchIngredient(searchFoodForm.form.value.food)">
@@ -33,12 +33,13 @@
           <input type="submit" value="Find Ingredient" />
         </form>
         <div *ngIf="ing != null">
-          <p>{{ing.name}}</p>
           <form #addIngredientForm="ngForm" (ngSubmit)="AddToIngArray(addIngredientForm)">
-            <input type="text" name="food" value="{{ing.name}}" ngModel />
+            <input type="hidden" name="food" value="{{ing.name}}" placeholder="{{ing.name}}" ngModel />
             <input type="hidden" name="recipeID" value="{{ing.id}}" ngModel />
-            <input style="width: 50px" type="number" name="amount" ngModel />
+            <input style="width: 50px" type="number" min="0" placeholder="1" name="amount" ngModel />
             <select name="unit" ngModel>
+              <option disabled selected value>unit</option>
+
               <option value="g">g</option>
               <option value="oz">oz</option>
               <option value="tsp">tsp</option>
@@ -75,16 +76,16 @@
             <!-- Create a Flag/Message to let the user know the nutritional information is not accurate -->
             <!--Calories / Carbs / Fats / Protiens-->
             <label>Calories</label>
-            <input type="number" name="calories" placeholder="0" ngModel/>
+            <input type="number" min="0"  name="calories" placeholder="calories" ngModel/>
             <br />
             <label>Carb</label>
-            <input type="number" name="carbs" placeholder="0" ngModel/>
+            <input type="number" min="0"  name="carbs" placeholder="0" ngModel/>
             <br />
             <label>Fats</label>
-            <input type="number" name="fats" placeholder="0" ngModel/>
+            <input type="number" min="0"  name="fats" placeholder="0" ngModel/>
             <br />
             <label>Protein</label>
-            <input type="number" name="protein" placeholder="0" ngModel/>
+            <input type="number" min="0"  name="protein" placeholder="0" ngModel/>
             <br />
             <input type="submit" />
           </form>
