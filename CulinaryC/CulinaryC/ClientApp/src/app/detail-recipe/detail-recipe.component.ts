@@ -29,6 +29,7 @@ export class DetailRecipeComponent {
   userInfo: string = "";
   id: number;
   des: string[] = [];
+  fullDes: string[] = [];
 
   constructor(private authorizeServie: AuthorizeService, private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private UserServ: UserService, private route: ActivatedRoute) {
 
@@ -52,6 +53,11 @@ export class DetailRecipeComponent {
       console.log(this.r);
 
       this.des = this.r.description.split("*");
+      for (var i = 0; i < this.des.length; i++) {
+        if (this.des[i].toLowerCase() !== "undefined") {
+          this.fullDes.push(this.des[i]);
+        }
+      }
     });
   }
 
@@ -81,6 +87,7 @@ export class DetailRecipeComponent {
     console.log(recipeId);
     this.recServ.updateScore(recipeId);
   }
+
 
 //  I need to still:
 //    - Do Math :(
