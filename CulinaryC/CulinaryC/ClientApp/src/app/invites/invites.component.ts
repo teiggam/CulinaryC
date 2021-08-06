@@ -65,6 +65,7 @@ export class InvitesComponent {
           }
           else {
             this.message = "Already In Group"
+            this.invitesService.removeInvite(name, this.userId);
           }
           console.log(this.message);
         })
