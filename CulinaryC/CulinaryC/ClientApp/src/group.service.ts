@@ -24,7 +24,7 @@ export class GroupService {
   }
 
   getGroupByGroupId(id: number) {
-    let url: string = this.base + `/GetGroupByGroupId/Id={$id}`;
+    let url: string = this.base + `/GetGroupByGroupId/Id=${id}`;
     return this.http.get<Group>(url);
   }
  
