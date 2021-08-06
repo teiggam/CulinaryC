@@ -72,6 +72,17 @@ namespace CulinaryC.Controllers
             return RFound;
 
         }
+
+        [HttpPut("updateScore={recipeId}")]
+        public void completeRecipe(int recipeId)
+        {
+            Recipes r = db.Recipes.Where(x => x.Id == recipeId).ToList().First();
+
+            r.Score = r.Score + 10;
+
+            db.Recipes.Update(r);
+            db.SaveChanges();
+        }
             
 
             // Need to switch to contains

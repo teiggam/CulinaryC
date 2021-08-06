@@ -39,5 +39,10 @@ export class UserService {
     return this.http.get<User>(url);
   }
 
-
+  completeRecipe(userId: number) {
+    let url: string = this.base + `/completed/u=${userId}`;
+    return this.http.put<User>(url, {}).subscribe((result) => {
+      console.log(result);
+    });
+  }
 }

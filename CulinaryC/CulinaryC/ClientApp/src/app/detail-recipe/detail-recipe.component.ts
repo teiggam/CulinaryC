@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthorizeService } from '../../api-authorization/authorize.service';
 import { DBIngredient } from '../../DBIngredient';
 import { Ingredient } from '../../Ingredient';
 import { Recipe } from '../../Recipe';
@@ -12,7 +13,7 @@ import { UserService } from '../../UserService';
     templateUrl: './detail-recipe.component.html',
 
   styleUrls: ['./detail-recipe.component.css'],
-    providers: [SpoonacularAPI, RecipeService, UserService]
+  providers: [SpoonacularAPI, RecipeService, UserService, AuthorizeService]
 })
 
 /** detail-recipe component*/
@@ -22,8 +23,11 @@ export class DetailRecipeComponent {
   r: Recipe = {} as Recipe;
   u: User[];
   dbIngList: DBIngredient[];
+  message: string | null = null;
+  userId: number;
+  userInfo: string = "";
 
-  constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private UserServ: UserService) {
+  constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private UserServ: UserService, private authorizeService: AuthorizeService) {
     this.UserServ.leaderboard().subscribe((User) => {
       this.u = User; console.log(this.u);
     })
@@ -46,6 +50,27 @@ export class DetailRecipeComponent {
       return this.u;
     })
   }
+
+  completed(recipeId: number) {
+    this.message = "Recipe Complete +5 points!"
+    console.log(this.message);
+    this.authorizeService.getUser().subscribe((result) => {
+      this.userInfo = result.name;
+      console.log(result);
+      console.log(this.userInfo);
+
+
+      this.UserServ.getUserbyLoginId(this.userInfo).subscribe((id) => {
+        this.userId = id.id;
+        console.log(this.userId);
+        this.UserServ.completeRecipe(this.userId);
+      })
+    });
+
+    console.log(recipeId);
+    this.recServ.updateScore(recipeId);
+  }
+
 //  I need to still:
 //    - Do Math :(
 
