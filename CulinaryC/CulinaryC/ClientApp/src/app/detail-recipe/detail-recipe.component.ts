@@ -29,7 +29,7 @@ export class DetailRecipeComponent {
   userInfo: string = "";
   id: number;
 
-  constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private UserServ: UserService, private route: ActivatedRoute) {
+  constructor(private authorizeServie: AuthorizeService, private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private UserServ: UserService, private route: ActivatedRoute) {
 
     this.UserServ.leaderboard().subscribe((User) => {
       this.u = User; console.log(this.u);
@@ -62,7 +62,7 @@ export class DetailRecipeComponent {
   completed(recipeId: number) {
     this.message = "Recipe Complete +5 points!"
     console.log(this.message);
-    this.authorizeService.getUser().subscribe((result) => {
+    this.authorizeServie.getUser().subscribe((result) => {
       this.userInfo = result.name;
       console.log(result);
       console.log(this.userInfo);
