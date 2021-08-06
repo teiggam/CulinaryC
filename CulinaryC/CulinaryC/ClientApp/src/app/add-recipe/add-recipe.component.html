@@ -40,65 +40,70 @@
     </div>
     <div>
       <h2>Directions:</h2>
-      <form #directionsForm="ngForm" (ngSubmit)="UpdateRecipe(directionsForm); AddIngredientsToDB(); ConfirmRecipe()" id="dirform" enctype="multipart/form-data">
-        Servings: <input type="number" name="servings" ngModel /><br />
-        <!--<label for="ImageFile">Select an Image:</label><br>
-    <img [src]="imageUrl"  style="width:250px; height:250px">
-    <input for="ImageFile" type="file" accept="image/*"  (change)="handleFileInput($event.target.files)" ><br />-->
-        <textarea rows="6" cols="50" name="description" form="dirform" ngModel>Type directions here...</textarea><br />
-        <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
-        <br>
-        <input type="submit" value="Add Recipe" />
-      </form>
-
+      
       <form #desForm="ngForm" (ngSubmit)="AddString(desForm)">
-        <input type="text" name="step1" ngModel />
-        <input type="text" name="step2" ngModel />
-        <input type="text" name="step3" ngModel />
+        <input type="text" name="step1" placeholder="step1" ngModel />
+        <br/>
+        <input type="text" name="step2" placeholder="step2" ngModel />
+        <br/>
+        <input type="text" name="step3" placeholder="step3" ngModel />
+        <br/>
         <div *ngIf="ste4 == false">
           <button (click)="step4()">Add step</button>
         </div>
         <div *ngIf="ste4 != false">
-          <input type="text" name="step4" ngModel />
+          <input type="text" name="step4" placeholder="step4" ngModel />
         </div>
         <div *ngIf="ste4 != false && ste5 == false">
           <button (click)="step5()">Add step</button>
         </div>
         <div *ngIf="ste5 != false">
-          <input type="text" name="step5" ngModel />
+          <input type="text" name="step5" placeholder="step5" ngModel />
         </div>
         <div *ngIf="ste5 != false && ste6 == false">
           <button (click)="step6()">Add step</button>
         </div>
         <div *ngIf="ste6 != false">
-          <input type="text" name="step6" ngModel />
+          <input type="text" name="step6" placeholder="step6" ngModel />
         </div>
         <div *ngIf="ste6 != false && ste7 == false">
           <button (click)="step7()">Add step</button>
         </div>
         <div *ngIf="ste7 != false">
-          <input type="text" name="step7" ngModel />
+          <input type="text" name="step7" placeholder="step7" ngModel />
         </div>
         <div *ngIf="ste7 != false && ste8== false">
           <button (click)="step8()">Add step</button>
         </div>
         <div *ngIf="ste8 != false">
-          <input type="text" name="step8" ngModel />
+          <input type="text" name="step8" placeholder="step8" ngModel />
         </div>
         <div *ngIf="st8 != false && ste9 == false">
           <button (click)="step9()">Add step</button>
         </div>
         <div *ngIf="ste9 != false">
-          <input type="text" name="step9" ngModel />
+          <input type="text" name="step9" placeholder="step9" ngModel />
         </div>
-        <div *ngIf="ste9 != false && ste7 == false">
+        <div *ngIf="ste9 != false && ste10 == false">
           <button (click)="step10()">Add step</button>
         </div>
         <div *ngIf="ste10 != false">
-          <input type="text" name="step10" ngModel />
+          <input type="text" name="step10" placeholder="step10" ngModel />
         </div>
         <input type="submit" />
       </form>
+      
+      <form #directionsForm="ngForm" (ngSubmit)="UpdateRecipe(directionsForm); AddIngredientsToDB(); ConfirmRecipe()" id="dirform" enctype="multipart/form-data">
+        Servings: <input type="number" name="servings" ngModel /><br />
+        <!--<label for="ImageFile">Select an Image:</label><br>
+    <img [src]="imageUrl"  style="width:250px; height:250px">
+    <input for="ImageFile" type="file" accept="image/*"  (change)="handleFileInput($event.target.files)" ><br />-->
+        <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+        <br>
+        <input type="submit" value="Add Recipe" />
+      </form>
+
+      
     </div>
   </div>
 </div>
