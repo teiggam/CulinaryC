@@ -49,7 +49,6 @@ export class ProfileComponent {
         this.displayFriends(this.userId);
         this.displayUserRecipes(this.userId);
         this.getNotifications(this.userId);
-
         this.userGroups(this.userId);
 
       })
@@ -87,6 +86,8 @@ export class ProfileComponent {
       this.gList = result;
       console.log(this.gList);
     })
+
+    console.log()
   }
 
   updateUser(form: NgForm) {
