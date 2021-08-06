@@ -28,6 +28,7 @@ export class DetailRecipeComponent {
   userId: number;
   userInfo: string = "";
   id: number;
+  des: string[] = [];
 
   constructor(private authorizeServie: AuthorizeService, private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private UserServ: UserService, private route: ActivatedRoute) {
 
@@ -47,8 +48,10 @@ export class DetailRecipeComponent {
   GetRecipeById(id: number)
   {
     this.recServ.getRecipeById(id).subscribe((Recipe) => {
-      this.r = Recipe; console.log(this.r)
-      return this.r;
+      this.r = Recipe;
+      console.log(this.r);
+
+      this.des = this.r.description.split("*");
     });
   }
 
