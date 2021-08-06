@@ -45,8 +45,13 @@
   <h4>Group information</h4>
   <button routerLink='/app-group'>View Groups</button>
 
-  <div *ngFor="let g of gList | slice:0:5">
+  <div *ngFor="let g of gList; index as i">
     <p *ngIf="g.admin === true">{{g.groupName}}</p>
   </div>
+</div>
+
+<!--View Favorites-->
+<div>
+  <button routerLink="/app-favorites">View Favorites</button>
 </div>
 

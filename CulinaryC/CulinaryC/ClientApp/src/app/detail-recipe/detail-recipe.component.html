@@ -25,5 +25,10 @@
 
   </div>
 </div>
- <b>Description: </b> {{r.description}}<br />
+ <b>Description: </b>
+<div *ngFor="let d of fullDes; index as i">
+  <p>Step {{i+1}}: {{d}}</p>
+</div>
+
+<br />
 <img src="{{r.picture}}"/>

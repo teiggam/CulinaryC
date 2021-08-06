@@ -85,6 +85,8 @@ export class ProfileComponent {
       this.gList = result;
       console.log(this.gList);
     })
+
+    console.log()
   }
 
   updateUser(form: NgForm) {
