@@ -42,7 +42,15 @@ export class AddRecipeComponent {
   dbIng: DBIngredient;
   imageUrl: string = "./assets/img/upload.png";
   fileToUpload: File = null;
-  response: {dbPath: ''}
+  response: { dbPath: '' }
+  ste4: boolean = false;
+  ste5: boolean = false;
+  ste6: boolean = false;
+  ste7: boolean = false;
+  ste8: boolean = false;
+  ste9: boolean = false;
+  ste10: boolean = false;
+  des: string = "";
 
 
   constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private userService: UserService, private authorizeService: AuthorizeService) {
@@ -152,12 +160,13 @@ export class AddRecipeComponent {
     this.iList.splice(index, 1);
   }
   UpdateRecipe(form: NgForm) {
-    let des: string = form.form.value.description;
     let serv: number = form.form.value.servings;
     let newPath: string = this.response.dbPath.slice(17);
-
+    console.log(this.response.dbPath);
+    this.recServ.updateRecipe(this.rec)
     console.log(newPath);
-    this.recServ.updateRecipe(this.recName, des, serv, newPath)
+    this.recServ.updateRecipe(this.recName, this.des, serv, newPath)
+
       .subscribe(result => { console.log(result) });
   }
 
@@ -165,5 +174,40 @@ export class AddRecipeComponent {
   uploadFinished = (event) => {
     this.response = event;
   }
+
+  step4() {
+    this.ste4 = true;
+  }
+
+  step5() {
+    this.ste5 = true;
+  }
+
+  step6() {
+    this.ste6 = true;
+  }
+
+  step7() {
+    this.ste7 = true;
+  }
+
+  step8() {
+    this.ste8 = true;
+  }
+
+  step9() {
+    this.ste9 = true;
+  }
+
+  step10() {
+    this.ste10 = true;
+  }
+
+  AddString(form: NgForm) {
+     this.des = form.form.value.step1 + "*" + form.form.value.step2 + "*" + form.form.value.step3 + "*" + form.form.value.step4 + "*" +
+      form.form.value.step5 + "*" + form.form.value.step6 + "*" + form.form.value.step7 + "*" + form.form.value.step8 + "*" + form.form.value.step9 + "*" +
+      form.form.value.step10;
+  }
+
 }
 

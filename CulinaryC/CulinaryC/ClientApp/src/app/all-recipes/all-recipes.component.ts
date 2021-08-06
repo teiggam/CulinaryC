@@ -30,7 +30,9 @@ export class AllRecipesComponent {
   userId: number;
   userInfo: string = "";
   favCheck: Favorites[] = [];
-  message: boolean = false;
+  message: boolean = true;
+  recipe: Favorites[] = [];
+  
 
 
   constructor(private recServ: RecipeService, private userService: UserService, private authorizeService: AuthorizeService, private favoriteService: FavoritesService) {
@@ -51,19 +53,71 @@ export class AllRecipesComponent {
       userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
         this.userId = id.id;
         console.log(this.userId);
+
+        favoriteService.getFavorites(this.userId).subscribe((result2) => {
+          console.log(result2)
+
+          
+          for (var i = 0; i < result2.length; i++) {
+            favoriteService.checkFavs(this.userId, result2[i].id).subscribe((f) => {
+              this.recipe.push(f[i]);
+            })
+          }
+
+          for (var i = 0; i < this.recipe.length; i++) {
+            document.getElementById(this.recipe[i].recipeId.toString()).innerHTML
+              = "<img id='i' class='favButton' src = 'star.png' />";
+          }
+        })
       })
+
     });
   }
 
   favorite(recipeId: number) {
 
-    this.favoriteService.checkFavs(this.userId, recipeId).subscribe((result) => {
-      console.log(result);
-      if (result.length == 0) {
-        this.favoriteService.addFavorite(this.userId, recipeId)
+    let recipe2: Favorites[] = [];
+    let recipe3: number = -1;
+    let recipe4: number = -2;
+
+    let message1: boolean = false;
+
+    this.favoriteService.getFavorites(this.userId).subscribe((result2) => {
+      console.log(result2);
+
+
+      for (var i = 0; i < result2.length; i++) {
+        console.log(result2[i].id);
+        if (result2[i].id == recipeId) {
+
+          recipe3 = result2[i].id;
+          recipe4 = result2[i].id;
+        }
       }
-    })
+      console.log(recipe2);
+      console.log(recipe3);
+
+      if (recipe3 === recipe4) {
+        message1 = true;
+      }
+      console.log(message1);
+
+      if (message1 === false) {
+        this.addPoints(recipeId);
+        this.favoriteService.addFavorite(this.userId, recipeId);
+        document.getElementById(recipeId.toString()).innerHTML
+          = "<img id='i' class='favButton' src = 'star.png' />";
+      }
+      else if (message1 === true) {
+        this.favoriteService.removeFavorite(this.userId, recipeId);
+        //need to create method to remove points for unfavoriting
+        this.removePoints(recipeId);
+        document.getElementById(recipeId.toString()).innerHTML
+          = "<img id='i' class='favButton' src = 'outlineStar.png' />";
+      }
+    });
   }
+
 
   //Search function by Name
   //NEED TO CHANGE THE BACK END TO CONTAINS
@@ -88,37 +142,17 @@ export class AllRecipesComponent {
     document.getElementById(id.toString()).innerHTML
       = "<img id='i' class='favButton' src = 'star.png' />";
 
-    //attempt on making it so they dont get points on every click
-
-    //if (this.message == false) {
-    //  this.message = true;
-    //}
-    //else if (this.message == true)
-    //{
-    //  this.message = false;
-    //}
   }
 
   addPoints(recipeId: number) {
-
     this.recServ.getRecipeById(recipeId).subscribe((result) => {
       this.userService.completeRecipe(result.userId);
       this.recServ.updateScore(recipeId);
     })
+  }
 
-    //attempt on making it so they dont get points on every click
-
-    //if (this.message === true) {
-    //  this.recServ.getRecipeById(recipeId).subscribe((result) => {
-    //    this.userService.completeRecipe(result.userId);
-    //    this.recServ.updateScore(recipeId);
-    //  })
-    //}
-    //else if (this.message == false)
-    //{
-      
-    //}
-      
+  removePoints(recipeId: number) {
+    this.recServ.removeScore(recipeId);
   }
 
   //Need Favorite Button 
