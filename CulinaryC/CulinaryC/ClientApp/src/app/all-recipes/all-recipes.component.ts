@@ -10,6 +10,7 @@ import { UserService } from '../../UserService';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
 import { FavoritesService } from '../../favorites.service';
 import { Favorites } from '../../favorites';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
