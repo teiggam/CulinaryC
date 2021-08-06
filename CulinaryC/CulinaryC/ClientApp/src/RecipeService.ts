@@ -82,4 +82,9 @@ export class RecipeService {
       picture: recipe.picture,
     });
   }
+
+  updateScore(recipeId: number) {
+    let url: string = this.base + `/updateScore=${recipeId}`;
+    return this.http.put<Recipe>(url, {}).subscribe((result) => console.log(result));
+  }
 }

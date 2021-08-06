@@ -13,6 +13,19 @@ code {
   border-color: #1861ac;
 }
 
+
+.favButton {
+  float: left;
+  height: 20px;
+  width: auto;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  opacity: 100%;
+}
+
+i {
+  border: 3px solid rgba(0, 0, 0, 0.514);
+
 html, header, body {
   background-color: #003638;
   color: #53B8BB;
@@ -20,4 +33,5 @@ html, header, body {
 
 h1, h2, h3 {
   color: #F3F2C9;
+
 }

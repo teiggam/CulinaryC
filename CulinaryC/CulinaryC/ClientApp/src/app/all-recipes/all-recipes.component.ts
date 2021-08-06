@@ -8,13 +8,15 @@ import { DBIngredient } from 'src/DBIngredient';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../../UserService';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
+import { FavoritesService } from '../../favorites.service';
+import { Favorites } from '../../favorites';
 
 
 @Component({
   selector: 'app-all-recipes',
   templateUrl: './all-recipes.component.html',
   styleUrls: ['./all-recipes.component.css'],
-  providers: [RecipeService, UserService]
+  providers: [RecipeService, UserService, AuthorizeService, FavoritesService]
 })
 
 /** All-Recipes component*/
@@ -24,15 +26,41 @@ export class AllRecipesComponent {
   r: Recipe
   foundRecipe: Recipe[];
   ingList: DBIngredient[];
+  userId: number;
+  userInfo: string = "";
+  favCheck: Favorites[] = [];
+  message: boolean = false;
 
 
-  constructor(private recServ: RecipeService, private userService: UserService) {
+  constructor(private recServ: RecipeService, private userService: UserService, private authorizeService: AuthorizeService, private favoriteService: FavoritesService) {
     recServ.getRecipes().subscribe((result) => {
       this.recipes = result;
       console.log(this.recipes)
     })
     recServ.getIngredients().subscribe((Ingredient) => {
       this.ingList = Ingredient;
+    })
+
+    authorizeService.getUser().subscribe((result) => {
+      this.userInfo = result.name;
+      console.log(result);
+      console.log(this.userInfo);
+
+
+      userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
+        this.userId = id.id;
+        console.log(this.userId);
+      })
+    });
+  }
+
+  favorite(recipeId: number) {
+
+    this.favoriteService.checkFavs(this.userId, recipeId).subscribe((result) => {
+      console.log(result);
+      if (result.length == 0) {
+        this.favoriteService.addFavorite(this.userId, recipeId)
+      }
     })
   }
 
@@ -52,6 +80,44 @@ export class AllRecipesComponent {
       console.log(this.foundRecipe);
       return this.foundRecipe;
     })
+  }
+
+  switchImage(id: number) {
+    console.log(id);
+    document.getElementById(id.toString()).innerHTML
+      = "<img id='i' class='favButton' src = 'star.png' />";
+
+    //attempt on making it so they dont get points on every click
+
+    //if (this.message == false) {
+    //  this.message = true;
+    //}
+    //else if (this.message == true)
+    //{
+    //  this.message = false;
+    //}
+  }
+
+  addPoints(recipeId: number) {
+
+    this.recServ.getRecipeById(recipeId).subscribe((result) => {
+      this.userService.completeRecipe(result.userId);
+      this.recServ.updateScore(recipeId);
+    })
+
+    //attempt on making it so they dont get points on every click
+
+    //if (this.message === true) {
+    //  this.recServ.getRecipeById(recipeId).subscribe((result) => {
+    //    this.userService.completeRecipe(result.userId);
+    //    this.recServ.updateScore(recipeId);
+    //  })
+    //}
+    //else if (this.message == false)
+    //{
+      
+    //}
+      
   }
 
   //Need Favorite Button 

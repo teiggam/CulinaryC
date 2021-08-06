@@ -7,14 +7,14 @@
 <div *ngIf="reveal1 != null">
   <form #Searchemail="ngForm" (ngSubmit)="searchbyEmail(Searchemail.form.value.search)">
     <input type="text" name="search" ngModel />
-    <input type="submit" />
+    <input type="submit" value="Email"/>
   </form>
 </div>
 
 <div *ngIf="reveal2 != null">
   <form #Searchname="ngForm" (ngSubmit)="searchbyName(Searchname.form.value.search)">
     <input type="text" name="search" ngModel />
-    <input type="submit" />
+    <input type="submit" value="Name" />
   </form>
 </div>
 
