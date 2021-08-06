@@ -1,2 +1,7 @@
-<div> {{group.groupName}}</div>
+<h2> {{group.groupName}}</h2>
 <div> {{group.score}}</div>
+
+<!-- I am going to go though each user in this group and pull their recipes in and then print them-->
+<div *ngFor="let r of allRecipes">
+  <h2>{{r.recipeName}} </h2>
+</div>

@@ -86,7 +86,7 @@ namespace CulinaryC.Controllers
             
 
             // Need to switch to contains
-            [HttpGet("N={name}")]
+        [HttpGet("N={name}")]
         public Recipes GetRecipeByName(string name)
         {
             Recipes rec = new Recipes();
