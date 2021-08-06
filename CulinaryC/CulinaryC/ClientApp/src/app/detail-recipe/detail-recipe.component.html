@@ -5,7 +5,12 @@
 <input type="submit" (click)="GetRecipeById(getRecipe)" />
 
 <h2>{{r.recipeName}} </h2>
-
+<div *ngIf="message == null">
+  <button (click)="completed(r.id)">Completed?</button>
+</div>
+<div *ngIf="message !== null">
+  <h3>{{message}}</h3>
+</div>
 <div *ngFor="let user of u">
    <div *ngIf="user.id === r.userId">
       <b>Created By: </b> {{user.name}} <br />
@@ -20,4 +25,5 @@
 
   </div>
 </div>
- <b>Description: </b> {{r.description}}
+ <b>Description: </b> {{r.description}}<br />
+<img src="{{r.picture}}"/>

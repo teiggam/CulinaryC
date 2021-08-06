@@ -10,6 +10,7 @@
   <!--print out the list of groups-->
   <div style="border: 1px solid black" *ngFor="let g of groupList">
     <h5>Group Name: {{g.groupName}}</h5>
+    <a [routerLink]="['/detail-group', g.groupId]"> More Details </a>
     <div *ngIf="g.admin != true">
       <button (click)="removeSelf(g.groupName)">Remove Self</button>
     </div>
@@ -20,7 +21,7 @@
         <div *ngFor="let e of gList">
           <button (click)="removeUser(e.id, g.groupName)">Remove User{{e.name}}</button>
         </div>
-        </div>
+      </div>
     </div>
     <div *ngIf="friendsList !== null">
       <div *ngFor="let f of fList">
@@ -32,6 +33,6 @@
   </div>
 </div>
 
-  <div class="newDiv"> <a routerLink='/app-new-group'>Add New Group</a></div>
+  <button routerLink='/app-new-group'>Add New Group</button>
 
 
