@@ -23,7 +23,9 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UploadComponent } from './upload/upload.component';
 import { DetailGroupComponent } from './detail-group/detail-group.component';
+
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { DetailGroupComponent } from './detail-group/detail-group.component';
     FavoritesComponent,
     AddFriendComponent,
     ProfileComponent,
+    UploadComponent,
     DetailGroupComponent
+
 
   ],
   imports: [
@@ -69,8 +73,9 @@ import { DetailGroupComponent } from './detail-group/detail-group.component';
       { path: 'app-leaderboard', component: LeaderboardComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-favorites', component: FavoritesComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-add-friend', component: AddFriendComponent, canActivate: [AuthorizeGuard] },
-      { path: 'app-profile', component: ProfileComponent, canActivate: [AuthorizeGuard] }
-
+      { path: 'app-profile', component: ProfileComponent, canActivate: [AuthorizeGuard] },
+      { path: 'app-upload', component: UploadComponent, canActivate: [AuthorizeGuard] }
+ 
     ])
   ],
   providers: [

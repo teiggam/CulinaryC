@@ -72,6 +72,17 @@ namespace CulinaryC.Controllers
             return RFound;
 
         }
+
+        [HttpPut("updateScore={recipeId}")]
+        public void completeRecipe(int recipeId)
+        {
+            Recipes r = db.Recipes.Where(x => x.Id == recipeId).ToList().First();
+
+            r.Score = r.Score + 10;
+
+            db.Recipes.Update(r);
+            db.SaveChanges();
+        }
             
 
             // Need to switch to contains
@@ -92,17 +103,18 @@ namespace CulinaryC.Controllers
             db.SaveChanges();
         }
 
-        [HttpPut("Update/N={name}/D={des}/S={serv}")]
-        public void UpdateRecipe(string name, string des, int serv)
+        [HttpPut("Update")]
+        public void UpdateRecipe(Recipes recipe)
         {
-            Recipes r = db.Recipes.Where(x => x.RecipeName == name).ToList().Last();
+            Recipes r = db.Recipes.Where(x => x.RecipeName == recipe.RecipeName).ToList().Last();
             Users u = db.Users.Where(x => x.Id == r.UserId).ToList().First();
 
             u.Score = u.Score + 20;
             db.Users.Update(u);
 
-            r.Description = des;
-            r.Servings = serv;
+            r.Description = recipe.Description;
+            r.Servings = recipe.Servings;
+            r.Picture = recipe.Picture;
             db.Recipes.Update(r);
             db.SaveChanges();
         }

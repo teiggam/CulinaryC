@@ -24,4 +24,14 @@ export class FavoritesService {
     let url: string = this.base + `/removefav/u=${userId}&r=${recipeId}`;
     return this.http.delete<Favorites>(url, {}).subscribe((result) => console.log(result));
   }
+
+  checkFavs(userId: number, recipeId: number) {
+    let url: string = this.base + `/checkFavs=${userId}&f=${recipeId}`;
+    return this.http.get<Favorites[]>(url);
+  }
+
 }
+
+
+
+

@@ -21,7 +21,7 @@ namespace CulinaryC.Controllers
             Users u = db.Users.Find(id);
             //this is an honor system we hope no one exploits it lol
 
-            u.Score = u.Score + 15;
+            u.Score = u.Score + 5;
 
 
             //posting a recipe will be 20
@@ -90,7 +90,7 @@ namespace CulinaryC.Controllers
         [HttpGet("name={name}")]
         public List<Users> GetUsersByName(string name)
         {
-            List<Users> users = db.Users.Where(x => x.Name.ToLower() == name.ToLower()).ToList();
+            List<Users> users = db.Users.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
             return users;
         }
 
@@ -264,6 +264,13 @@ namespace CulinaryC.Controllers
                 }
             }
             return recipes;
+        }
+
+        [HttpGet("checkFavs={userId}&f={recipeId}")]
+        public List<Favorite> CheckFavorites(int userId, int recipeId)
+        {
+            List<Favorite> f = db.Favorite.Where(x => x.UserId == userId && x.RecipeId == recipeId).ToList();
+            return f;
         }
 
         [HttpPost("addfav/u={userid}&r={recipeid}")]
