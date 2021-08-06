@@ -2,7 +2,7 @@
 <h1>Add a New Recipe</h1>
 <br />
 <!--bootstrap container-->
-<div class="container background">
+<div class="container board-test">
   <div class="row">
     <div class="col-lg">
       <!--id: recipe will change the inner Html after submit recipe-->
@@ -139,7 +139,7 @@
         <div *ngIf="ste8 != false">
           <input type="text" name="step8" placeholder="step8" ngModel />
         </div>
-        <div *ngIf="st8 != false && ste9 == false">
+        <div *ngIf="ste8 != false && ste9 == false">
           <button (click)="step9()">Add step</button>
         </div>
         <div *ngIf="ste9 != false">
