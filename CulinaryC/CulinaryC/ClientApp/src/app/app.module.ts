@@ -24,6 +24,8 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UploadComponent } from './upload/upload.component';
+import { DetailGroupComponent } from './detail-group/detail-group.component';
+
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { UploadComponent } from './upload/upload.component';
     FavoritesComponent,
     AddFriendComponent,
     ProfileComponent,
-    UploadComponent
+    UploadComponent,
+    DetailGroupComponent
+
 
   ],
   imports: [
@@ -56,7 +60,8 @@ import { UploadComponent } from './upload/upload.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'add-recipe', component: AddRecipeComponent, canActivate: [AuthorizeGuard] },
-      { path: 'detail-recipe' , component: DetailRecipeComponent },
+      { path: 'detail-recipe/:id', component: DetailRecipeComponent },
+      { path: 'detail-group/:id', component: DetailGroupComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-group', component: GroupComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-new-group', component: NewGroupComponent, canActivate: [AuthorizeGuard] },
@@ -70,6 +75,7 @@ import { UploadComponent } from './upload/upload.component';
       { path: 'app-add-friend', component: AddFriendComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-profile', component: ProfileComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-upload', component: UploadComponent, canActivate: [AuthorizeGuard] }
+ 
     ])
   ],
   providers: [
