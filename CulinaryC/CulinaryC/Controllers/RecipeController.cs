@@ -72,6 +72,32 @@ namespace CulinaryC.Controllers
             return RFound;
 
         }
+
+        [HttpPut("removescore={recipeId}")]
+        public void removeRecipe(int recipeId)
+        {
+            Recipes r = db.Recipes.Where(x => x.Id == recipeId).ToList().First();
+            Users u = db.Users.Find(r.UserId);
+
+            u.Score = u.Score - 5;
+
+            r.Score = r.Score - 10;
+
+            db.Recipes.Update(r);
+            db.Users.Update(u);
+            db.SaveChanges();
+        }
+
+        [HttpPut("updateScore={recipeId}")]
+        public void completeRecipe(int recipeId)
+        {
+            Recipes r = db.Recipes.Where(x => x.Id == recipeId).ToList().First();
+
+            r.Score = r.Score + 10;
+
+            db.Recipes.Update(r);
+            db.SaveChanges();
+        }
             
 
             // Need to switch to contains

@@ -1,4 +1,6 @@
 <h1>Welcome to Culinary Conquest</h1>
 <h3>Challenge your friends and family to see who can reach the rank of Master Chef first!</h3>
-<p>Sign up or log in to start now!</p>
-<img src="CCLogo.png" />
+<div *ngIf="!(isAuthenticated | async)">
+  <p>Sign up or log in to start now!</p>
+  </div>
+  <img src="CCLogo.png" />
