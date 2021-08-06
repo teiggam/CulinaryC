@@ -8,6 +8,8 @@ import { DBIngredient } from 'src/DBIngredient';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../../UserService';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
+
+
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
@@ -38,6 +40,11 @@ export class AddRecipeComponent {
   unit: string;
   recName: string;
   dbIng: DBIngredient;
+  imageUrl: string = "./assets/img/upload.png";
+  fileToUpload: File = null;
+  response: {dbPath: ''}
+
+
   constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private userService: UserService, private authorizeService: AuthorizeService) {
     //will get the userName / Email from the login of identity
     authorizeService.getUser().subscribe((result) => {
@@ -147,9 +154,19 @@ export class AddRecipeComponent {
   UpdateRecipe(form: NgForm) {
     let des: string = form.form.value.description;
     let serv: number = form.form.value.servings;
-    console.log(this.recName);
-    this.recServ.updateRecipe(this.recName, des, serv)
+
+    this.rec.description = des;
+    this.rec.servings = serv;
+    this.rec.recipeName = this.recName;
+    this.rec.picture = this.response.dbPath;
+    console.log(this.response.dbPath);
+    this.recServ.updateRecipe(this.rec)
       .subscribe(result => { console.log(result) });
+  }
+
+
+  uploadFinished = (event) => {
+    this.response = event;
   }
 }
 

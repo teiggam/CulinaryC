@@ -2,6 +2,7 @@ a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  color: #F3F2C9;
 }
 
 html {
@@ -10,6 +11,7 @@ html {
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+    color: #F3F2C9;
   }
 }
 
