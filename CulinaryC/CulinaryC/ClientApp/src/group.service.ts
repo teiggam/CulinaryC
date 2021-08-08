@@ -58,4 +58,9 @@ export class GroupService {
     let url: string = this.base + `/removeuser=${userId}&n=${name}`;
     return this.http.delete<Group>(url).subscribe(result => { console.log(result) });
   }
+
+  getUsersInGroup(name: string) {
+    let url: string = this.base + `/getUsersInGroup/GroupName=${name}`;
+    return this.http.get<Group[]>(url);
+  }
 }
