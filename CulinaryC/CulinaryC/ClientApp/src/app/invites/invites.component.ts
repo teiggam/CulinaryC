@@ -60,6 +60,7 @@ export class InvitesComponent {
           console.log(result.length);
           if (result.length === 0) {
             this.groupService.addUsertoGroup(this.userId, name);
+            this.invitesService.removeInvite(name, this.userId);
             this.message = "Accepted Invite!"
           }
           else {
@@ -73,7 +74,7 @@ export class InvitesComponent {
       }
       console.log(this.message)
 
-      this.invitesService.removeInvite(name, this.userId);
+     
       this.authorizeService.getUser().subscribe((result) => {
         this.userInfo = result.name;
         console.log(result);

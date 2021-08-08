@@ -300,9 +300,13 @@ namespace CulinaryC.Controllers
             f.RecipeId = recipeid;
             f.UserId = userid;
 
-            Favorite fav = db.Favorite.Where(x => x.RecipeId == f.RecipeId && x.UserId == f.UserId).ToList().First();
+            List<Favorite> fav = db.Favorite.Where(x => x.RecipeId == f.RecipeId && x.UserId == f.UserId).ToList();
 
-            db.Favorite.Remove(fav);
+            foreach(Favorite f2 in fav)
+            {
+                db.Favorite.Remove(f2);
+            }
+            
             db.SaveChanges();
         }
 
