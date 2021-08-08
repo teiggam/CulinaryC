@@ -69,22 +69,19 @@ export class RecipeService {
     return this.http.get<Recipe>(url);
   }
 
-  updateRecipe(recipe: Recipe) {
+  updateRecipe(name: string, desc: string, serv: number, image: string ) {
 
-    let url: string = this.base + `/Update`;
-    return this.http.put<Recipe>(url, {
-      id: recipe.id,
-      userId: recipe.userId,
-      score: recipe.score,
-      servings: recipe.servings,
-      description: recipe.description,
-      recipeName: recipe.recipeName,
-      picture: recipe.picture,
-    });
+    let url: string = this.base + `/Update/N=${name}/D=${desc}/S=${serv}/I=${image}`;
+    return this.http.put<Recipe>(url, {});
   }
 
   updateScore(recipeId: number) {
     let url: string = this.base + `/updateScore=${recipeId}`;
+    return this.http.put<Recipe>(url, {}).subscribe((result) => console.log(result));
+  }
+
+  removeScore(recipeId: number) {
+    let url: string = this.base + `/removescore=${recipeId}`;
     return this.http.put<Recipe>(url, {}).subscribe((result) => console.log(result));
   }
 }

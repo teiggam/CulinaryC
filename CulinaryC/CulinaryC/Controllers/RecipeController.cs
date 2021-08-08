@@ -73,6 +73,21 @@ namespace CulinaryC.Controllers
 
         }
 
+        [HttpPut("removescore={recipeId}")]
+        public void removeRecipe(int recipeId)
+        {
+            Recipes r = db.Recipes.Where(x => x.Id == recipeId).ToList().First();
+            Users u = db.Users.Find(r.UserId);
+
+            u.Score = u.Score - 5;
+
+            r.Score = r.Score - 10;
+
+            db.Recipes.Update(r);
+            db.Users.Update(u);
+            db.SaveChanges();
+        }
+
         [HttpPut("updateScore={recipeId}")]
         public void completeRecipe(int recipeId)
         {
@@ -103,18 +118,18 @@ namespace CulinaryC.Controllers
             db.SaveChanges();
         }
 
-        [HttpPut("Update")]
-        public void UpdateRecipe(Recipes recipe)
+        [HttpPut("Update/N={name}/D={desc}/S={serv}/I={image}")]
+        public void UpdateRecipe(string name, string desc, int serv, string image)
         {
-            Recipes r = db.Recipes.Where(x => x.RecipeName == recipe.RecipeName).ToList().Last();
+            Recipes r = db.Recipes.Where(x => x.RecipeName == name).ToList().Last();
             Users u = db.Users.Where(x => x.Id == r.UserId).ToList().First();
-
+            string newPath = "Resources/Images/" + image; 
             u.Score = u.Score + 20;
             db.Users.Update(u);
 
-            r.Description = recipe.Description;
-            r.Servings = recipe.Servings;
-            r.Picture = recipe.Picture;
+            r.Description = desc;
+            r.Servings = serv;
+            r.Picture = newPath;
             db.Recipes.Update(r);
             db.SaveChanges();
         }

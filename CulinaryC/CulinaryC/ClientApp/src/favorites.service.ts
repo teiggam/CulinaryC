@@ -30,6 +30,7 @@ export class FavoritesService {
     return this.http.get<Favorites[]>(url);
   }
 
+  
 }
 
 

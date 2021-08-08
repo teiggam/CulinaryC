@@ -21,12 +21,14 @@
 
 <div *ngFor="let r of recipes">
   <h3>  {{r.recipeName}}  </h3>
-  <button (click)="favorite(r.id); switchImage(r.id); addPoints(r.id)"
-            style="float:left; border:none;
-            background-color: transparent;"
-            class="rc" id="{{r.id}}">
-    <img id ="i" class="favButton" src='outlineStar.png' />
+  <div >
+  <button (click)="favorite(r.id)"
+          style="float:left; border:none;
+            background-color: transparent;" id="{{r.id}}"
+          class="rc">
+    <img id="i" class="favButton" src='outlineStar.png' />
   </button>
+</div>
   <b>Score: </b>{{r.score}} <br />
   <a [routerLink]="['/detail-recipe', r.id]"> More Details </a>
   <div *ngIf="r.servings !== null"> <b> Servings: </b> {{r.servings}}</div>
