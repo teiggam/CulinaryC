@@ -11,8 +11,8 @@ export class UserService {
 
   //needs to be tested still
   updateUsers(name: string, id: number) {
-    let url: string = this.base + `newname=${name}&id=${id}`;
-    this.http.post(url, {}).subscribe(result => { console.log(result) })
+    let url: string = this.base + `/newname=${name}&id=${id}`;
+    this.http.put(url, {}).subscribe(result => { console.log(result) })
   }
 
   //We use this in the detail-recipe page, it does works

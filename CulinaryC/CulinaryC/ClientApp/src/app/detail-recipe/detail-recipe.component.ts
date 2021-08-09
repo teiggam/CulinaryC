@@ -58,10 +58,10 @@ export class DetailRecipeComponent {
       }
     }
     for (let ing of this.ingUsed) {
-      this.calories =+ ing.calories;
-      this.carbs =+ ing.carbs;
-      this.protein =+ ing.protein;
-      this.fats =+ ing.fats;
+      this.calories = this.calories + ing.calories;
+      this.carbs = this.calories + ing.carbs;
+      this.protein = this.calories + ing.protein;
+      this.fats = this.calories + ing.fats;
       console.log(this.fats)
     }
     this.calories = this.calories / this.r.servings;
