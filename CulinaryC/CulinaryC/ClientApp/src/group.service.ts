@@ -63,4 +63,9 @@ export class GroupService {
     let url: string = this.base + `/getUsersInGroup/GroupName=${name}`;
     return this.http.get<Group[]>(url);
   }
+
+  getGroups() {
+    let url: string = this.base + `/Allgroups`;
+    return this.http.get<Group[]>(url);
+  }
 }

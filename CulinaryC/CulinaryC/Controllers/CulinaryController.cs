@@ -115,6 +115,13 @@ namespace CulinaryC.Controllers
             return groups;
         }
 
+        [HttpGet("Allgroups")]
+        public List<Group> Groups()
+        {
+            List<Group> g = db.Group.ToList();
+            return g;
+        }
+
         [HttpGet("GetGroup/GroupName={name}")]
         public List<Group> GetGroups(string name)
         {
