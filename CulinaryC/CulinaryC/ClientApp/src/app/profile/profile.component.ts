@@ -50,6 +50,7 @@ export class ProfileComponent {
         this.displayUserRecipes(this.userId);
         this.getNotifications(this.userId);
         this.userGroups(this.userId);
+
       })
     });
 

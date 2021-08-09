@@ -40,8 +40,6 @@ export class AddRecipeComponent {
   recName: string;
   dbIng: DBIngredient;
   userIngredient: DBIngredient;
-
-  imageUrl: string = "./assets/img/upload.png";
   fileToUpload: File = null;
   response: { dbPath: '' }
   ste4: boolean = false;
@@ -221,7 +219,7 @@ export class AddRecipeComponent {
     })
   }
 
-
+  //Method from parent
   uploadFinished = (event) => {
     this.response = event;
   }
