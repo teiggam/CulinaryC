@@ -48,8 +48,6 @@ import { DetailGroupComponent } from './detail-group/detail-group.component';
     ProfileComponent,
     UploadComponent,
     DetailGroupComponent
-
-
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
