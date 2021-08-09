@@ -33,6 +33,7 @@ export class DetailRecipeComponent {
   carbs: number = 0;
   protein: number = 0;
   fats: number = 0;
+  i: number;
 
   constructor(private authorizeServie: AuthorizeService, private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private UserServ: UserService, private route: ActivatedRoute) {
 
@@ -57,12 +58,11 @@ export class DetailRecipeComponent {
         this.ingUsed.push(ing)
       }
     }
-    for (let ing of this.ingUsed) {
-      this.calories = this.calories + ing.calories;
-      this.carbs = this.calories + ing.carbs;
-      this.protein = this.calories + ing.protein;
-      this.fats = this.calories + ing.fats;
-      console.log(this.fats)
+    for (this.i = 0; this.i <= this.ingUsed.length; this.i++) {
+      this.calories = this.calories + (this.ingUsed[this.i].calories);
+      this.carbs = this.carbs + (this.ingUsed[this.i].carbs);
+      this.protein = this.protein + (this.ingUsed[this.i].protein);
+      this.fats = this.fats + (this.ingUsed[this.i].fats);
     }
     this.calories = this.calories / this.r.servings;
     this.carbs = this.carbs / this.r.servings;
