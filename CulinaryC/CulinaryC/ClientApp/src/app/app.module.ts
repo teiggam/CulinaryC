@@ -25,6 +25,7 @@ import { AddFriendComponent } from './add-friend/add-friend.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UploadComponent } from './upload/upload.component';
 import { DetailGroupComponent } from './detail-group/detail-group.component';
+import { PantryComponent } from './pantry/pantry.component';
 
 
 
@@ -47,7 +48,8 @@ import { DetailGroupComponent } from './detail-group/detail-group.component';
     AddFriendComponent,
     ProfileComponent,
     UploadComponent,
-    DetailGroupComponent
+    DetailGroupComponent,
+    PantryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -72,7 +74,8 @@ import { DetailGroupComponent } from './detail-group/detail-group.component';
       { path: 'app-favorites', component: FavoritesComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-add-friend', component: AddFriendComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-profile', component: ProfileComponent, canActivate: [AuthorizeGuard] },
-      { path: 'app-upload', component: UploadComponent, canActivate: [AuthorizeGuard] }
+      { path: 'app-upload', component: UploadComponent, canActivate: [AuthorizeGuard] },
+      { path: 'app-pantry', component: PantryComponent }
  
     ])
   ],
