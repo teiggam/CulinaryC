@@ -12,29 +12,31 @@ import { RecipeService } from '../../RecipeService';
 import { Recipe } from '../../Recipe';
 
 @Component({
-    selector: 'app-detail-group',
-    templateUrl: './detail-group.component.html',
-    styleUrls: ['./detail-group.component.css'],
-    providers: [GroupService, AuthorizeService, UserService, FriendsService, InvitesService, RecipeService]
+  selector: 'app-detail-group',
+  templateUrl: './detail-group.component.html',
+  styleUrls: ['./detail-group.component.css'],
+  providers: [GroupService, AuthorizeService, UserService, FriendsService, InvitesService, RecipeService]
 })
 
 /** detail-group component*/
 export class DetailGroupComponent {
-    userInfo: string = "";
-    userId: number;
-    groupList: Group[] = [];
-    fList: Friends[] = [];
-    userList: User[] = [];
-    allUsers: User[]
-    message: string | null = null;
-    gList: User[] = [];
-    id: number;
-    group: Group;
-    groupName: string;
-    groupUsers: Group[];
-    i: number;
-    recipes: Recipe[];
-    allRecipes: Recipe[] = [];
+  userInfo: string = "";
+  userId: number;
+  groupList: Group[] = [];
+  fList: Friends[] = [];
+  userList: User[] = [];
+  allUsers: User[]
+  message: string | null = null;
+  gList: User[] = [];
+  id: number;
+  group: Group;
+  groupName: string;
+  groupUsers: Group[];
+  i: number;
+  recipes: Recipe[];
+  allRecipes: Recipe[] = [];
+
+  Users: User[] = [];
 
   constructor(private groupService: GroupService, private authorizeService: AuthorizeService, private UserService: UserService,
     private friendsService: FriendsService, private invitesService: InvitesService, private route: ActivatedRoute, private recipeServices: RecipeService) {
@@ -51,12 +53,11 @@ export class DetailGroupComponent {
     //this.getAllUsersInGroup();
     //for (this.i = 0; this.i <= this.groupUsers.length; this.i++) {
     //  this.getRecipes(this.groupUsers[this.i])
-   /* }*/
+    /* }*/
   }
 
   //Getting the group that they clicked on, works
-  getGroup(id: number)
-  {
+  getGroup(id: number) {
     this.groupService.getGroupByGroupId(id).subscribe((G) => {
       this.group = G;
       console.log(this.group);
@@ -72,11 +73,13 @@ export class DetailGroupComponent {
       this.groupUsers = result;
       console.log(this.groupUsers);
       for (this.i = 0; this.i <= this.groupUsers.length; this.i++) {
+        this.UserService.getUserbyId(this.groupUsers[this.i].userId).subscribe((result2) => {
+          this.Users.push(result2);
+        })
         this.getRecipes(this.groupUsers[this.i])
-        return this.groupUsers;
       }
     })
-   
+
   }
 
   // we are going to go through the list(which holds all the users for the group and find their recipes) 
