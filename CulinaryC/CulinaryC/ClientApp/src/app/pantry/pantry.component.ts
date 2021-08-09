@@ -26,11 +26,11 @@ export class PantryComponent {
   { title: "Master Chef", value: 10001 },
   { title: "Culinary God", value: 17501 }];
 
-  avatar: Avatars = { image: "Default_Hat.png", value: 0 };
-  avatars1: Avatars[] = [{ image: "Chicken.png", value: 100}, { image: "Elephant.png" , value: 100}];
-  avatars2: Avatars[] = [{ image: "Horse.png", value: 251 }, { image: "Llama.png" , value: 251}];
-  avatars3: Avatars[] = [{ image: "Mouse.png", value: 501 }, { image: "Shrimp.png" , value:501 }];
-  avatars4: Avatars[] = [{ image: "Snake.png", value: 1001 }, { image: "Squirrel.png", value: 1001 }];
+  avatar: Avatars = { image: "Default_Hat.jpg", value: 0 };
+  avatars1: Avatars[] = [{ image: "Chicken.jpg", value: 100}, { image: "Elephant.jpg" , value: 100}];
+  avatars2: Avatars[] = [{ image: "Horse.jpg", value: 251 }, { image: "Llama.jpg" , value: 251}];
+  avatars3: Avatars[] = [{ image: "Mouse.jpg", value: 501 }, { image: "Shrimp.jpg" , value:501 }];
+  avatars4: Avatars[] = [{ image: "Snake.jpg", value: 1001 }, { image: "Squirrel.jpg", value: 1001 }];
   
 
 
