@@ -18,17 +18,21 @@ import { UserService } from '../../UserService';
 
 /** detail-recipe component*/
 export class DetailRecipeComponent {
-  ing: Ingredient = {} as Ingredient;
   foodId: number = {} as number;
   r: Recipe = {} as Recipe;
   u: User[];
-  dbIngList: DBIngredient[];
+  dbIngList: DBIngredient[] = [];
   message: string | null = null;
   userId: number;
   userInfo: string = "";
   id: number;
   des: string[] = [];
   fullDes: string[] = [];
+  ingUsed: DBIngredient[] = [];
+  calories: number = 0;
+  carbs: number = 0;
+  protein: number = 0;
+  fats: number = 0;
 
   constructor(private authorizeServie: AuthorizeService, private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private UserServ: UserService, private route: ActivatedRoute) {
 
@@ -36,13 +40,29 @@ export class DetailRecipeComponent {
       this.u = User; console.log(this.u);
     })
     this.recServ.getIngredients().subscribe((DBIngredient) => {
-      this.dbIngList = DBIngredient; console.log(this.dbIngList)
+      this.dbIngList = DBIngredient; console.log(this.dbIngList);
+      this.GetNutritional();
     })
   }
 
   ngOnInit(): void {
     this.id =+ this.route.snapshot.paramMap.get('id');
     this.GetRecipeById(this.id);
+    this.GetNutritional();
+  }
+
+  GetNutritional() {
+    for (let ing of this.dbIngList) {
+      if (ing.recipeId === this.r.id) {
+        this.ingUsed.push(ing)
+      }
+    }
+    for (let ing of this.ingUsed) {
+      this.calories = + ing.calories;
+      this.carbs = + ing.carbs;
+      this.protein = + ing.protein;
+      this.fats = + ing.fats;
+    }
   }
 
   GetRecipeById(id: number)
