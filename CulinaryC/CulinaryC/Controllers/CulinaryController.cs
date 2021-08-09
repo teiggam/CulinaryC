@@ -56,6 +56,40 @@ namespace CulinaryC.Controllers
             db.SaveChanges();
         }
 
+        [HttpPut("img={img}&u={id}")]
+        public void changeAvatar(string img, int id)
+        {
+            //adds 5 points if its the first time changing name
+            Users u = db.Users.Find(id);
+            if (u.Picture == null)
+            {
+                u.Score = u.Score + 5;
+            }
+
+            u.Picture = img;
+
+            db.Users.Update(u);
+            db.SaveChanges();
+
+        }
+
+        [HttpPut("title={title}&u={id}")]
+        public void changeTitle(string title, int id)
+        {
+            //adds 5 points if its the first time changing name
+            Users u = db.Users.Find(id);
+            if (u.Title == null)
+            {
+                u.Score = u.Score + 5;
+            }
+
+            u.Title = title;
+
+            db.Users.Update(u);
+            db.SaveChanges();
+
+        }
+
         [HttpPut("newname={name}&id={id}")]
         public void UpdateName(string name, int id)
         {

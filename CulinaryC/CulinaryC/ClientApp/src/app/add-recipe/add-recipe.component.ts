@@ -51,7 +51,6 @@ export class AddRecipeComponent {
   ste10: boolean = false;
   des: string = "";
 
-
   constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private userService: UserService, private authorizeService: AuthorizeService) {
     //will get the userName / Email from the login of identity
     authorizeService.getUser().subscribe((result) => {
@@ -219,6 +218,7 @@ export class AddRecipeComponent {
   }
 
   //Method from parent
+  //the event comes from the upload component
   uploadFinished = (event) => {
     this.response = event;
   }

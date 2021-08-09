@@ -1,12 +1,15 @@
 
-<h1>Add a New Recipe</h1>
-<br />
 <!--bootstrap container-->
 <!--id: recipe will change the inner Html after submit recipe-->
-<div id="recipe">
-  <div class="container background">
-    <div class="row">
-      <div class="col-lg">
+<div class="container board-test center">
+
+  <div>
+    <h1>Add a New Recipe</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div id="recipe">
         <div id="confirm">
           <form #addTitle="ngForm" (ngSubmit)="AddRecipe(addTitle.form.value.title); ConfirmTitle(addTitle.form.value.title)">
             <h2>Title </h2><input type="text" name="title" placeholder="Title of Recipe" ngModel /><br>
@@ -14,7 +17,6 @@
           </form>
         </div>
       </div>
-      <br>
     </div>
 
     <!-- Search and Add indregients -->
@@ -52,7 +54,8 @@
 
           <!--let user add ingredient-->
           <div>
-            <h3>Test : add your own ingredients</h3>
+            <h3>add your own ingredients</h3>
+            <p>*Nutritional information for submitted ingredients <br /> may not be accurate*</p>
             <form #addUserIngredientForm="ngForm" (ngSubmit)="AddUserIngredient(addUserIngredientForm);">
               <label>Name</label>
               <!--name of the food-->
