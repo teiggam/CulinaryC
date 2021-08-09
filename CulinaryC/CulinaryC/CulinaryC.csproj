@@ -49,6 +49,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\Images\2002_Tofu-And-Broccoli_550.jpg" />
+    <Content Include="Resources\Images\38373.jpg" />
+    <Content Include="Resources\Images\CCLogo.png" />
+    <Content Include="Resources\Images\DSC_7378-L.jpg" />
+    <Content Include="Resources\Images\Easy-Potato-Salad-Recipe-2-1200.jpg" />
+    <Content Include="Resources\Images\German-Sausage-scaled.jpeg" />
+    <Content Include="Resources\Images\sharkteeth.jpg" />
+    <Content Include="Resources\Images\shrimptear.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+
     <TypeScriptCompile Include="ClientApp\src\Avatars.ts" />
     <TypeScriptCompile Include="ClientApp\src\favorites.ts" />
     <TypeScriptCompile Include="ClientApp\src\Friends.ts" />
@@ -63,14 +75,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Resources\Images\2002_Tofu-And-Broccoli_550.jpg" />
-    <None Include="wwwroot\Resources\Images\38373.jpg" />
-    <None Include="wwwroot\Resources\Images\CCLogo.png" />
-    <None Include="wwwroot\Resources\Images\DSC_7378-L.jpg" />
-    <None Include="wwwroot\Resources\Images\Easy-Potato-Salad-Recipe-2-1200.jpg" />
-    <None Include="wwwroot\Resources\Images\German-Sausage-scaled.jpeg" />
-    <None Include="wwwroot\Resources\Images\sharkteeth.jpg" />
-    <None Include="wwwroot\Resources\Images\shrimptear.gif" />
     <None Include="wwwroot\upload.png" />
   </ItemGroup>
 
