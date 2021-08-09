@@ -25,6 +25,7 @@ import { AddFriendComponent } from './add-friend/add-friend.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UploadComponent } from './upload/upload.component';
 import { DetailGroupComponent } from './detail-group/detail-group.component';
+import { PantryComponent } from './pantry/pantry.component';
 
 
 
@@ -59,7 +60,7 @@ import { DetailGroupComponent } from './detail-group/detail-group.component';
       { path: 'counter', component: CounterComponent },
       { path: 'add-recipe', component: AddRecipeComponent, canActivate: [AuthorizeGuard] },
       { path: 'detail-recipe/:id', component: DetailRecipeComponent },
-      { path: 'detail-group/:id', component: DetailGroupComponent },
+      { path: 'detail-group/:id', component: DetailGroupComponent, canActivate: [AuthorizeGuard]  },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-group', component: GroupComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-new-group', component: NewGroupComponent, canActivate: [AuthorizeGuard] },
@@ -72,7 +73,8 @@ import { DetailGroupComponent } from './detail-group/detail-group.component';
       { path: 'app-favorites', component: FavoritesComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-add-friend', component: AddFriendComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-profile', component: ProfileComponent, canActivate: [AuthorizeGuard] },
-      { path: 'app-upload', component: UploadComponent, canActivate: [AuthorizeGuard] }
+      { path: 'app-upload', component: UploadComponent, canActivate: [AuthorizeGuard] },
+      { path: 'app-pantry', component: PantryComponent }
  
     ])
   ],
