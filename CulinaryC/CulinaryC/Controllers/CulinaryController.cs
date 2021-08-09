@@ -192,6 +192,15 @@ namespace CulinaryC.Controllers
             return g;
         }
 
+        [HttpGet("getUsersInGroup/GroupName={name}")]
+
+        public List<Group> GetUsersInGroup(string name)
+        {
+            List<Group> groupUsers = db.Group.Where(x => x.GroupName == name).ToList();
+            return groupUsers;
+        }
+
+
         //creating group
         //adding group will be on the profile page
         //inside the group page is where you can find the button to invite users
