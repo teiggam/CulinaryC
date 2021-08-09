@@ -1,14 +1,12 @@
-<div style="border: 1px solid red">profile Component</div>
-
 <!--user Information-->
 
 <!--add button to change user name // other functionalitiy-->
 <div>
-  <h4>User Information</h4>
+  <h2>User Information</h2>
 
-  <button routerLink='/authentication/profile'>User settings -- this will go to identity setting</button>
+  <button routerLink='/authentication/profile'>Update Settings</button>
   <br />
-  <button routerLink='/app-pantry'>Avatar settings -- this will go to Shop/Custom setting</button>
+  <button routerLink='/app-pantry'>Claim your Titles!</button>
   <div>
     <p>User name: {{user.name}}</p>
     <p>User Email: {{user.loginId}}</p>
@@ -17,8 +15,8 @@
 </div>
 
 <!--friend information-->
+  <h2>Top 5 Friends</h2>
 <div *ngFor="let f of fList | slice:0:5">
-  <h4>Friends List</h4>
   <div *ngIf="fList !== undefinded">
     <p>{{f.name}} : {{f.score}}</p>
   </div>
@@ -26,13 +24,13 @@
 
 <!--notification information-->
 <div>
-  <h4>Notifications</h4>
+  <h2>Notifications</h2>
   <p routerLink="/app-invites">you have {{value}} notifications</p>
 </div>
 
 <!--user recipe list-->
 <div>
-  <h4>Recipe List</h4>
+  <h2>Recipe List</h2>
   <div *ngFor="let r of rList | slice:0:5">
     <p>{{r.recipeName}} : {{r.score}}</p>
   </div>
@@ -42,9 +40,8 @@
 
 <!--group information-->
 <div>
-  <h4>Group information</h4>
+  <h2>Groups - Admin</h2>
   <button routerLink='/app-group'>View Groups</button>
-
   <div *ngFor="let g of gList; index as i">
     <p *ngIf="g.admin === true">{{g.groupName}}</p>
   </div>
