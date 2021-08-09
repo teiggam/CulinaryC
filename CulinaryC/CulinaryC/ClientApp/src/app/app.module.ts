@@ -61,7 +61,7 @@ import { PantryComponent } from './pantry/pantry.component';
       { path: 'counter', component: CounterComponent },
       { path: 'add-recipe', component: AddRecipeComponent, canActivate: [AuthorizeGuard] },
       { path: 'detail-recipe/:id', component: DetailRecipeComponent },
-      { path: 'detail-group/:id', component: DetailGroupComponent },
+      { path: 'detail-group/:id', component: DetailGroupComponent, canActivate: [AuthorizeGuard]  },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-group', component: GroupComponent, canActivate: [AuthorizeGuard] },
       { path: 'app-new-group', component: NewGroupComponent, canActivate: [AuthorizeGuard] },
