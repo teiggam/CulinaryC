@@ -25,16 +25,20 @@
 <!--notification information-->
 <div>
   <h2>Notifications</h2>
-  <p routerLink="/app-invites">you have {{value}} notifications</p>
+  <a routerLink="/app-invites">you have {{value}} notifications</a>
 </div>
 
 <!--user recipe list-->
 <div>
   <h2>Recipe List</h2>
   <div *ngFor="let r of rList | slice:0:5">
-    <p>{{r.recipeName}} : {{r.score}}</p>
+    <h5>
+      <a [routerLink]="['/detail-recipe', r.id]">{{r.recipeName}} : {{r.score}}</a>
+    </h5>
+    <img style="height: 150px; width: inherit" src="{{r.picture}}" />
   </div>
 
+  <hr />
   <button routerLink='/add-recipe'>Add new recipe (20exp)</button>
 </div>
 
