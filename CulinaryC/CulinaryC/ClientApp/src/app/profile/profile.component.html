@@ -2,8 +2,10 @@
 
 <!--add button to change user name // other functionalitiy-->
 <div>
+  <div *ngIf="leader !== null">
+    <img style="height: 150px; width: inherit" src="{{leader}}" />
+  </div>
   <h2>User Information</h2>
-
   <button routerLink='/authentication/profile'>Update Settings</button>
   <br />
   <button routerLink='/app-pantry'>Claim your Titles!</button>
