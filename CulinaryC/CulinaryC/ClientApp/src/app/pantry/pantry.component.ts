@@ -7,8 +7,8 @@ import { User } from '../../User';
 import { UserService } from '../../UserService';
 
 @Component({
-    selector: 'app-pantry',
-    templateUrl: './pantry.component.html',
+  selector: 'app-pantry',
+  templateUrl: './pantry.component.html',
   styleUrls: ['./pantry.component.css'],
   providers: [UserService, AuthorizeService]
 })
@@ -24,12 +24,13 @@ export class PantryComponent {
   { title: "Head Chef", value: 2001 },
   { title: "Executive Chef", value: 5001 },
   { title: "Master Chef", value: 10001 },
-    { title: "Culinary God", value: 17501 }];
+  { title: "Culinary God", value: 17501 }];
 
-  //avatars1: Avatars[] = [{ image: , value: }, { image: , value: }];
-  //avatars2: Avatars[] = [{ image: , value: }, { image: , value: }];
-  //avatars3: Avatars[] = [{ image: , value: }, { image: , value: }];
-  //avatars4: Avatars[] = [{ image: , value: }, { image: , value: }];
+  avatar: Avatars = { image: "Default_Hat.png", value: 0 };
+  avatars1: Avatars[] = [{ image: "Chicken.png", value: 100}, { image: "Elephant.png" , value: 100}];
+  avatars2: Avatars[] = [{ image: "Horse.png", value: 251 }, { image: "Llama.png" , value: 251}];
+  avatars3: Avatars[] = [{ image: "Mouse.png", value: 501 }, { image: "Shrimp.png" , value:501 }];
+  avatars4: Avatars[] = [{ image: "Snake.png", value: 1001 }, { image: "Squirrel.png", value: 1001 }];
   
 
 

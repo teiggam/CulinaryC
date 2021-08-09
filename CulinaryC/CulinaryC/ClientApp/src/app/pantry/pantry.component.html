@@ -27,28 +27,30 @@
   </div>
   <br />
   <h3>Avatars:</h3>
-
-  <!--<p>{{avatars1[0].value}} points needed</p>
+  <img style="width: 200px; height: 200px" src="{{avatar.image}}" />
+  <button (click)="changeAvatar(a.image)">Change Avatar</button>
+  <br />
+  <p>{{avatars1[0].value}} points needed</p>
   <div *ngFor="let a of avatars1">
     <img style="width: 200px; height: 200px" src="{{a.image}}" />
     <button *ngIf="user.score >= a.value" (click)="changeAvatar(a.image)">Change Avatar</button>
   </div>
-
+  <br />
   <p>{{avatars2[0].value}} points needed</p>
   <div *ngFor="let a of avatars2">
     <img style="width: 200px; height: 200px" src="{{a.image}}" />
     <button *ngIf="user.score >= a.value" (click)="changeAvatar(a.image)">Change Avatar</button>
   </div>
-
+  <br />
   <p>{{avatars3[0].value}} points needed</p>
   <div *ngFor="let a of avatars3">
     <img style="width: 200px; height: 200px" src="{{a.image}}" />
     <button *ngIf="user.score >= a.value" (click)="changeAvatar(a.image)">Change Avatar</button>
   </div>
-
+  <br />
   <p>{{avatars4[0].value}} points needed</p>
   <div *ngFor="let a of avatars4">
     <img style="width: 200px; height: 200px" src="{{a.image}}" />
     <button *ngIf="user.score >= a.value" (click)="changeAvatar(a.image)">Change Avatar</button>
-  </div>-->
+  </div>
 </div>
