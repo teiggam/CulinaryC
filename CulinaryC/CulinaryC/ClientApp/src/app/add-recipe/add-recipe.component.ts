@@ -52,7 +52,6 @@ export class AddRecipeComponent {
   des: string = "";
 
 
-
   constructor(private SpoonApi: SpoonacularAPI, private recServ: RecipeService, private userService: UserService, private authorizeService: AuthorizeService) {
     //will get the userName / Email from the login of identity
     authorizeService.getUser().subscribe((result) => {
