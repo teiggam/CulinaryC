@@ -40,7 +40,7 @@ export class DetailRecipeComponent {
       this.u = User; console.log(this.u);
     })
     this.recServ.getIngredients().subscribe((DBIngredient) => {
-      this.dbIngList = DBIngredient; console.log(this.dbIngList);
+      this.dbIngList = DBIngredient;
       this.GetNutritional();
     })
   }
@@ -58,11 +58,16 @@ export class DetailRecipeComponent {
       }
     }
     for (let ing of this.ingUsed) {
-      this.calories = + ing.calories;
-      this.carbs = + ing.carbs;
-      this.protein = + ing.protein;
-      this.fats = + ing.fats;
+      this.calories =+ ing.calories;
+      this.carbs =+ ing.carbs;
+      this.protein =+ ing.protein;
+      this.fats =+ ing.fats;
+      console.log(this.fats)
     }
+    this.calories = this.calories / this.r.servings;
+    this.carbs = this.carbs / this.r.servings;
+    this.protein = this.protein / this.r.servings;
+    this.fats = this.fats / this.r.servings;
   }
 
   GetRecipeById(id: number)
