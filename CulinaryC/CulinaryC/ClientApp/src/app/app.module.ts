@@ -48,7 +48,8 @@ import { PantryComponent } from './pantry/pantry.component';
     AddFriendComponent,
     ProfileComponent,
     UploadComponent,
-    DetailGroupComponent
+    DetailGroupComponent,
+    PantryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

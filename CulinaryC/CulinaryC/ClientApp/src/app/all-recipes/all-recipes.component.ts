@@ -32,6 +32,8 @@ export class AllRecipesComponent {
   favCheck: Favorites[] = [];
   message: boolean = true;
   recipe: Favorites[] = [];
+  ing: string;
+  name: string;
   
 
 

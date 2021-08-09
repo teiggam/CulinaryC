@@ -1,7 +1,7 @@
 <h1>Recipes! </h1>
 <!-- Search by Name: -->
 <div>Search for a recipe by Name</div>
-<input type="text" name="searchName" [(ngModel)]="name" />
+<input type="text" name="name" [(ngModel)]="name" />
 <input type="submit" (click)="searchRecipeByName(name)" />
 <br />
 <div *ngIf="r != undefined">
@@ -10,7 +10,7 @@
   <br />
 <!--Search by ingredients-->
 <div>Search for recipes by ingredient </div>
-<input type="text" name="searchIng" [(ngModel)]="ing" />
+<input type="text" name="ing" [(ngModel)]="ing" />
 <input type="submit" (click)="searchRecipeByIng(ing)" />
 <br />
 <br />
