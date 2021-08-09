@@ -22,15 +22,19 @@
     <br />
   </div>
 </div>
-<b>Steps: </b>
+<div>
+  <b>Steps: </b>
+  <br />
+</div>
 <div *ngFor="let d of fullDes; index as i">
   <p>Step {{i+1}}: {{d}}</p>
 </div>
 <div>
-  <b> Calories:</b> {{calories}}<br />
-  <b> Carbs:</b> {{carbs}}<br />
-  <b> Protein:</b> {{protein}}<br />
-  <b> Fats:</b> {{fats}}<br />
+  <h2>Nutrition per serving </h2>
+  <b> Calories:</b> {{calories | number:'1.1-1' }}<br />
+  <b> Carbs:</b> {{carbs | number:'1.1-1'}}<br />
+  <b> Protein:</b> {{protein  | number:'1.1-1'}}<br />
+  <b> Fats:</b> {{fats  | number:'1.1-1' }}<br />
 </div>
 <br />
 
