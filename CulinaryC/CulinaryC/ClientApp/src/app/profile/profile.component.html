@@ -34,6 +34,7 @@
   <div *ngFor="let r of rList | slice:0:5">
     <h5>
       <a [routerLink]="['/detail-recipe', r.id]">{{r.recipeName}} : {{r.score}}</a>
+      <button id="{{r.id}}" class="b3" (click)="warning(r.id)" style="background-color: transparent;">Remove Recipe</button>
     </h5>
     <img style="height: 150px; width: inherit" src="{{r.picture}}" />
   </div>

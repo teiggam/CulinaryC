@@ -84,4 +84,9 @@ export class RecipeService {
     let url: string = this.base + `/removescore=${recipeId}`;
     return this.http.put<Recipe>(url, {}).subscribe((result) => console.log(result));
   }
+
+  deleteRecipe(recipeId: number) {
+    let url: string = this.base + `/recipeid=${recipeId}`;
+    return this.http.delete<Recipe>(url, {}).subscribe((result) => console.log(result));
+  }
 }

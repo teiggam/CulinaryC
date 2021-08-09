@@ -149,5 +149,14 @@ namespace CulinaryC.Controllers
             return ing;
 
         }
+
+        [HttpDelete("recipeid={id}")]
+        public void DeleteRecipe(int id)
+        {
+            Recipes r = db.Recipes.Find(id);
+
+            db.Recipes.Remove(r);
+            db.SaveChanges();
+        }
     }
 }
