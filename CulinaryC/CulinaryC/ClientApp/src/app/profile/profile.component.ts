@@ -111,19 +111,12 @@ export class ProfileComponent {
     }
     else if (this.bool === false)
     {
-      this.recipeService.deleteRecipe(id);
-      this.authorizeService.getUser().subscribe((result) => {
-        this.userInfo = result.name;
-        console.log(result);
-        console.log(this.userInfo);
-
-
-        this.userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
-          this.userId = id.id;
-          this.user = id;
-          console.log(this.userId);
-          this.displayUserRecipes(this.userId);
-        })
+      this.userService.getUserbyLoginId(this.userInfo).subscribe((id2) => {
+        this.userId = id2.id;
+        this.user = id2;
+        console.log(this.userId);
+        this.recipeService.deleteRecipe(id);
+        this.displayUserRecipes(this.userId);
       });
     }
   }
