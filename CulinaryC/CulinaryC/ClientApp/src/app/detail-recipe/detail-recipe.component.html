@@ -1,33 +1,37 @@
 <!--The id will be passed in, this is just for testing purposes-->
-<h4>Recipe Details:</h4>
-
 <h2>{{r.recipeName}} </h2>
-<div *ngIf="message == null">
-  <button (click)="completed(r.id)">Completed?</button>
+<div> <b>Servings: </b>{{r.servings}} <br />
+  <b>Recipe Score: </b>{{r.score}}
+</div>
+<div *ngFor="let user of u">
+  <div *ngIf="user.id === r.userId">
+    <b>Created By: </b> {{user.name}} <br /> 
+  </div>
 </div>
 <div *ngIf="message !== null">
   <h3>{{message}}</h3>
 </div>
-<div *ngFor="let user of u">
-  <div *ngIf="user.id === r.userId">
-    <b>Created By: </b> {{user.name}} <br />
-  </div>
-</div>
+<div><b>Ingredients </b></div>
 <div *ngFor="let ing of dbIngList">
   <div *ngIf="r.id === ing.recipeId">
-    {{ing.item}}
-    {{ing.amount}}<br />
-    Calories:
-    {{ing.calories}} <br />
-
+    • {{ing.amount}} {{ing.unit}} {{ing.item}}
+    <br />
   </div>
 </div>
-<b>Description: </b>
+<b>Steps: </b>
 <div *ngFor="let d of fullDes; index as i">
   <p>Step {{i+1}}: {{d}}</p>
 </div>
-
+<div>
+  <b> Calories:</b> {{calories}}<br />
+  <b> Carbs:</b> {{carbs}}<br />
+  <b> Protein:</b> {{protein}}<br />
+  <b> Fats:</b> {{fats}}<br />
+</div>
 <br />
+<div *ngIf="message == null">
+  <button (click)="completed(r.id)">Completed?</button>
+</div>
 
 <img style="width: 400px; height:inherit" src="{{r.picture}}"/>
 
