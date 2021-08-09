@@ -29,6 +29,7 @@ export class ProfileComponent {
   rList: Recipe[] = [];
   value: number;
   gList: Group[] = [];
+  bool: boolean = true;
 
   constructor(private userService: UserService, private authorizeService: AuthorizeService,
     private friendService: FriendsService, private recipeService: RecipeService,
@@ -93,6 +94,30 @@ export class ProfileComponent {
   updateUser(form: NgForm) {
     this.userService.updateUsers(form.form.value.name, this.userId);
     console.log(this.user)
+  }
+
+  warning(id: number) {
+    if (this.bool === true) {
+      document.getElementById(id.toString()).innerHTML = "Confirm?";
+      this.bool = false;
+    }
+    else if (this.bool === false)
+    {
+      this.recipeService.deleteRecipe(id);
+      this.authorizeService.getUser().subscribe((result) => {
+        this.userInfo = result.name;
+        console.log(result);
+        console.log(this.userInfo);
+
+
+        this.userService.getUserbyLoginId(this.userInfo).subscribe((id) => {
+          this.userId = id.id;
+          this.user = id;
+          console.log(this.userId);
+          this.displayUserRecipes(this.userId);
+        })
+      });
+    }
   }
 
 }

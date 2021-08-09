@@ -10,3 +10,7 @@
 .board-test{
     border: solid 2px white;
 }
+
+.center {
+    text-align: center;
+}
