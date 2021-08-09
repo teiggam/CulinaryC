@@ -1,4 +1,8 @@
 <!--The id will be passed in, this is just for testing purposes-->
+
+<h4>Recipe Details:</h4>
+<h6>*Nutritional information for submitted ingredients may not be accurate*</h6>
+
 <h2>{{r.recipeName}} </h2>
 <div> <b>Servings: </b>{{r.servings}} <br />
   <b>Recipe Score: </b>{{r.score}}
@@ -29,10 +33,10 @@
   <b> Fats:</b> {{fats}}<br />
 </div>
 <br />
+
 <div *ngIf="message == null">
   <button (click)="completed(r.id)">Completed?</button>
 </div>
 
 <img style="width: 400px; height:inherit" src="{{r.picture}}"/>
-
 
