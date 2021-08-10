@@ -1,11 +1,11 @@
 <div *ngIf="group.groupName != undefined">
   <h1> {{group.groupName}}</h1>
-  <div> {{group.score}}</div>
   <!-- need to pull in all the users in the group still-->
-</div>
+</div> 
+<br />
 
 <!-- I am going to go though each user in this group and pull their recipes in and then print them-->
-<h2> Recipes in this group!</h2>
+<h2> Recipes in this group!</h2> <br />
   <div *ngFor="let r of allRecipes">
     <div *ngIf="r != undefined">
       <h3>{{r.recipeName}}</h3>
@@ -14,7 +14,10 @@
           <h3> by {{g.name}}</h3>
         </div>
       </div>
-      <a [routerLink]="['/detail-recipe', r.id]"> More Details </a>
+      <h3>  <a [routerLink]="['/detail-recipe', r.id]"> {{r.recipeName}} </a> </h3>
+      <img style="width: 400px; height:inherit" src="{{r.picture}}" />
+      <br />
+      <hr />
     </div>
   </div>
 <h2>Group Users</h2>

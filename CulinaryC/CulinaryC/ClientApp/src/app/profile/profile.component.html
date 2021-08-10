@@ -26,6 +26,36 @@
       </div>
     </div>
 
+<div class="container" style="border: white solid 5px;">
+  <div class="row" style="border: black solid 5px;">
+    <!--will hold the profile information-->
+    <div class="col-lg-6 col-md-6 col-sm-12 center">
+      <h2>Title, {{user.name}}</h2>
+      <img style="height: 200px; width: 200px; border: solid red 5px" src="" />
+      <div>
+        <button routerLink='/authentication/profile'>Account Settings</button>
+      </div>
+      <div>
+        <button routerLink='/app-pantry'>Profile Settings</button>
+      </div>
+      <div>
+        <h3>Score: {{user.score}}</h3>
+      </div>
+
+
+
+      <!--friend information-->
+      
+      <div class="col-lg-12 center" style="border: solid red 5px">
+        <h2>Friends</h2>
+        <div *ngFor="let f of fList | slice:0:5">
+          <div *ngIf="fList !== undefinded">
+            <p>{{f.name}} : {{f.score}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!--notification information-->
     <div class="col-6" style="border: blue solid 5px;">
       <h2>Notifications</h2>

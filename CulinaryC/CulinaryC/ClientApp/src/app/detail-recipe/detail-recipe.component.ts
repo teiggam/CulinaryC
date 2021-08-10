@@ -40,6 +40,8 @@ export class DetailRecipeComponent {
     this.UserServ.leaderboard().subscribe((User) => {
       this.u = User; console.log(this.u);
     })
+    this.id = + this.route.snapshot.paramMap.get('id');
+    this.GetRecipeById(this.id);
     this.recServ.getIngredients().subscribe((DBIngredient) => {
       this.dbIngList = DBIngredient;
       this.GetNutritional();
@@ -47,9 +49,7 @@ export class DetailRecipeComponent {
   }
 
   ngOnInit(): void {
-    this.id =+ this.route.snapshot.paramMap.get('id');
-    this.GetRecipeById(this.id);
-    this.GetNutritional();
+  
   }
 
   GetNutritional() {
@@ -63,7 +63,18 @@ export class DetailRecipeComponent {
       this.carbs = this.carbs + (this.ingUsed[this.i].carbs);
       this.protein = this.protein + (this.ingUsed[this.i].protein);
       this.fats = this.fats + (this.ingUsed[this.i].fats);
+      console.log(this.fats);
+      console.log(this.i)
+      console.log(this.ingUsed.length)
+      if (this.i === this.ingUsed.length-1) {
+        this.divide()
+      }
     }
+    
+  }
+
+  divide() {
+    console.log("AHH")
     this.calories = this.calories / this.r.servings;
     this.carbs = this.carbs / this.r.servings;
     this.protein = this.protein / this.r.servings;
@@ -112,9 +123,6 @@ export class DetailRecipeComponent {
     this.recServ.updateScore(recipeId);
   }
 
-
-//  I need to still:
-//    - Do Math :(
 
 }
 
