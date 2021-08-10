@@ -86,7 +86,7 @@ export class RecipeService {
   }
 
   deleteRecipe(recipeId: number) {
-    let url: string = this.base + `/recipeid=${recipeId}`;
+    let url: string = this.base + `/deleteRecipe=${recipeId}`;
     return this.http.delete<Recipe>(url, {}).subscribe((result) => console.log(result));
   }
 }
