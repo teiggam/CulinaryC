@@ -150,10 +150,15 @@ namespace CulinaryC.Controllers
 
         }
 
-        [HttpDelete("recipeid={id}")]
+        [HttpDelete("deleteRecipe={id}")]
         public void DeleteRecipe(int id)
         {
             Recipes r = db.Recipes.Find(id);
+            List<Ingredients> I = db.Ingredients.Where(x => x.RecipeId == r.Id).ToList();
+            foreach(Ingredients ing in I)
+            {
+                db.Ingredients.Remove(ing);
+            }
 
             db.Recipes.Remove(r);
             db.SaveChanges();
