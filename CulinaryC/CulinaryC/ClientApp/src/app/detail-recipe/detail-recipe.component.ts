@@ -124,8 +124,5 @@ export class DetailRecipeComponent {
   }
 
 
-//  I need to still:
-//    - Do Math :(
-
 }
 

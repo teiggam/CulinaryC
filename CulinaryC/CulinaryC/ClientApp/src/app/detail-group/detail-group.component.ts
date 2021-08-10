@@ -76,7 +76,6 @@ export class DetailGroupComponent {
         return this.groupUsers;
       }
     })
-   
   }
 
   // we are going to go through the list(which holds all the users for the group and find their recipes) 
@@ -90,9 +89,17 @@ export class DetailGroupComponent {
       for (this.i = 0; this.i <= this.recipes.length; this.i++) {
         this.allRecipes.push(this.recipes[this.i])
         console.log(this.allRecipes);
+        if (this.i === this.recipes.length - 1) {
+          this.sortRecipes();
+        }
       }
     })
-    return this.recipes;
+    
+  }
+
+  sortRecipes() {
+    let list = this.allRecipes.sort((a, b) => (a.score  < b.score ? 1 : -1));
+    this.allRecipes = list;
   }
 }
 
