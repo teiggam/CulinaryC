@@ -25,12 +25,15 @@ export class ProfileComponent {
   userInfo: string = "";
   userId: number;
   user: User;
+  userFriends: User[];
   fList: Friends[] = [];
   rList: Recipe[] = [];
   value: number;
   gList: Group[] = [];
   bool: boolean = true;
   leader: string = "";
+  i: number;
+  userFriend: User;
 
   constructor(private userService: UserService, private authorizeService: AuthorizeService,
     private friendService: FriendsService, private recipeService: RecipeService,
@@ -71,7 +74,13 @@ export class ProfileComponent {
     this.friendService.getFriends(this.userId).subscribe((result) => {
       this.fList = result;
       console.log(this.fList);
+      this.sortFriends();
     })
+  }
+
+  sortFriends() {
+    let list = this.fList.sort((a, b) => (a.score < b.score ? 1 : -1));
+    this.fList = list;
   }
 
   //display user recipes
