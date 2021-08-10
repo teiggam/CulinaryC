@@ -89,9 +89,12 @@ export class DetailGroupComponent {
       for (this.i = 0; this.i <= this.recipes.length; this.i++) {
         this.allRecipes.push(this.recipes[this.i])
         console.log(this.allRecipes);
+        if (this.i === this.recipes.length - 1) {
+          this.sortRecipes();
+        }
       }
     })
-    this.sortRecipes();
+    
   }
 
   sortRecipes() {

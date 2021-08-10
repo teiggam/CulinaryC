@@ -82,6 +82,7 @@ export class ProfileComponent {
     let list = this.fList.sort((a, b) => (a.score < b.score ? 1 : -1));
     this.fList = list;
   }
+
   //display user recipes
   displayUserRecipes(userId: number) {
     this.recipeService.displayUserRecipes(userId).subscribe((result) => {
