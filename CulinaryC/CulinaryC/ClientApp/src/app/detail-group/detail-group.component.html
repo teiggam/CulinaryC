@@ -8,7 +8,12 @@
 <h2> Recipes in this group!</h2>
   <div *ngFor="let r of allRecipes">
     <div *ngIf="r != undefined">
-      <h3>{{r.recipeName}} </h3>
+      <h3>{{r.recipeName}}</h3>
+      <div *ngFor="let g of Users">
+        <div *ngIf="r.userId === g.id">
+          <h3> by {{g.name}}</h3>
+        </div>
+      </div>
       <a [routerLink]="['/detail-recipe', r.id]"> More Details </a>
     </div>
   </div>
