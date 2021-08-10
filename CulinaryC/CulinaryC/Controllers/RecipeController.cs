@@ -106,7 +106,7 @@ namespace CulinaryC.Controllers
         {
             Recipes rec = new Recipes();
 
-            rec = db.Recipes.Where(x => x.RecipeName.ToLower() == name.ToLower()).ToList().Last();
+            rec = db.Recipes.Where(x=>x.RecipeName.Contains(name.ToLower())).ToList().Last();
 
             return rec;
         }

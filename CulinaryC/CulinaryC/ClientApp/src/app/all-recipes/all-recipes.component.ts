@@ -122,7 +122,6 @@ export class AllRecipesComponent {
 
 
   //Search function by Name
-  //NEED TO CHANGE THE BACK END TO CONTAINS
   searchRecipeByName(name: string) {
     this.recServ.getRecipeByName(name).subscribe((Recipe) => {
       this.r = Recipe;
@@ -156,8 +155,6 @@ export class AllRecipesComponent {
   removePoints(recipeId: number) {
     this.recServ.removeScore(recipeId);
   }
-
-  //Need Favorite Button 
 
 
 }
