@@ -1,3 +1,16 @@
 .center{
     text-align: center;
 }
+
+.main-border {
+  border: solid 3px #53B8BB;
+  border-radius: 20px;
+  background-color: #055052;
+  padding: 1%;
+  margin: 2%;
+}
+
+.button-space {
+    padding: 5px;
+    margin: 5px;
+}
