@@ -6,11 +6,29 @@
   border: solid 3px #53B8BB;
   border-radius: 20px;
   background-color: #055052;
-  padding: 1%;
-  margin: 2%;
+  padding: 4%;
+  margin: 1%;
+}
+
+.secondary-border {
+  border: solid 3px #53B8BB;
+  border-radius: 20px;
+  background-color: #003638;
 }
 
 .button-space {
-    padding: 5px;
-    margin: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+a:hover{
+    color: white;
+}
+
+.card-size{
+    width: 18rem;
+}
+
+.headding-padding{
+    padding-top: 10px;
 }

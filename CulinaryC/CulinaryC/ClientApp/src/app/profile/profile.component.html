@@ -13,49 +13,68 @@
       <button type="button" class="btn btn-outline-info button-space" routerLink='/authentication/profile'>Account Settings</button>
     </div>
 
-    <div class="col-lg-6 col-md-6 center">
-      <!--CookBook-->
-      <h2>Recipe List</h2>
-      <!--add new recipe-->
-        <button type="button" class="btn btn-outline-info button-space" routerLink='/add-recipe'>Add new recipe</button>
-      <!--View Favorites-->
-        <button type="button" class="btn btn-outline-info button-space" routerLink="/app-favorites">View Favorites</button>
-      <!--display list of recipes-->
-      <div *ngFor="let r of rList | slice:0:5">
-        <div style="border: solid yellow 1px">
-          <h5>
-            <a [routerLink]="['/detail-recipe', r.id]">{{r.recipeName}} : {{r.score}}</a>
-            <button id="{{r.id}}" class="b3" (click)="warning(r.id)" style="background-color: transparent;">Remove Recipe</button>
-          </h5>
-          <img style="height: 150px; width: inherit" src="{{r.picture}}" />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container center main-border">
-  <!--Second row below User info and recipes-->
-  <div class="row">
     <!--friend information-->
-    <div class="col-lg-6 col-md-6 center" style="border: solid red 5px">
-      <h2>Friends</h2>
+    <div class="col-lg-6 col-md-6 center secondary-border">
+      <h2 class="headding-padding"><a routerLink='/app-friends'>Friends</a></h2>
       <div *ngFor="let f of fList | slice:0:5">
         <div *ngIf="fList !== undefinded">
           <p>{{f.name}} : {{f.score}}</p>
         </div>
       </div>
-    </div>
 
-    <!--group information-->
-    <div class="col-lg-6 col-md-6" style="border: solid blue 5px">
-      <h2><a routerLink='/app-group'>Groups - Admin</a></h2>
-      <div *ngFor="let g of gList; index as i">
-        <p *ngIf="g.admin === true">{{g.groupName}}</p>
+      <!--group information-->
+      <div>
+        <h2 class="headding-padding"><a routerLink='/app-group'>Groups</a></h2>
+        <div *ngFor="let g of gList; index as i">
+          <p *ngIf="g.admin === true">{{g.groupName}}</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+  <!--Second Container hold recipes-->
+<div class="container center main-border">
+  <div class="row">
+    <div class="center">
+      <h2>Recipe List</h2>
+      <!--add new recipe-->
+      <button type="button" class="btn btn-outline-info button-space" routerLink='/add-recipe'>Add new recipe</button>
+      <!--View Favorites-->
+      <button type="button" class="btn btn-outline-info button-space" routerLink="/app-favorites">View Favorites</button>
+    </div>
+  </div>
+
+  
+    <!--display list of recipes-->
+  <div class="row">
+    <div class="col-lg-3 col-md-6">
+      <div *ngFor="let r of rList | slice:0:5">
+        <div class="card">
+          <img class="card-img-top" style="height: 150px; width: inherit" src="{{r.picture}}" />
+          <div class="card-body">
+            <h5 class="card-title">
+              <a [routerLink]="['/detail-recipe', r.id]">{{r.recipeName}} : {{r.score}}</a>
+            </h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+
+
+
+
+        <h5>
+         
+        </h5>
+        <button type="button" class="btn btn-outline-danger btn-sm" id="{{r.id}}" (click)="warning(r.id)">Remove Recipe</button>
+        <br />
+
+      </div>
+    </div>
+  </div>
+  </div>
+
 
 
 
