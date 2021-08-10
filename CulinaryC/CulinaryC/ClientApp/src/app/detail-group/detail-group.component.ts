@@ -85,7 +85,6 @@ export class DetailGroupComponent {
     this.recipeServices.displayUserRecipes(g.userId).subscribe((result) => {
       this.recipes = result;
       console.log(this.recipes);
-      //this is where it is breaking
       for (this.i = 0; this.i <= this.recipes.length; this.i++) {
         this.allRecipes.push(this.recipes[this.i])
         console.log(this.allRecipes);
