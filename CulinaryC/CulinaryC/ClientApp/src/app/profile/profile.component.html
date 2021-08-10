@@ -1,5 +1,4 @@
 <!--user Information-->
-
 <div class="container" style="border: white solid 5px;">
   <div class="row" style="border: black solid 5px;">
     <!--will hold the profile information-->
@@ -15,10 +14,8 @@
       <div>
         <h3>Score: {{user.score}}</h3>
       </div>
-
-
-      <!--friend information-->
       
+      <!--friend information-->
       <div class="col-lg-12 center" style="border: solid red 5px">
         <h2>Friends</h2>
         <div *ngFor="let f of fList | slice:0:5">
@@ -34,7 +31,6 @@
       <h2>Notifications</h2>
       <a routerLink="/app-invites">you have {{value}} notifications</a>
       <hr />
-
       <!--CookBook-->
       <div class="col-lg-6 col-md-6">
         <h2>Recipe List</h2>
@@ -49,7 +45,10 @@
         <!--display list of recipes-->
         <div *ngFor="let r of rList | slice:0:5">
           <div style="border: solid yellow 1px">
-            <h5><a [routerLink]="['/detail-recipe', r.id]">{{r.recipeName}} : {{r.score}}</a></h5>
+            <h5>
+              <a [routerLink]="['/detail-recipe', r.id]">{{r.recipeName}} : {{r.score}}</a>
+              <button id="{{r.id}}" class="b3" (click)="warning(r.id)" style="background-color: transparent;">Remove Recipe</button>
+            </h5>
             <img style="height: 150px; width: inherit" src="{{r.picture}}" />
           </div>
         </div>
@@ -60,8 +59,7 @@
 
 <!--group information-->
 <div>
-  <h2>Groups - Admin</h2>
-  <button routerLink='/app-group'>View Groups</button>
+  <h2><a routerLink='/app-group'>Groups - Admin</a></h2>
   <div *ngFor="let g of gList; index as i">
     <p *ngIf="g.admin === true">{{g.groupName}}</p>
   </div>
